@@ -30,6 +30,7 @@
 </template>
 
 <script>
+// import "../src/assets/css/base.css";
 import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
@@ -62,7 +63,7 @@ export default {
           name: "mime",
           path: "/mime",
           icon: "el-icon-user-solid"
-        }
+        },
       ]
     };
   }
@@ -70,7 +71,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* @import url('./css/base.css'); */
+@import url('./assets/css/base.css');
 * {
   margin: 0;
   padding: 0;
@@ -103,10 +104,12 @@ footer {
   height: 5rem;
   background-color: #fff;
   box-shadow: 0 0 8px #333;
-  display: block;
   display: flex;
   justify-content: space-around;
   line-height: 5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 footer ul {
   height: 0;
@@ -137,5 +140,8 @@ li i {
 }
 .el-menu-item span {
   line-height: 2rem;
+}
+.el-menu--horizontal>.el-menu-item {
+  height:5rem !important;
 }
 </style>
