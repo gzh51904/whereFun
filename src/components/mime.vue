@@ -173,7 +173,7 @@ export default {
 
 </script>
 <style lang="scss">
-@import url('../css/base.css');
+@import url('../assets/css/base.css');
 .mine{
 .side-menu-header {
     position: fixed;

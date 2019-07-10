@@ -69,15 +69,8 @@ export default {
           name: "mime",
           path: "/mime",
           icon: "el-icon-user-solid"
-<<<<<<< HEAD
-        }
-      ],
-      active: "/home",
-      
-=======
         },
       ]
->>>>>>> 4c440594141c6957d8d3b09562336eadac21394b
     };
   },
   methods:{
