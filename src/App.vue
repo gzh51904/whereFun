@@ -7,7 +7,7 @@
       <footer>
         <el-row>
           <el-col>
-            <el-menu class="el-menu-demo" mode="horizontal"  router>
+            <el-menu class="el-menu-demo" mode="horizontal" router>
               <el-menu-item
                 v-for="item in pages"
                 :key="item.name"
@@ -15,8 +15,11 @@
                 :routes="item.path"
                 router
               >
-              <i :class="item.icon"></i>
-              <span>{{item.title}}</span>
+                <span>
+                  <i :class="item.icon"></i>
+                </span>
+
+                <span>{{item.title}}</span>
               </el-menu-item>
             </el-menu>
           </el-col>
@@ -27,7 +30,6 @@
 </template>
 
 <script>
- 
 import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
@@ -41,25 +43,25 @@ export default {
           title: "首页",
           name: "home",
           path: "/home",
-          icon:'el-icon-s-home'
+          icon: "el-icon-s-home"
         },
         {
           title: "目的地",
           name: "des",
           path: "/des",
-          icon:'el-icon-star-on'
+          icon: "el-icon-star-on"
         },
         {
           title: "购物车",
           name: "cart",
           path: "/cart",
-          icon:'el-icon-shopping-cart-full'
+          icon: "el-icon-shopping-cart-full"
         },
         {
           title: "我的",
           name: "mime",
           path: "/mime",
-          icon:'el-icon-user-solid'
+          icon: "el-icon-user-solid"
         }
       ]
     };
@@ -67,7 +69,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+/* @import url('./css/base.css'); */
 * {
   margin: 0;
   padding: 0;
@@ -76,6 +79,7 @@ body,
 html {
   height: 100%;
   width: 100%;
+  font-size: 10px;
 }
 #app {
   height: 100%;
@@ -86,7 +90,6 @@ html {
   width: 100%;
   flex-direction: column;
   align-content: space-between;
-
 }
 
 main {
@@ -97,31 +100,42 @@ main {
 footer {
   z-index: 11000;
   width: 100%;
-  height: 60px;
+  height: 5rem;
   background-color: #fff;
   box-shadow: 0 0 8px #333;
   display: block;
   display: flex;
   justify-content: space-around;
-  line-height: 50px;
+  line-height: 5rem;
 }
 footer ul {
-  height: 0px;
+  height: 0;
   display: flex;
+}
+.el-row {
+  width: 100%;
 }
 footer li {
   line-height: 0;
   list-style: none;
-  display: flex; 
-   flex-direction: column;
-   justify-content: center;
-   /* align-content: center;  */
+  width: 25%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  /* align-content: center;  */
 }
-
-.el-menu-item [class^=el-icon-]{
-  font-size: 26px;
+li i {
+  text-align: center;
 }
-.el-menu-item span{
-  line-height: 30px;
+.el-menu-item {
+  width: 25%;
+}
+.el-menu-item [class^="el-icon-"] {
+  font-size: 2.6rem;
+}
+.el-menu-item span {
+  line-height: 2rem;
 }
 </style>
