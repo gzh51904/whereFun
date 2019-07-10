@@ -90,7 +90,7 @@ s,i,em{
 .f14{ font-size: 14px;}
 .f16{ font-size: 16px;}
 *{
-    /*box-sizing: border-box;*/
+    box-sizing: border-box;
 }
 html,body{
     height: 100%;
