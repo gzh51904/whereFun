@@ -7,11 +7,17 @@
       <footer>
         <el-row>
           <el-col>
-            <el-menu class="el-menu-demo" mode="horizontal" router>
+            <el-menu 
+              :default-active="active"
+              @select="handleSelect" 
+              class="el-menu-demo" 
+              mode="horizontal" 
+              router>
               <el-menu-item
+              
                 v-for="item in pages"
                 :key="item.name"
-                :index="item.name"
+                :index="item.path"
                 :routes="item.path"
                 router
               >
@@ -63,9 +69,20 @@ export default {
           path: "/mime",
           icon: "el-icon-user-solid"
         }
-      ]
+      ],
+      active: "/home",
+      
     };
-  }
+  },
+  methods:{
+      handleSelect(index,indexPath){
+        this.active = index;
+      }
+      },
+      created(){
+        let hash = window.location.hash.slice(1);
+        this.active = hash;
+      }
 };
 </script>
 
@@ -75,8 +92,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-body,
-html {
+body{background: #32425b !important;}
+body,html {
   height: 100%;
   width: 100%;
   font-size: 10px;
