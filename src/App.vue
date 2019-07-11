@@ -105,7 +105,9 @@ body,html {
     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #app {
+  width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .box {
   display: flex;
