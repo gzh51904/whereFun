@@ -95,7 +95,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-body{background: #32425b !important;}
 body,html {
   height: 100%;
   width: 100%;

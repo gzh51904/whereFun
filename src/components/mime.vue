@@ -175,6 +175,7 @@ export default {
 <style lang="scss">
 @import url('../assets/css/base.css');
 .mine{
+background: #32425b !important;
 .side-menu-header {
     position: fixed;
     top: 0;
