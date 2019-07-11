@@ -1,6 +1,6 @@
 <template>
   <div>
-    <search/>
+    <search />
     <div id="main">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -128,16 +128,16 @@
   </div>
 </template>
 <script>
-import search from './search';
+import search from "./search";
 export default {
-    methods : {
-        gotodesSelect(){
-            this.$router.push({name:'desselect'});
-        }
-    },
-    components : {
-        search
+  methods: {
+    gotodesSelect() {
+      this.$router.push({ name: "desselect" });
     }
+  },
+  components: {
+    search
+  }
 };
 </script>
 
@@ -161,11 +161,11 @@ export default {
     color: #ccc;
   }
   .cityBJ {
-    width: 37.5rem;
+    // width: 37.5rem;
     height: 14.2rem;
     position: relative;
     background: url("../assets/img/LosAngeles_b.jpg") no-repeat;
-    background-size: 37.5rem 14.2rem;
+    background-size: cover;
     a {
       position: absolute;
     }
@@ -284,17 +284,18 @@ export default {
   }
   .content_a {
     display: block;
-    margin-bottom:20px; 
+    margin-bottom: 20px;
   }
   .content_list {
     width: 100%;
     figure {
-      width: 100%;
+      display: flex;
+      //   width: 10%;
       overflow: hidden;
       position: relative;
     }
     .content_list_imgBox {
-      width: 12rem;
+      flex: 1;
       height: 15rem;
       float: left;
       position: relative;
@@ -345,7 +346,8 @@ export default {
       }
     }
     figcaption {
-      width: 23rem;
+      //   width: 23rem;
+      flex: 2;
       float: left;
 
       h3 {
