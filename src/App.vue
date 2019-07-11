@@ -33,6 +33,12 @@
 import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+
+//swiper
+import swiper from "swiper"
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper)
 Vue.use(ElementUi);
 
 export default {
@@ -70,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* @import url('./css/base.css'); */
+ @import url('./assets/css/base.css'); 
 * {
   margin: 0;
   padding: 0;
@@ -80,6 +86,10 @@ html {
   height: 100%;
   width: 100%;
   font-size: 10px;
+  position: relative;
+  height: 100%;
+  font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
+    "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #app {
   height: 100%;
@@ -107,6 +117,9 @@ footer {
   display: flex;
   justify-content: space-around;
   line-height: 5rem;
+  position:fixed;
+  bottom:0;
+  left:0;
 }
 footer ul {
   height: 0;
