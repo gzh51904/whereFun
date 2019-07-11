@@ -95,7 +95,9 @@ let router = new vueRoter({
                 },
             ]
         },
-        { path: "/", redirect: { name: "Home" } }
+        //重定向
+        { path: "/", redirect: { name: "Home" } },
+        { path: "/desselect", redirect: { path: "/hot" } }
     ]
 })
 
