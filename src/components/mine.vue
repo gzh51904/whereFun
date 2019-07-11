@@ -1,7 +1,8 @@
 <template>
     <div
     class="mine">
-        <div class="side-menu-header">
+    <div class="side-menu"></div>
+        <div class="side-menu-wrapper">
         <h3 class="side-menu-title">
         
         <span class="side-menu-close">
@@ -15,10 +16,10 @@
     <div class="userinfo">
         <el-avatar shape="square" :size="60" :src="squareUrl"></el-avatar>
         <div v-for="item in infobtns" :key="item.name"  class="infobtn">
-        <el-button @click.native.prevent.stop="goto('Reg')" round><i :class="item.icon"></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
-        <el-button @click.native.prevent.stop="goto('Login')" round><i :class="item.icon2"></i> {{item.title2}}</el-button>
+        <el-button @click.native.prevent.stop="goto('reg')" round><i :class="item.icon"></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
+        <el-button @click.native.prevent.stop="goto('login')" round><i :class="item.icon2"></i> {{item.title2}}</el-button>
         </div>
-        </div>
+    </div>
      <ul class="menu-list">
     
     <a 
@@ -64,6 +65,8 @@
           <span>玩哪儿@Wannar Travel INC.</span><br>
           <span>美国加州合法旅行社 (CST#2119862-40)</span>
       </div>
+      </div>
+    </div>
     </div>
 </template>
 <script>
@@ -162,9 +165,9 @@ export default {
     },
     methods:{
         goto(name){
-            this.$router.push({
-                name
-            });
+            this.$router.push(`/${name}`);
+            // let hash = window.href;
+            // console.log(hash);
 
         }
     }
@@ -175,7 +178,9 @@ export default {
 <style lang="scss">
 @import url('../assets/css/base.css');
 .mine{
-background: #32425b !important;
+    background-color: #32425b;
+    height: 100%;
+    padding-right:1.5rem;
 .side-menu-header {
     position: fixed;
     top: 0;
@@ -246,6 +251,7 @@ h3.side-menu-title span {
             i{margin-right:3px;}
             }
         .langu{
+            padding-right:1.8rem;
             display:block;
             float:right;
             label:nth-of-type(1){margin-right:1rem}
@@ -266,7 +272,7 @@ h3.side-menu-title span {
             border:none;
         .el-submenu{border:none;}
             .el-submenu__title{
-                width: 0;
+                width: 21rem;
                 float:right;
                 position: relative;
                 border:none;
@@ -303,6 +309,8 @@ h3.side-menu-title span {
 }
 
 }
+
+
 
 
 

@@ -3,7 +3,9 @@ import vueRoter from 'vue-router'
 import Home from '../components/home.vue'
 import Des from '../components/des.vue'
 import Cart from '../components/cart.vue'
-import Mime from '../components/mime.vue'
+import Mine from '../components/mine.vue'
+import Login from '../components/mine/login.vue'
+import Reg from '../components/mine/reg.vue'
 
 Vue.use(vueRoter)
 
@@ -12,19 +14,39 @@ let router = new vueRoter({
         {
             name:'Home',
             path:'/home',
-            component:Home
+            component:Home,
+            components:{
+                default:Home,
+                mine:Mine
+
+            }
         },{
             name:'Des',
             path:'/des',
-            component:Des
+            component:Des,
+            components:{
+                default:Home,
+                mine:Mine
+
+            }
         },{
             name:'Cart',
             path:'/cart',
             component:Cart
+        }
+        // ,{
+        //     name:'Mine',
+        //     path:'/mine',
+        //     component:Mine
+        // }
+        ,{
+            name:'Login',
+            path:'/login',
+            component:Login
         },{
-            name:'Mime',
-            path:'/mime',
-            component:Mime
+            name:'Reg',
+            path:'/reg',
+            component:Reg
         },
         { path: "/", redirect: { name: "Home" } }
     ]
