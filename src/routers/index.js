@@ -25,7 +25,8 @@ let router = new vueRoter({
             name:'Mime',
             path:'/mime',
             component:Mime
-        }
+        },
+        { path: "/", redirect: { name: "Home" } }
     ]
 })
 

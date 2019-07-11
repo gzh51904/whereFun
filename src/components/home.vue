@@ -90,7 +90,13 @@
 <script>
 import Vue from "vue";
 import "swiper/dist/css/swiper.css";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+
+//swiper
+import swiper from "swiper"
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper)
+Vue.use(swiper)
 
 export default {
   name: "carrousel",

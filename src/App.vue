@@ -7,11 +7,17 @@
       <footer>
         <el-row>
           <el-col>
-            <el-menu class="el-menu-demo" mode="horizontal" router>
+            <el-menu 
+              :default-active="active"
+              @select="handleSelect" 
+              class="el-menu-demo" 
+              mode="horizontal" 
+              router>
               <el-menu-item
+              
                 v-for="item in pages"
                 :key="item.name"
-                :index="item.name"
+                :index="item.path"
                 :routes="item.path"
                 router
               >
@@ -30,16 +36,13 @@
 </template>
 
 <script>
+// import "../src/assets/css/base.css";
 import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
-//swiper
-import swiper from "swiper"
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
-Vue.use(VueAwesomeSwiper)
-Vue.use(ElementUi);
+
+Vue.use(ElementUi)
 
 export default {
   data() {
@@ -68,21 +71,32 @@ export default {
           name: "mime",
           path: "/mime",
           icon: "el-icon-user-solid"
-        }
+        },
       ]
     };
-  }
+  },
+  methods:{
+      handleSelect(index){
+        this.active = index;
+      }
+      },
+      created(){
+        let hash = window.location.hash.slice(1);
+        this.active = hash;
+      }
 };
 </script>
 
 <style lang="scss">
- @import url('./assets/css/base.css'); 
+
+@import url('./assets/css/base.css');
+
 * {
   margin: 0;
   padding: 0;
 }
-body,
-html {
+body{background: #32425b !important;}
+body,html {
   height: 100%;
   width: 100%;
   font-size: 10px;
@@ -113,13 +127,14 @@ footer {
   height: 5rem;
   background-color: #fff;
   box-shadow: 0 0 8px #333;
-  display: block;
   display: flex;
   justify-content: space-around;
   line-height: 5rem;
-  position:fixed;
-  bottom:0;
-  left:0;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
 }
 footer ul {
   height: 0;
@@ -150,5 +165,8 @@ li i {
 }
 .el-menu-item span {
   line-height: 2rem;
+}
+.el-menu--horizontal>.el-menu-item {
+  height:5rem !important;
 }
 </style>
