@@ -7,6 +7,16 @@ import Mine from '../components/mine.vue'
 import Login from '../components/mine/login.vue'
 import Reg from '../components/mine/reg.vue'
 import desselect from '../components/desselect.vue';
+import hot from '../components/desselect/hot.vue';
+import canada from '../components/desselect/canada.vue';
+import city from '../components/desselect/city.vue';
+import csa from '../components/desselect/csa.vue';
+import custom from '../components/desselect/custom.vue';
+import europe from '../components/desselect/europe.vue';
+import mail from '../components/desselect/mail.vue';
+import team from '../components/desselect/team.vue';
+import usaeast from '../components/desselect/usaeast.vue';
+import usawest from '../components/desselect/usawest.vue';
 Vue.use(vueRoter)
 
 let router = new vueRoter({
@@ -25,14 +35,19 @@ let router = new vueRoter({
             path:'/des',
             component:Des,
             components:{
-                default:Home,
+                default:Des,
                 mine:Mine
 
             }
         },{
             name:'Cart',
             path:'/cart',
-            component:Cart
+            component:Cart,
+            components:{
+                default:Cart,
+                mine:Mine
+
+            }
         }
         // ,{
         //     name:'Mine',

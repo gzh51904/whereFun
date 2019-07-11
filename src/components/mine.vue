@@ -1,11 +1,12 @@
 <template>
     <div
+    :class="{mineclose:closemine,mineopen:isActive}"
     class="mine">
     <div class="side-menu"></div>
         <div class="side-menu-wrapper">
         <h3 class="side-menu-title">
         
-        <span class="side-menu-close">
+        <span closemine isActive oks opens @click.prevent.stop="checkoutMine()" class="side-menu-close">
           ×
         </span>      
       </h3>
@@ -66,8 +67,7 @@
           <span>美国加州合法旅行社 (CST#2119862-40)</span>
       </div>
       </div>
-    </div>
-    </div>
+ 
 </template>
 <script>
 export default {
@@ -160,7 +160,11 @@ export default {
            },{
                coun:'台湾',
                phone:'123456'
-           }]
+           }],
+           isActive:false,
+      oks:false,
+      opens:true,
+            closemine:false
         }
     },
     methods:{
@@ -169,7 +173,16 @@ export default {
             // let hash = window.href;
             // console.log(hash);
 
+        },
+        checkoutMine(){
+            console.log(22222)
+        this.opens=  false;
+        if(this.opens == false){
+          this.isActive = false;
+          this.oks = false;
+          this.closemine = true;
         }
+      }
     }
     
 }
@@ -177,10 +190,25 @@ export default {
 </script>
 <style lang="scss">
 @import url('../assets/css/base.css');
+// body,html {
+//   height: 100%;
+//   width: 100%;
+//   font-size: 10px;
+//   position: relative;
+//   height: 100%;
+//   font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
+//     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+// }
+.mineclose{
+ display:none;
+  left:3rem;
+  transition:all 0.5s;
+}
 .mine{
     background-color: #32425b;
     height: 100%;
     padding-right:1.5rem;
+
 .side-menu-header {
     position: fixed;
     top: 0;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="desPart">
     <search />
     <div id="main">
       <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -143,6 +143,16 @@ export default {
 
 
 <style lang="scss" scoped>
+.desPart{
+    margin-top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 10px #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 6rem;
 .icon {
   width: 1em;
   height: 1em;
@@ -439,6 +449,7 @@ export default {
     display: flex;
     align-items: center;
   }
+}
 }
 </style>
 

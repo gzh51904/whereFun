@@ -3,10 +3,10 @@
     <div class="box">
       
       <main>
-    <router-view :class="{mineopen:isActive}" class="mine" name="mine"/>
-    <div v-show="oks" class="content-cover"></div> 
-      </main>
     <router-view :class="{maincontent:isActive}" class="maincon"/>
+    <div :class="{contentcover1:isActive}" @click.prevent.stop="checkoutMine()" v-show="oks" class="contentcover"></div> 
+      </main>
+    <router-view  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine"/>
       <footer>
         <el-row>
           <el-col>
@@ -31,7 +31,8 @@
               isActive
               oks
               opens
-              @click.prevent.stop="checkoutMine()"
+              closemine
+              @click.prevent.stop="checkinMine()"
               >
                 <span style="display:block;">
                   <i :class="item.icon"></i>
@@ -98,25 +99,29 @@ export default {
       ],
       isActive:false,
       oks:false,
-      opens:true
+      opens:true,
+      closemine:false
     };
   },
   methods:{
       handleSelect(index){
         this.active = index;
       },
-      checkoutMine(){
-        //  this.$router.addClassName="mineopen";
-        //  let aas = this.$router.className;
-        //  console.log('类名是：',this.$router);
+      checkinMine(){
         this.opens=  true;
         if(this.opens == true){
-
           this.isActive = true;
           this.oks = true;
+          this.reoveclass='mineclose';
+        }
+      },
+      checkoutMine(){
+        this.opens=  false;
+        if(this.opens == false){
+          this.isActive = false;
+          this.oks = false;
           
         }
-
       }
       },
       created(){
@@ -162,7 +167,20 @@ main{
   align-content: space-between;
 }
 
-.content-cover {
+.contentcover {
+    position: absolute;
+    top: 0;
+    left: 0rem;
+    bottom: 0;
+    width: 100%;
+    height:100%;
+    z-index: 50000;
+    background-color: rgba(0, 0, 0, .4);
+    // transition:all 0.5s;
+    // display: none;
+}
+
+.contentcover1 {
     position: absolute;
     top: 0;
     left: -27.8rem;
