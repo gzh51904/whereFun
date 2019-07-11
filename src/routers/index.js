@@ -6,7 +6,7 @@ import Cart from '../components/cart.vue'
 import Mine from '../components/mine.vue'
 import Login from '../components/mine/login.vue'
 import Reg from '../components/mine/reg.vue'
-
+import desselect from '../components/desselect.vue';
 Vue.use(vueRoter)
 
 let router = new vueRoter({
@@ -47,6 +47,53 @@ let router = new vueRoter({
             name:'Reg',
             path:'/reg',
             component:Reg
+        },
+        {
+            name:'desselect',
+            path:'/desselect',
+            component:desselect,
+            children : [
+                {
+                    path:'hot',
+                    component:hot,
+                },
+                {
+                    path:'canada',
+                    component:canada,
+                },
+                {
+                    path:'city',
+                    component:city,
+                },
+                {
+                    path:'csa',
+                    component:csa,
+                },
+                {
+                    path:'custom',
+                    component:custom,
+                },
+                {
+                    path:'europe',
+                    component:europe,
+                },
+                {
+                    path:'mail',
+                    component:mail,
+                },
+                {
+                    path:'team',
+                    component:team,
+                },
+                {
+                    path:'usaeast',
+                    component:usaeast,
+                },
+                {
+                    path:'usawest',
+                    component:usawest,
+                },
+            ]
         },
         { path: "/", redirect: { name: "Home" } }
     ]

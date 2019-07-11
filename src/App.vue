@@ -150,7 +150,9 @@ main{
     // margin-top: 0 !important;
     }
 #app {
+  width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .box {
   display: flex;

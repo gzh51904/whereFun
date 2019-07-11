@@ -1,16 +1,6 @@
 <template>
   <div>
-    <header>
-      <div class="header_top">
-        <a href="javascript:;"></a>
-        <div class="header_search">
-          <form>
-            <input id="text" type="text" placeholder="搜索：团号、城市、景点" />
-            <a href="javascript:;" id="btn"></a>
-          </form>
-        </div>
-      </div>
-    </header>
+    <search/>
     <div id="main">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -22,7 +12,7 @@
           <p>洛杉矶</p>
           <p>Los Angeles</p>
         </a>
-        <a href="javascript:;" class="tabCity">
+        <a @click="gotodesSelect()" href="javascript:;" class="tabCity">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-tianchongxing-" />
           </svg>
@@ -138,7 +128,17 @@
   </div>
 </template>
 <script>
-export default {};
+import search from './search';
+export default {
+    methods : {
+        gotodesSelect(){
+            this.$router.push({name:'desselect'});
+        }
+    },
+    components : {
+        search
+    }
+};
 </script>
 
 
@@ -150,61 +150,7 @@ export default {};
   fill: currentColor;
   overflow: hidden;
 }
-header {
-  background: #fff;
-  width: 100%;
-  height: 3.4rem;
-  line-height: 3.4rem;
-  padding: 0;
-  overflow: hidden;
-  z-index: 999999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  .header_top {
-    > a {
-      float: left;
-      height: 2.2rem;
-      margin-left: 0.6rem;
-      width: 5rem;
-      background: url("../assets/img/des_header_logo.png") no-repeat;
-      background-position: left center;
-      background-size: contain;
-      float: left;
-      margin-top: 0.6rem;
-    }
-  }
 
-  .header_search {
-    float: left;
-    width: 31rem;
-    height: 34px;
-    padding-top: 5px;
-    form {
-      height: 34px;
-    }
-    #text {
-      width: 90%;
-      height: 2.6rem;
-      vertical-align: top;
-      border: 1px solid #ccc;
-      border-right: none;
-      border-radius: 3px 0 0 3px;
-      padding-left: 1rem;
-    }
-    #btn {
-      display: inline-block;
-      width: 10%;
-      height: 2.6rem;
-      background: url("../assets/img/des_search.png") no-repeat;
-      background-size: contain;
-      background-position: center center;
-      border: 1px solid #ccc;
-      border-left: none;
-      border-radius: 0 3px 3px 0;
-    }
-  }
-}
 #main {
   margin-top: 3.5rem;
   .el-breadcrumb {
