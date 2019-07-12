@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <div class="box">
+      
       <main>
-        <router-view />
+    <router-view :class="{maincontent:isActive}" class="maincon"/>
+    <div :class="{contentcover1:isActive}" @click.prevent.stop="checkoutMine()" v-show="oks" class="contentcover"></div> 
       </main>
+    <router-view  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine"/>
       <footer>
         <el-row>
           <el-col>
@@ -13,19 +16,38 @@
               class="el-menu-demo" 
               mode="horizontal" 
               router>
+
+     
+
               <el-menu-item
-              
                 v-for="item in pages"
                 :key="item.name"
                 :index="item.path"
                 :routes="item.path"
                 router
               >
-                <span>
+              <span 
+              v-if="item.ok"
+              isActive
+              oks
+              opens
+              closemine
+              @click.prevent.stop="checkinMine()"
+              >
+                <span style="display:block;">
                   <i :class="item.icon"></i>
                 </span>
 
                 <span>{{item.title}}</span>
+                </span>
+
+                 <span v-else>
+                <span style="display:block;">
+                  <i :class="item.icon"></i>
+                </span>
+
+                <span>{{item.title}}</span>
+                </span>
               </el-menu-item>
             </el-menu>
           </el-col>
@@ -68,16 +90,38 @@ export default {
         },
         {
           title: "我的",
-          name: "mime",
-          path: "/mime",
-          icon: "el-icon-user-solid"
+          name: "mine",
+          // path: "/mine",
+          icon: "el-icon-user-solid",
+          ok:true
         },
-      ]
+        
+      ],
+      isActive:false,
+      oks:false,
+      opens:true,
+      closemine:false
     };
   },
   methods:{
       handleSelect(index){
         this.active = index;
+      },
+      checkinMine(){
+        this.opens=  true;
+        if(this.opens == true){
+          this.isActive = true;
+          this.oks = true;
+          this.reoveclass='mineclose';
+        }
+      },
+      checkoutMine(){
+        this.opens=  false;
+        if(this.opens == false){
+          this.isActive = false;
+          this.oks = false;
+          
+        }
       }
       },
       created(){
@@ -95,6 +139,7 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 body,html {
   height: 100%;
   width: 100%;
@@ -104,6 +149,11 @@ body,html {
   font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
+main{
+    // transform: translate3d(-90%, 0, 0);
+    // position: fixed;
+    // margin-top: 0 !important;
+    }
 #app {
   width: 100%;
   height: 100%;
@@ -115,6 +165,58 @@ body,html {
   width: 100%;
   flex-direction: column;
   align-content: space-between;
+}
+
+.contentcover {
+    position: absolute;
+    top: 0;
+    left: 0rem;
+    bottom: 0;
+    width: 100%;
+    height:100%;
+    z-index: 50000;
+    background-color: rgba(0, 0, 0, .4);
+    // transition:all 0.5s;
+    // display: none;
+}
+
+.contentcover1 {
+    position: absolute;
+    top: 0;
+    left: -27.8rem;
+    bottom: 0;
+    width: 100%;
+    height:100%;
+    z-index: 50000;
+    background-color: rgba(0, 0, 0, .4);
+    transition:all 0.5s;
+}
+
+.maincontent {
+    // -webkit-transform: translate3d(-90%, 0, 0);
+    transform: translate3d(-90%, 0, 0);
+    position:fixed;
+    margin-top: 0 !important;
+    transition:all 0.5s;
+}
+
+.mine{
+  position: absolute;
+    top: 0;
+    left: -15%;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    transition: all 0.5s;
+    padding: 0;
+    display: none;
+    opacity: 1;
+}
+
+.mineopen{
+  display:block;
+  left:3rem;
+  transition:all 0.5s;
 }
 
 main {

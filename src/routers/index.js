@@ -3,19 +3,20 @@ import vueRoter from 'vue-router'
 import Home from '../components/home.vue'
 import Des from '../components/des.vue'
 import Cart from '../components/cart.vue'
-import Mime from '../components/mime.vue'
-import desselect from '../components/desselect.vue'
-import hot from '../components/desselect/hot.vue'
-import canada from '../components/desselect/canada.vue'
-import city from '../components/desselect/city.vue'
-import csa from '../components/desselect/csa.vue'
-import custom from '../components/desselect/custom.vue'
-import europe from '../components/desselect/europe.vue'
-import mail from '../components/desselect/mail.vue'
-import team from '../components/desselect/team.vue'
-import usaeast from '../components/desselect/usaeast.vue'
-import usawest from '../components/desselect/usawest.vue'
-
+import Mine from '../components/mine.vue'
+import Login from '../components/mine/login.vue'
+import Reg from '../components/mine/reg.vue'
+import desselect from '../components/desselect.vue';
+import hot from '../components/desselect/hot.vue';
+import canada from '../components/desselect/canada.vue';
+import city from '../components/desselect/city.vue';
+import csa from '../components/desselect/csa.vue';
+import custom from '../components/desselect/custom.vue';
+import europe from '../components/desselect/europe.vue';
+import mail from '../components/desselect/mail.vue';
+import team from '../components/desselect/team.vue';
+import usaeast from '../components/desselect/usaeast.vue';
+import usawest from '../components/desselect/usawest.vue';
 Vue.use(vueRoter)
 
 let router = new vueRoter({
@@ -23,19 +24,44 @@ let router = new vueRoter({
         {
             name:'Home',
             path:'/home',
-            component:Home
+            component:Home,
+            components:{
+                default:Home,
+                mine:Mine
+
+            }
         },{
             name:'Des',
             path:'/des',
-            component:Des
+            component:Des,
+            components:{
+                default:Des,
+                mine:Mine
+
+            }
         },{
             name:'Cart',
             path:'/cart',
-            component:Cart
+            component:Cart,
+            components:{
+                default:Cart,
+                mine:Mine
+
+            }
+        }
+        // ,{
+        //     name:'Mine',
+        //     path:'/mine',
+        //     component:Mine
+        // }
+        ,{
+            name:'Login',
+            path:'/login',
+            component:Login
         },{
-            name:'Mime',
-            path:'/mime',
-            component:Mime
+            name:'Reg',
+            path:'/reg',
+            component:Reg
         },
         {
             name:'desselect',
@@ -84,7 +110,9 @@ let router = new vueRoter({
                 },
             ]
         },
-        { path: "/", redirect: { name: "Home" } }
+        //重定向
+        { path: "/", redirect: { name: "Home" } },
+        { path: "/desselect", redirect: { path: "/hot" } }
     ]
 })
 

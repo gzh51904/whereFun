@@ -26,11 +26,14 @@ header {
   top: 0;
   left: 0;
   .header_top {
+      overflow: hidden;
+      display: flex;
     > a {
       float: left;
       height: 2.2rem;
       margin-left: 0.6rem;
-      width: 5rem;
+      flex:1;
+    //   width: 5rem;
       background: url("../assets/img/des_header_logo.png") no-repeat;
       background-position: left center;
       background-size: contain;
@@ -41,7 +44,9 @@ header {
 
   .header_search {
     float: left;
-    width: 31rem;
+    // width: 31rem;
+    flex:8;
+    margin-left: 5px;
     height: 34px;
     padding-top: 5px;
     form {
