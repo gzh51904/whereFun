@@ -39,7 +39,7 @@
 import Allline from "./line.vue";
 export default {};
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .section {
   margin: 0;
   padding: 1.5rem 0;

@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <div id="des">
+=======
+  <div class="desPart">
+>>>>>>> 03f405c94a7014d567c720169bb52a3765b69ffc
     <search />
     <div id="main">
       <desnav />
@@ -130,6 +134,16 @@ export default {
 
 
 <style lang="scss" scoped>
+.desPart{
+    margin-top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 10px #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 6rem;
 .icon {
   width: 1em;
   height: 1em;
@@ -313,6 +327,176 @@ export default {
     }
   }
 }
+<<<<<<< HEAD
+=======
+#content {
+  padding: 1.5rem 0 5rem 0.8rem;
+  h1 {
+    color: #556;
+    line-height: 3rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .content_a {
+    display: block;
+    margin-bottom:2rem; 
+  }
+  .content_list {
+    width: 100%;
+    figure {
+      display: flex;
+      //   width: 10%;
+      overflow: hidden;
+      position: relative;
+    }
+    .content_list_imgBox {
+      flex: 1;
+      height: 15rem;
+      float: left;
+      position: relative;
+      margin-right: 0.7rem;
+      img {
+        width: 12rem;
+        height: 15rem;
+        border-radius: 1rem;
+      }
+
+      .start_city {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        span {
+          display: block;
+          z-index: 10;
+          position: absolute;
+          line-height: 2rem;
+          font-size: 1.2rem;
+          color: #fff;
+          border-radius: 0 0 0.6rem 0.6rem;
+          padding: 0 0.6rem;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
+      .dayANDnumber {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        line-height: 2rem;
+        text-align: right;
+        padding-right: 0.4rem;
+        font-size: 1.2rem;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5);
+        .day {
+          float: left;
+        }
+        .number {
+          float: right;
+        }
+      }
+    }
+    figcaption {
+      //   width: 23rem;
+      flex: 2;
+      float: left;
+
+      h3 {
+        font-size: 1.4rem;
+        font-weight: normal;
+        line-height: 1.9rem;
+        max-height: 3.8rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        margin: 0 0 0.8rem;
+        color: #222;
+        word-break: break-all;
+      }
+      .item_logo {
+        width: 100%;
+        height: 4.3rem;
+        display: flex;
+        flex-flow: row wrap;
+        div {
+          height: 1.5rem;
+        }
+        .tuijian {
+          background-color: #fff;
+          color: #ff3573;
+          border: 0.1rem solid #ff3573;
+          font-size: 1.2rem;
+          line-height: 1.4rem;
+          padding: 0 0.4rem;
+          margin-right: 0.6rem;
+          margin-bottom: 0.6rem;
+        }
+        .tag {
+          font-size: 1.2rem;
+          line-height: 1.4rem;
+          padding: 0 0.4rem;
+          border: 0.1rem solid transparent;
+          border-radius: 0.3rem;
+          color: #777;
+          flex: 0 0 auto;
+          display: block;
+          margin-right: 0.6rem;
+          margin-bottom: 0.6rem;
+          background-color: #f7f8f7;
+        }
+      }
+      p {
+        position: absolute;
+        left: 12.5rem;
+        bottom: 1.8rem;
+        display: flex;
+        align-items: baseline;
+        .item_newPrice {
+          font-size: 1.8rem;
+          color: #ff3573;
+        }
+        .item_unit {
+          margin-right: 0.5rem;
+          color: #999;
+          text-decoration: line-through;
+          line-height: 1.6rem;
+          padding-left: 0.6rem;
+        }
+        .item_oldPrice {
+          color: #999;
+          text-decoration: line-through;
+          line-height: 1.6rem;
+          padding-left: 0.6rem;
+        }
+        .item_rebate {
+          padding: 0 0.5rem;
+          border-radius: 0.3rem;
+          background-color: #ff3573;
+          color: #fff;
+          line-height: 1.6rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+  .content_timer {
+    position: absolute;
+    left: 12.5rem;
+    bottom: -0.1rem;
+    font-size: 1.2rem;
+    color: #556;
+    padding-left: 0.1rem;
+    display: flex;
+    align-items: center;
+  }
+}
+}
+>>>>>>> 03f405c94a7014d567c720169bb52a3765b69ffc
 </style>
 
 
