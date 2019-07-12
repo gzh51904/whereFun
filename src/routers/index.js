@@ -15,6 +15,7 @@ import mail from '../components/desselect/mail.vue'
 import team from '../components/desselect/team.vue'
 import usaeast from '../components/desselect/usaeast.vue'
 import usawest from '../components/desselect/usawest.vue'
+import comm from '../components/desselect/comm.vue'
 
 Vue.use(vueRoter)
 
@@ -40,6 +41,7 @@ let router = new vueRoter({
         {
             name:'desselect',
             path:'/desselect',
+            redirect:to=>{return '/desselect/hot'},//重定向
             component:desselect,
             children : [
                 {
@@ -81,12 +83,15 @@ let router = new vueRoter({
                 {
                     path:'usawest',
                     component:usawest,
-                },
+                }
             ]
+        },{
+            name : comm,
+            path:'/comm',
+            component:comm,
         },
         //重定向
         { path: "/", redirect: { name: "Home" } },
-        { path: "/desselect", redirect: { path: "/hot" } }
     ]
 })
 

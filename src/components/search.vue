@@ -45,19 +45,19 @@ header {
     float: left;
     // width: 31rem;
     flex:8;
-    margin-left: 5px;
-    height: 34px;
-    padding-top: 5px;
+    margin-left: 0.5rem;
+    height: 3.4rem;
+    padding-top: 0.5rem;
     form {
-      height: 34px;
+      height: 2.4rem;
     }
     #text {
       width: 90%;
       height: 2.6rem;
       vertical-align: top;
-      border: 1px solid #ccc;
+      border: 0.1rem solid #ccc;
       border-right: none;
-      border-radius: 3px 0 0 3px;
+      border-radius: 0.3rem 0 0 0.3rem;
       padding-left: 1rem;
     }
     #btn {
@@ -67,9 +67,9 @@ header {
       background: url("../assets/img/des_search.png") no-repeat;
       background-size: contain;
       background-position: center center;
-      border: 1px solid #ccc;
+      border: 0.1rem solid #ccc;
       border-left: none;
-      border-radius: 0 3px 3px 0;
+      border-radius: 0 0.3rem 0.3rem 0;
     }
   }
 }

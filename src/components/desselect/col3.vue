@@ -26,10 +26,10 @@
 #col3 {
   float: left;
   width: 100%;
-  margin: 10px 0;
+  margin: 1rem 0;
   h5 {
-    margin: 0 0 12px;
-    font-size: 16px;
+    margin: 0 0 1.2rem;
+    font-size: 1.6rem;
     font-weight: 500;
     color: #556;
   }
@@ -45,9 +45,9 @@
     li {
       display: inline-flex;
       width: 100%;
-      margin-bottom: 6px;
+      margin-bottom: 0.6rem;
       box-sizing: border-box;
-      padding: 0 4px;
+      padding: 0 0.4rem;
       flex-direction: column;
       a {
         text-decoration: none;
@@ -58,8 +58,8 @@
         .col3_item {
           width: 100%;
           position: relative;
-          padding-top: 120px;
-          padding-bottom: 40px;
+          padding-top: 12rem;
+          padding-bottom: 4rem;
           overflow: hidden;
           margin-bottom: 15px;
           .col3_item_imgbox {
@@ -67,12 +67,12 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 120px;
+            height: 12rem;
             background-image: url("../../assets/img/LosAngeles_b.jpg");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            border-radius: 4px;
+            border-radius: 0.4rem;
           }
           h3 {
             margin: 0;

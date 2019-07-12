@@ -1,7 +1,14 @@
 <template>
   <div id="desselect">
     <el-menu default-active="2" class="el-menu-vertical-demo" router>
-      <el-menu-item v-for="(a,idx) in title" :route="a.path" :class="titleActive == idx ? 'is-active' : ''" @click="tabList(idx)"  :key="a.name" :index="a.name">
+      <el-menu-item
+        v-for="(a,idx) in title"
+        :route="a.path"
+        :class="titleActive == idx ? 'is-active' : ''"
+        @click="tabList(idx)"
+        :key="a.name"
+        :index="a.name"
+      >
         <span slot="title" v-text="a.name">导航二</span>
       </el-menu-item>
     </el-menu>
@@ -14,35 +21,35 @@ export default {
   data() {
     return {
       title: [
-        {name : "热门",path:'/desselect/hot'},
-        {name : "所有城市",path:'/desselect/city'},
-        {name : "美国西海岸",path:'/desselect/usawest'},
-        {name : "美国东海岸",path:'/desselect/usaeast'},
-        {name : "加拿大",path:'/desselect/canada'},
-        {name : "欧洲",path:'/desselect/europe'},
-        {name : "中南美",path:'/desselect/csa'},
-        {name : "定制包车",path:'/desselect/custom'},
-        {name : "舒适小团",path:'/desselect/team'},
-        {name : "全球邮轮",path:'/desselect/mail'}
+        { name: "热门", path: "/desselect/hot" },
+        { name: "所有城市", path: "/desselect/city" },
+        { name: "美国西海岸", path: "/desselect/usawest" },
+        { name: "美国东海岸", path: "/desselect/usaeast" },
+        { name: "加拿大", path: "/desselect/canada" },
+        { name: "欧洲", path: "/desselect/europe" },
+        { name: "中南美", path: "/desselect/csa" },
+        { name: "定制包车", path: "/desselect/custom" },
+        { name: "舒适小团", path: "/desselect/team" },
+        { name: "全球邮轮", path: "/desselect/mail" }
       ],
-      titleActive : 0,//默认高亮
+      titleActive: 0 //默认高亮
     };
   },
-  methods : {
-      tabList(idx){
-          this.titleActive = idx;//点击高亮
-      }
+  methods: {
+    tabList(idx) {
+      this.titleActive = idx; //点击高亮
+    }
   }
 };
 </script>
 
 
 <style lang="scss" scoped>
-#desselect{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding:1rem 1rem 6rem 12rem; 
+#desselect {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 1rem 1rem 6rem 12rem;
 }
 .el-menu {
   display: block;
