@@ -2,7 +2,7 @@
   <div id="clo1">
     <h5>当季热销</h5>
     <ul class="col1">
-      <li class="col1_item">
+      <li @click="gotocomm()" class="col1_item">
         <a href="javascript:;">
           <div class="itemBox">
             <h6>黄石国家公园</h6>
@@ -48,13 +48,24 @@
   </div>
 </template>
 
+<script>
+export default {
+    methods : {
+        gotocomm(){
+            this.$router.push({path : '/comm'});
+        }
+    } 
+}
+</script>
+
+
 <style lang="scss" scoped>
 #clo1 {
   width: 100%;
-  margin: 10px 0;
+  margin: 1rem 0;
   h5 {
-    margin: 0 0 12px;
-    font-size: 16px;
+    margin: 0 0 1.2rem;
+    font-size: 1.6rem;
     font-weight: 500;
     color: #556;
   }
@@ -70,9 +81,9 @@
     li {
       display: inline-flex;
       width: 50%;
-      margin-bottom: 6px;
+      margin-bottom: 0.6rem;
       box-sizing: border-box;
-      padding: 0 4px;
+      padding: 0 0.4rem;
       flex-direction: column;
       a {
         text-decoration: none;
@@ -83,9 +94,9 @@
         .itemBox {
           display: flex;
           width: 100%;
-          height: 72px;
+          height: 7.2rem;
           background-color: #f7f8f7;
-          border-radius: 3px;
+          border-radius: 0.3rem;
           overflow: hidden;
           background-image: url("../../assets/img/LosAngeles_b.jpg");
           background-position: center center;
@@ -97,11 +108,11 @@
           justify-content: center;
           h6 {
             display: flex;
-            font-size: 15px;
+            font-size: 1.5rem;
             font-weight: normal;
             color: #fff;
             margin: 0;
-            text-shadow: 1px 1px 1px #555;
+            text-shadow: 0.1rem 0.1rem 0.1rem #555;
           }
         }
       }

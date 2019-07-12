@@ -40,6 +40,14 @@ export default {
         {
           name: "羚羊峡谷",
           img: require("../../assets/img/theme-antelope-canyon.jpg")
+        },
+        {
+          name: "发现者",
+          img: require("../../assets/img/theme-antelope-canyon.jpg")
+        },
+        {
+          name: "水上乐园",
+          img: require("../../assets/img/theme-antelope-canyon.jpg")
         }
       ]
     };
@@ -50,7 +58,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 #banner4 {
   padding: 0 2rem;
   .banner4_item {

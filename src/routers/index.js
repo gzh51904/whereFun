@@ -48,30 +48,25 @@ let router = new vueRoter({
                 mine:Mine
 
             }
-        }
+        },
         // ,{
         //     name:'Mine',
         //     path:'/mine',
         //     component:Mine
         // }
-        ,{
-            name:'Login',
-            path:'/login',
-            component:Login
-        },{
-            name:'Reg',
-            path:'/reg',
-            component:Reg
-        },
+        // ,{
+        //     name:'Login',
+        //     path:'/login',
+        //     component:Login
+        // },{
+        //     name:'Reg',
+        //     path:'/reg',
+        //     component:Reg
+        // },
         {
             name:'desselect',
             path:'/desselect',
             component:desselect,
-            components:{
-                default:desselect,
-                mine:Mine
-
-            },
             children : [
                 {
                     path:'hot',

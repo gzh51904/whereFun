@@ -4,7 +4,7 @@
 <script>
 export default {};
 </script>
-<style>
+<style lang="scss" scoped>
 .divided-line {
   margin: 0 1.5rem;
   height: 0.2rem;

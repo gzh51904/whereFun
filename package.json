@@ -22,6 +22,7 @@
     "css-loader": "^3.0.0",
     "element-ui": "^2.10.1",
     "eslint": "^5.16.0",
+    "eslint-loader": "^2.2.1",
     "eslint-plugin-vue": "^5.0.0",
     "install": "^0.13.0",
     "node-sass": "^4.12.0",

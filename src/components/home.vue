@@ -36,9 +36,9 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
+// import Vue from "vue";
 import "swiper/dist/css/swiper.css";
-import Search from "./home/search.vue";
+import Search from "./home/home_search.vue";
 import banner1 from "./home/banner1.vue";
 import navMenu from "./home/nav.vue";
 import temai from "./home/temai.vue";

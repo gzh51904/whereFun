@@ -39,6 +39,14 @@ export default {
         {
           img: require("../../assets/img/short-tour.jpg"),
           name: "一日游"
+        },
+        {
+          img: require("../../assets/img/short-tour.jpg"),
+          name: "多日游"
+        },
+        {
+          img: require("../../assets/img/short-tour.jpg"),
+          name: "终身游"
         }
       ]
     };
@@ -49,7 +57,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .title_box {
   padding: 0 1.5rem;
 }

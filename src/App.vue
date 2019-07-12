@@ -3,7 +3,7 @@
     <div class="box">
       
       <main>
-    <router-view :class="{maincontent:isActive}" class="maincon"/>
+    <router-view :class="{maincontent:isActive,maincontent1:closemain}" class="maincon"/>
     <div :class="{contentcover1:isActive}" @click.prevent.stop="checkoutMine()" v-show="oks" class="contentcover"></div> 
       </main>
     <router-view  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine"/>
@@ -32,6 +32,7 @@
               oks
               opens
               closemine
+              closemain
               @click.prevent.stop="checkinMine()"
               >
                 <span style="display:block;">
@@ -100,6 +101,7 @@ export default {
       isActive:false,
       oks:false,
       opens:true,
+      closemain:false,
       closemine:false
     };
   },
@@ -112,7 +114,8 @@ export default {
         if(this.opens == true){
           this.isActive = true;
           this.oks = true;
-          this.reoveclass='mineclose';
+          this.closemine=false;
+          this.closemain=false;
         }
       },
       checkoutMine(){
@@ -120,11 +123,13 @@ export default {
         if(this.opens == false){
           this.isActive = false;
           this.oks = false;
+          this.closemain=true;
           
         }
       }
       },
       created(){
+        //刷新保持按钮高亮
         let hash = window.location.hash.slice(1);
         this.active = hash;
       }
@@ -141,6 +146,7 @@ export default {
 }
 
 body,html {
+  background-color: #32425b;
   height: 100%;
   width: 100%;
   font-size: 10px;
@@ -200,6 +206,14 @@ main{
     transition:all 0.5s;
 }
 
+.maincontent1 {
+    // -webkit-transform: translate3d(-90%, 0, 0);
+    transform: translate3d(0, 0, 0);
+    position:fixed;
+    margin-top: 0 !important;
+    transition:all 0.5s;
+}
+
 .mine{
   position: absolute;
     top: 0;
@@ -216,7 +230,7 @@ main{
 .mineopen{
   display:block;
   left:3rem;
-  transition:all 0.5s;
+  transition:all 1s;
 }
 
 main {
