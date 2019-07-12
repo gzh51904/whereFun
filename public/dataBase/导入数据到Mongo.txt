@@ -1,0 +1,1 @@
+mongoimport -d demo -c yanhu --file C:\Users\Administrator\Desktop\dataBase\yanhu.json --type json

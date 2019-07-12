@@ -67,6 +67,11 @@ let router = new vueRoter({
             name:'desselect',
             path:'/desselect',
             component:desselect,
+            components:{
+                default:desselect,
+                mine:Mine
+
+            },
             children : [
                 {
                     path:'hot',

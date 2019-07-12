@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
+import axios from 'axios'
+Vue.prototype.$axios = axios;
 
+axios.defaults.baseURL = 'http://47.106.93.239:9527';
 
 
 Vue.config.productionTip = false

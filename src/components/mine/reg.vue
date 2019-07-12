@@ -1,5 +1,6 @@
 <template>
-    <div class="reg">
+   <el-form class="regpart" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+       <div class="reg">
         <a href="javascript:;"><div class="content">使用QQ账号注册</div></a>
         <div class="separator-layer">
             <div class="container">
@@ -9,45 +10,143 @@
 
         <div class="reginfo">
             <div class="cbox">
-            <input type="text" placeholder="电子邮箱"><i class="el-icon-message"></i>
+             <el-form-item  prop="username">
+        <el-input type="text" placeholder="用户名" v-model="ruleForm.username" autocomplete="on"></el-input>
+      </el-form-item>
             </div>
         </div>
 
           <div class="reginfo">
             <div class="cbox">
-            <input type="text" placeholder="密码"><i class="el-icon-lock"></i>
+             <el-form-item label="" prop="password">
+        <el-input type="password" placeholder="密码" v-model="ruleForm.password"></el-input>
+      </el-form-item>
             </div>
         </div>
 
           <div class="reginfo">
             <div class="cbox">
-            <input type="text" placeholder="确认密码"><i class="el-icon-lock"></i>
+            <el-form-item label="" prop="checkPass">
+        <el-input type="password" placeholder="确认密码" v-model="ruleForm.checkPass"></el-input>
+      </el-form-item>
             </div>
         </div>
 
-        <div class="confirm">确认</div>
+        <!-- <div @click.prevent.stop="submitinfo('ruleForm')" class="confirm">确认</div> -->
+        <el-form-item class="confirmbtn">
+        <el-button class="confirm" @click="submitForm('ruleForm')">注册</el-button>
+      </el-form-item>
         <div class="register">已经是玩哪儿的用户了？<a @click.prevent.stop="goto()">登录</a></div>
-    </div>
+        </div>
+    </el-form>
 </template>
 
 <script>
 export default {
+    data() {
+      
+    //   自定义校验规则
+    let validatePass = (rule, value, callback) => {
+        if(value.trim() == ''){
+            callback('输入不能为空')
+        }else{
+
+            callback();
+        }
+    };
+    let checkPass = (rule, value, callback) => {
+        if(value.trim() == ''){
+            callback('输入不能为空')
+        }else{
+
+            if(value != this.ruleForm.password){
+                callback(new Error('两次输入密码不一致'))
+            }else{
+                callback();
+            }
+        }
+    };
+    let validateUsername = (rule, value, callback) => {
+
+        if(value.trim() == ''){
+            callback('输入不能为空')
+        }else{
+
+            this.$axios.get('/reg/check',{
+                params:{
+                    username:value
+                }
+            }).then(({data})=>{
+                if(data.code == 250){
+                    callback(new Error('用户名已存在'));
+                }else{
+                    callback()
+                }
+            })
+        }
+      
+    };
+    return {
+      ruleForm: {
+        username: "",
+        password: "",
+        checkPass: ""
+      },
+      rules: {
+        password: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: checkPass, trigger: "blur" }],
+        username: [{ validator: validateUsername, trigger: "blur" }]
+      }
+    };
+  },
+
     methods:{
         goto(){
             this.$router.push('/login');
+        },
+        submitForm(formName){
+            this.$refs[formName].validate(valid => {
+                if(valid){
+                    let {username,password} = this.ruleForm;
+                    this.$axios.post('/reg',{
+                        username,
+                        password
+                    }).then(({data})=>{
+                        if(data.code == 1000){
+
+                            this.$router.replace('/login');
+                        }
+                    })
+                }else{
+                    // alert('请完善信息！');
+                    return false;
+                }
+            });
+        }
+
         }
     }
     
-}
+
 </script>
 
 <style lang="scss">
 @import url('../../assets/css/base.css');
-.reg{
+.regpart{
     background:#ebebf0;
     width: 100%;
     height: 100%;
     padding: 5rem 2rem;
+    .reginfo{
+        .el-form-item__error{
+            top:47px;
+            .el-input__suffix{
+            right: 25px;
+        }
+        }
+        
+    }
+
     .content{
         width:100%;
         max-height: 3rem;
@@ -112,15 +211,19 @@ export default {
         line-height: 50px;}
         }
     }
+    .el-form-item__content{
+    margin-left:0px !important;
     .confirm{
         width: 100%;
-        height: 2.9rem;
+        height: 3.9rem;
         background: #ff3573;
         border-radius: 0.2rem;
         color: white;
         line-height: 2.9rem;
         text-align: center;
         font-size: 1.9rem;
+        margin-left: 0;
+    }
     }
     .register{
         margin-top: 10px;
