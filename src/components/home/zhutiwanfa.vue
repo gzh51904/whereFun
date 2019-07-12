@@ -11,9 +11,12 @@
     <div id="banner3">
       <swiper ref="mySwiper" class="clearfix" :options="swiperOption">
         <!-- slides -->
+
         <swiper-slide v-for="item in bannerPhoto3" :key="item.name" class="zhutiproduce">
-          <img :src="item.img" alt />
-          <h5 v-text="item.name"></h5>
+          <a href="javascript:;" @click="inf">
+            <img :src="item.img" alt />
+            <h5 v-text="item.name"></h5>
+          </a>
         </swiper-slide>
 
         <!-- Optional controls -->
@@ -28,8 +31,7 @@ export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView : 2,
-      
+        slidesPerView: 2
       },
       bannerPhoto3: [
         {
@@ -54,6 +56,12 @@ export default {
   components: {
     swiper,
     swiperSlide
+  },
+  methods: {
+    inf() {
+      // console.log(this)
+      this.$router.push({ path: "/inf" });
+    }
   }
 };
 </script>

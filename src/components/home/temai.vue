@@ -14,7 +14,7 @@
         <!-- slides -->
         
         <swiper-slide v-for="item in banner2Photo" :key="item.name" class="produce" >
-          <a href="javascript:;" @click="ifo">
+          <a href="javascript:;" @click="inf">
           <img :src="item.img" alt />
           <h5 v-text="item.msg"></h5>
           <div class="box">
@@ -87,7 +87,7 @@ export default {
     swiperSlide
   },
   methods:{
-    ifo() {
+    inf() {
       // console.log(this)
       this.$router.push({path:"/inf"})
     }
