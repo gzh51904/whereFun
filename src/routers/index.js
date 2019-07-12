@@ -17,6 +17,7 @@ import mail from '../components/desselect/mail.vue';
 import team from '../components/desselect/team.vue';
 import usaeast from '../components/desselect/usaeast.vue';
 import usawest from '../components/desselect/usawest.vue';
+import myinf from '../components/myinf.vue'
 Vue.use(vueRoter)
 
 let router = new vueRoter({
@@ -109,6 +110,10 @@ let router = new vueRoter({
                     component:usawest,
                 },
             ]
+        },{
+            name:'myinf',
+            path:'/inf',
+            component:myinf
         },
         //重定向
         { path: "/", redirect: { name: "Home" } },

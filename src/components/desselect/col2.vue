@@ -64,14 +64,14 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    display: flex;
-    justify-content: start;
+    // display: flex;
+    // justify-content: start;
     align-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     .col2_item {
       width: 50%;
-      display: inline-flex;
+      // display: inline-flex;
       margin-bottom: 6px;
       box-sizing: border-box;
       padding: 0 4px;

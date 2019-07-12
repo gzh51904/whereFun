@@ -49,7 +49,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .title_box {
   padding: 0 1.5rem;
 }

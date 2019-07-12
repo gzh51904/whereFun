@@ -58,7 +58,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .icon_hot {
   background-image: url("../../assets/img/icon-hot-promotion.png");
   background-repeat: no-repeat;

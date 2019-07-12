@@ -25,7 +25,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 #banner1 {
   height: 17rem;
   img {

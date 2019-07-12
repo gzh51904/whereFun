@@ -12,7 +12,9 @@
     <div id="banners2">
       <swiper ref="mySwiper" class="clearfix" :options="swiperOption">
         <!-- slides -->
-        <swiper-slide v-for="item in banner2Photo" :key="item.name" class="produce">
+        
+        <swiper-slide v-for="item in banner2Photo" :key="item.name" class="produce" >
+          <a href="javascript:;" @click="ifo">
           <img :src="item.img" alt />
           <h5 v-text="item.msg"></h5>
           <div class="box">
@@ -26,6 +28,7 @@
               <small>/人起</small>
             </span>
           </div>
+          </a>
         </swiper-slide>
 
         <!-- Optional controls -->
@@ -42,7 +45,7 @@ export default {
   data() {
     return {
       swiperOption:{
-      slidesPerView : 2,
+      slidesPerView : 1.5,
 
       },
       banner2Photo: [
@@ -65,6 +68,16 @@ export default {
           price: "$382.5",
           msg:
             "『口碑担当.畅销精品』芝加哥东南部：底特律+匹兹堡+克利夫兰+纽约+费城+华盛顿 、尼亚加拉大瀑布、沃特金斯峡谷 6日游"
+        },
+        {
+          img: require("../../assets/img/banner2_2.jpg"),
+          name: 6,
+          dazhe: "7.5折",
+          chufa: "芝加哥出发",
+          jiezhi: "截止至：2019-07-12",
+          price: "$382.5",
+          msg:
+            "『口碑担当.畅销精品』芝加哥东南部：底特律+匹兹堡+克利夫兰+纽约+费城+华盛顿 、尼亚加拉大瀑布、沃特金斯峡谷 6日游"
         }
       ]
     };
@@ -72,10 +85,16 @@ export default {
   components: {
     swiper,
     swiperSlide
+  },
+  methods:{
+    ifo() {
+      // console.log(this)
+      this.$router.push({path:"/inf"})
+    }
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 * {
   margin: 0;
   padding: 0;

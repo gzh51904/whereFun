@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {};
-</script>
+</script lang="scss" scoped>
 <style>
 .divided-line {
   margin: 0 1.5rem;

@@ -11,7 +11,7 @@
 <script>
 export default {};
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .index_search_bar {
   position: absolute;
   top: 0;

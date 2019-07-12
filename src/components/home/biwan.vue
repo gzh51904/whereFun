@@ -50,7 +50,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 #banner4 {
   padding: 0 2rem;
   .banner4_item {
