@@ -175,7 +175,7 @@ export default {
 
         },
         checkoutMine(){
-            console.log(22222)
+            // console.log(22222)
         this.opens=  false;
         if(this.opens == false){
           this.isActive = false;
