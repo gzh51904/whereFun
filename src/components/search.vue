@@ -12,6 +12,7 @@
     </header>
 </template>
 
+
 <style lang="scss" scoped>
 header {
   background: #fff;

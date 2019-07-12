@@ -176,10 +176,10 @@ export default {
       top: 1rem;
       background: #ff3573;
       color: #fff;
-      border-radius: 10px;
+      border-radius: 1rem;
       line-height: 2rem;
       text-align: center;
-      font-size: 11px;
+      font-size: 1.1rem;
     }
     .titleCity {
       font-size: 1.8rem;
@@ -222,7 +222,7 @@ export default {
   .des_rebate {
     height: 11.6rem;
     display: flex;
-    padding: 0 8px;
+    padding: 0 0.8rem;
     overflow: hidden;
     flex-flow: row wrap;
     align-items: center;
@@ -233,7 +233,7 @@ export default {
       width: 32%;
       cursor: pointer;
       height: 5rem;
-      padding: 0 2px;
+      padding: 0 0.2rem;
       box-sizing: border-box;
       background-color: #f7f8f7;
       border-radius: 0.4rem;
@@ -268,7 +268,7 @@ export default {
         font-weight: 300;
         text-align: center;
         line-height: 1.8rem;
-        margin-top: -1px;
+        margin-top: -0.1rem;
         float: right;
       }
     }
@@ -280,11 +280,11 @@ export default {
     color: #556;
     line-height: 3rem;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   .content_a {
     display: block;
-    margin-bottom:20px; 
+    margin-bottom:2rem; 
   }
   .content_list {
     width: 100%;
@@ -320,8 +320,8 @@ export default {
           line-height: 2rem;
           font-size: 1.2rem;
           color: #fff;
-          border-radius: 0 0 6px 6px;
-          padding: 0 6px;
+          border-radius: 0 0 0.6rem 0.6rem;
+          padding: 0 0.6rem;
           background-color: rgba(0, 0, 0, 0.5);
         }
       }
@@ -330,10 +330,10 @@ export default {
         position: absolute;
         left: 0;
         bottom: 0;
-        line-height: 20px;
+        line-height: 2rem;
         text-align: right;
-        padding-right: 4px;
-        font-size: 12px;
+        padding-right: 0.4rem;
+        font-size: 1.2rem;
         color: #fff;
         background-color: rgba(0, 0, 0, 0.5);
         .day {
@@ -372,7 +372,7 @@ export default {
         .tuijian {
           background-color: #fff;
           color: #ff3573;
-          border: 1px solid #ff3573;
+          border: 0.1rem solid #ff3573;
           font-size: 1.2rem;
           line-height: 1.4rem;
           padding: 0 0.4rem;
@@ -383,7 +383,7 @@ export default {
           font-size: 1.2rem;
           line-height: 1.4rem;
           padding: 0 0.4rem;
-          border: 1px solid transparent;
+          border: 0.1rem solid transparent;
           border-radius: 0.3rem;
           color: #777;
           flex: 0 0 auto;
@@ -407,17 +407,17 @@ export default {
           margin-right: 0.5rem;
           color: #999;
           text-decoration: line-through;
-          line-height: 16px;
-          padding-left: 6px;
+          line-height: 1.6rem;
+          padding-left: 0.6rem;
         }
         .item_oldPrice {
           color: #999;
           text-decoration: line-through;
-          line-height: 16px;
-          padding-left: 6px;
+          line-height: 1.6rem;
+          padding-left: 0.6rem;
         }
         .item_rebate {
-          padding: 0 5px;
+          padding: 0 0.5rem;
           border-radius: 0.3rem;
           background-color: #ff3573;
           color: #fff;
