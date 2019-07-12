@@ -36,7 +36,6 @@
   </div>
 </template>
 <script>
-import Allline from "./line.vue";
 export default {};
 </script>
 <style lang="scss" scoped>
