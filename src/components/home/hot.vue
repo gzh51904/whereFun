@@ -52,6 +52,60 @@ export default {
           discount: "6.4折",
           price: "$143.36",
           icon: "el-icon-map-location"
+        },
+        {
+          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
+          place: "纽约出发 7日游",
+          msg:
+            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
+          discount: "6.4折",
+          price: "$143.36",
+          icon: "el-icon-map-location"
+        },
+        {
+          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
+          place: "纽约出发 9日游",
+          msg:
+            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
+          discount: "6.4折",
+          price: "$143.36",
+          icon: "el-icon-map-location"
+        },
+        {
+          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
+          place: "纽约出发 10日游",
+          msg:
+            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
+          discount: "6.4折",
+          price: "$143.36",
+          icon: "el-icon-map-location"
+        },
+        {
+          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
+          place: "纽约出发 11日游",
+          msg:
+            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
+          discount: "6.4折",
+          price: "$143.36",
+          icon: "el-icon-map-location"
+        },
+        {
+          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
+          place: "纽约出发 12日游",
+          msg:
+            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
+          discount: "6.4折",
+          price: "$143.36",
+          icon: "el-icon-map-location"
+        },
+        {
+          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
+          place: "纽约出发 13日游",
+          msg:
+            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
+          discount: "6.4折",
+          price: "$143.36",
+          icon: "el-icon-map-location"
         }
       ]
     };
