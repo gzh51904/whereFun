@@ -1,6 +1,6 @@
 <template>
     <header>
-      <div class="header_top">
+      <div class="header_top" @click="backHome">
         <a href="javascript:;"></a>
         <div class="header_search">
           <form>
@@ -11,6 +11,17 @@
       </div>
     </header>
 </template>
+<script>
+import store from '../store.js'
+export default {
+  methods:{
+    backHome() {
+      this.$router.push({path:'/home'})
+      // console.log(store.state.isShow)
+    }
+  }
+}
+</script>
 
 
 <style lang="scss" scoped>

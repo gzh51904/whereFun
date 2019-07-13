@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
-import axios from 'axios'
-Vue.prototype.$axios = axios;
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store';
+import axios from 'axios';
 
 axios.defaults.baseURL = 'http://47.106.93.239:9527';
 
@@ -13,8 +13,8 @@ import router from './routers/index.js'
 
 
 
-new Vue({
+export default new Vue({
   render: h => h(App),
   router,
-
+  store
 }).$mount('#app')

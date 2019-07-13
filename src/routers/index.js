@@ -17,8 +17,12 @@ import mail from '../components/desselect/mail.vue';
 import team from '../components/desselect/team.vue';
 import usaeast from '../components/desselect/usaeast.vue';
 import usawest from '../components/desselect/usawest.vue';
-Vue.use(vueRoter)
+import myinf from '../components/myinf.vue';
+import store from '../store.js';
+import kefu from '../kefu.vue'
+import comm from '../components/desselect/comm.vue';
 
+Vue.use(vueRoter);
 let router = new vueRoter({
     routes:[
         {
@@ -109,11 +113,40 @@ let router = new vueRoter({
                     component:usawest,
                 },
             ]
+        }, {
+            name: 'myinf',
+            path: '/inf',
+            component: myinf
+        }, {
+            name: comm,
+            path: '/comm',
+            component: comm,
+        },{
+            name:'kefu',
+            path:'/kefu',
+            component:kefu,
         },
         //重定向
-        { path: "/", redirect: { name: "Home" } },
-        { path: "/desselect", redirect: { path: "/hot" } }
-    ]
+        {
+            path: "/",
+            redirect: {
+                name: "Home"
+            }
+        },
+   ],
+   
 })
+
+router.beforeEach((to, from, next) => {
+    if(to.fullPath == "/inf") {
+        // console.log(store.state)
+        store.state.isShow = false;
+        // console.log(store.state.isShow )
+        // console.log(router.app.$store)
+    }else{
+        store.state.isShow = true;
+    }
+    next();
+  })
 
 export default router
