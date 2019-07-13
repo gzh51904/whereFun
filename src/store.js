@@ -5,7 +5,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state : {
         name : 'yoga',
-        isShow:true
+        isShow:true,
     },
     mutations: {
 
