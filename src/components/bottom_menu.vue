@@ -1,7 +1,7 @@
 <template>
     <div class="bottom_menu" >
         <ul>
-            <li class="w50">
+            <li class="w50" @click="GOkefu">
                 <i class="el-icon-chat-line-round "></i>
                 <span>咨询客服</span>
             </li>
@@ -19,7 +19,12 @@ export default {
 
         }
     },
-   
+   methods:{
+       GOkefu() {
+        //    console.log(this.$router)
+        this.$router.push({path:'/kefu'})
+       }
+   }
 }
 </script>
 <style lang="scss" scoped>

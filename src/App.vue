@@ -13,7 +13,7 @@
 
       <router-view :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine" />
 
-      <footer @click="pushInf">
+      <footer v-if="show">
         <el-row>
           <el-col>
             <el-menu
@@ -61,7 +61,7 @@
       </footer>
 
       <!-- 立即预定 -->
-      <Bmenu v-if="isShow"></Bmenu>
+      <Bmenu v-else></Bmenu>
     </div>
   </div>
 </template>
@@ -72,6 +72,7 @@ import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import Bmenu from "./components/bottom_menu.vue";
+import store from './store.js'
 
 Vue.use(ElementUi);
 
@@ -109,7 +110,7 @@ export default {
       oks: false,
       opens: true,
       closemine: false,
-      isShow: false
+      isShow: true
     };
   },
   methods: {
@@ -131,12 +132,6 @@ export default {
         this.oks = false;
       }
     },
-    pushInf() {
-      // console.log(this.$route.path)
-      if (this.$route.path == "/inf") {
-        console.log(123);
-      }
-    }
   },
   created() {
     let hash = window.location.hash.slice(1);
@@ -144,6 +139,11 @@ export default {
   },
   components: {
     Bmenu
+  },
+  computed:{
+    show:function(){
+      return  store.state.isShow
+    }
   }
 };
 </script>
