@@ -4,11 +4,10 @@ const {
     MongoClient,
     ObjectId
 } = mongodb;
-
-const {
-    DBhost,
-    database
-} = require('./config.json');
+// Connection URL
+const DBhost = 'mongodb://localhost:27017'; //连接数据库地址
+// Database Name
+const database = 'whereIsIt'; //数据库名称
 
 exports.connect = () => {
     //连接MongoDB并连接数据库，无则自动创建
@@ -22,7 +21,6 @@ exports.connect = () => {
                 db,
                 client
             });
-            // client.close();
         });
     });
 }
@@ -98,8 +96,8 @@ exports.update = (collectionName, query, data) => {
 }
 
 /**
- * @修改
- * 支持单条和多条修改
+ * @查找
+ * 支持单条和多条查找
  */
 exports.find = (collectionName, query) => {
     return new Promise(async (resolve, reject) => {
@@ -107,18 +105,18 @@ exports.find = (collectionName, query) => {
             db,
             client
         } = await this.connect();
-
         let col = db.collection(collectionName);
-        // 条件筛选
-        if (query._id) {
-            query._id = ObjectId(query._id);
-        }
-        col.find(query).toArray((err, result) => {
+        // Find some documents
+        col.find({
+            ...query
+        }).toArray(function (err, docs) {
             if (err) {
-                reject(err);
+                reject(err)
+            } else {
+                resolve(docs)
             }
-            resolve(result);
-            client.close();
-        })
-    });
+        });
+        // 关闭
+        client.close();
+    })
 }

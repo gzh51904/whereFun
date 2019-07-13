@@ -10,9 +10,7 @@
           <p>Los Angeles</p>
         </a>
         <a @click="gotodesSelect()" href="javascript:;" class="tabCity">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-tianchongxing-" />
-          </svg>
+          <i class="el-icon-menu"></i>
           切换目的地
         </a>
       </div>
@@ -109,6 +107,7 @@ export default {
     },
     scrollFn() {
       let main = document.querySelector("main");
+      console.log(this);
       if (main.scrollTop - 12 > 336) {
         this.menuTop = true;
       } else {
@@ -131,13 +130,6 @@ export default {
 
 <style lang="scss" scoped>
 
-.icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
 
 #main {
   margin-top: 3.5rem;
