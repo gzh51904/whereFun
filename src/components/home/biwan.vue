@@ -32,7 +32,7 @@ export default {
     return {
       swiperOption: {
         slidesPerView : 2,
-        
+        autopaly:true
       },
       banner4Photo: [
         {

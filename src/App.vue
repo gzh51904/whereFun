@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="box">
-
       <main>
         <router-view :class="{maincontent:isActive}" class="maincon" />
         <div
@@ -14,7 +13,7 @@
 
       <router-view :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine" />
 
-      <footer>
+      <footer @click="pushInf">
         <el-row>
           <el-col>
             <el-menu
@@ -51,17 +50,18 @@
                     <i :class="item.icon"></i>
                   </span>
 
-                  <span>{{item.title}}</span>
+                  <span>
+                    <span>{{item.title}}</span>
+                  </span>
                 </span>
               </el-menu-item>
             </el-menu>
           </el-col>
         </el-row>
       </footer>
-      
-      <!-- 立即预定 -->
-      <Bmenu v-if="show"></Bmenu>
 
+      <!-- 立即预定 -->
+      <Bmenu v-if="isShow"></Bmenu>
     </div>
   </div>
 </template>
@@ -71,7 +71,7 @@
 import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-import Bmenu from './components/bottom_menu.vue';
+import Bmenu from "./components/bottom_menu.vue";
 
 Vue.use(ElementUi);
 
@@ -108,10 +108,10 @@ export default {
       isActive: false,
       oks: false,
       opens: true,
-      closemine: false
+      closemine: false,
+      isShow: false
     };
   },
-  show:false,
   methods: {
     handleSelect(index) {
       this.active = index;
@@ -130,13 +130,19 @@ export default {
         this.isActive = false;
         this.oks = false;
       }
+    },
+    pushInf() {
+      // console.log(this.$route.path)
+      if (this.$route.path == "/inf") {
+        console.log(123);
+      }
     }
   },
   created() {
     let hash = window.location.hash.slice(1);
     this.active = hash;
   },
-  components:{
+  components: {
     Bmenu
   }
 };
