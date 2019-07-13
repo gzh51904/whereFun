@@ -144,6 +144,10 @@ let router = new vueRoter({
             name: comm,
             path: '/comm',
             component: comm,
+            components:{
+                default:comm,
+                mine:Mine
+            }
         },{
             name:'kefu',
             path:'/kefu',

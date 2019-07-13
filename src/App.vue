@@ -61,7 +61,7 @@
       </footer>
 
       <!-- 立即预定 -->
-      <Bmenu :class="{foo:fooclo}" v-on:show="sideopen" @click="sideopen()" gopen v-else></Bmenu>
+      <Bmenu :class="{foo:fooclo,}" v-on:show="sideopen" @click="sideopen()" gopen v-else></Bmenu>
     </div>
   </div>
 </template>

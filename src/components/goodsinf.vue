@@ -75,16 +75,7 @@ export default {
 <style lang="scss">
 
 .side-menu {
-    position: absolute;
-    top: 0;
-    left: -15%;
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-    padding: 0;
-    opacity: 1;
+    
     .side-menu-wrapper {
     position: absolute;
     top: 0;
