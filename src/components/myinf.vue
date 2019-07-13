@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="myinf">
         <!-- 搜索框 -->
       <search></search>
       <div id="nnav">
@@ -31,6 +31,16 @@ export default {
 }
 </script>
 <style lang="scss" >
+.myinf{
+ margin-top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 10px #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 6rem;
 #nnav {
   margin-top: 3.5rem;
   .el-breadcrumb {
@@ -40,5 +50,6 @@ export default {
     font-size: 1.2rem;
     color: #ccc;
   }
+}
 }
 </style>

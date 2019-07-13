@@ -1,6 +1,6 @@
 <template>
-   <el-form v-show="close" class="logpart" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
-     <span mon lon  @click="closelog()" class="close"><h3>X</h3></span>
+   <el-form v-show="close" class="logparts" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+     <span  @click="closelog()" class="close"><h3>X</h3></span>
        <div class="login">
         <a href="javascript:;"><div class="content">使用QQ账号登录</div></a>
         <div class="separator-layer">
@@ -31,7 +31,7 @@
         <el-button class="confirm" @click="submitForm">登录</el-button>
       </el-form-item>
         <div class="forget"><a @click.prevent.stop="goto()">忘记密码？</a></div>
-        <div class="logister">还没有账号？<a @click.prevent.stop="goto()">注册</a></div>
+        <div class="logister">还没有账号？<a @click.prevent.stop="gotoreg()">注册</a></div>
         </div>
     </el-form>
 </template>
@@ -40,7 +40,7 @@
 import bus from './Bus';
 import mine from '../mine';
 export default {
-  props:['mon','lon'],
+  props:['clolon','gotoxron'],
    data() {
     //   自定义校验规则
     let validatePass = (rule, value, callback) => {
@@ -70,11 +70,10 @@ export default {
 
     methods:{
       closelog(){
-        this.lon=false,
-        this.mon=true
+        this.$emit('clolon');
       },
-        goto(){
-            this.$router.push('/login');
+        gotoreg(){
+            this.$emit('gotoxron');
         },
      submitForm(index) {
       this.$refs['ruleForm'].validate(valid => {
@@ -110,7 +109,7 @@ export default {
 
 <style lang="scss">
 @import url('../../assets/css/base.css');
-.logpart{
+.logparts{
     background-color: #32425b!important;
     width: 100%;
     height: 100%;

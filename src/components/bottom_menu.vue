@@ -5,7 +5,7 @@
                 <i class="el-icon-chat-line-round "></i>
                 <span>咨询客服</span>
             </li>
-            <li class="w50 active">
+            <li @click.prevent="sideopen()" class="w50 active">
                 <i class="el-icon-s-promotion bai"></i>
                 <span class="bai">加入购物车</span>
             </li>
@@ -23,6 +23,9 @@ export default {
        GOkefu() {
         //    console.log(this.$router)
         this.$router.push({path:'/kefu'})
+       },
+       sideopen(){
+           this.$emit('show');
        }
    }
 }
