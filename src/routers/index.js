@@ -21,6 +21,7 @@ import myinf from '../components/myinf.vue';
 import store from '../store.js';
 import kefu from '../kefu.vue'
 import comm from '../components/desselect/comm.vue';
+import Ginf from '../components/goodsinf.vue'
 
 Vue.use(vueRoter);
 let router = new vueRoter({
@@ -58,19 +59,37 @@ let router = new vueRoter({
         //     path:'/mine',
         //     component:Mine
         // }
-        // ,{
-        //     name:'Login',
-        //     path:'/login',
-        //     component:Login
-        // },{
-        //     name:'Reg',
-        //     path:'/reg',
-        //     component:Reg
-        // },
+       {
+            name:'Reg',
+            path:'/reg',
+            component:Reg,
+            component:desselect,
+            components:{
+                default:Reg,
+                mine:Mine
+
+            }
+        },
+        {
+            name:'Login',
+            path:'/login',
+            component:Login,
+            component:desselect,
+            components:{
+                default:Login,
+                mine:Mine
+
+            }
+        },
         {
             name:'desselect',
             path:'/desselect',
             component:desselect,
+            components:{
+                default:desselect,
+                mine:Mine
+
+            },
             children : [
                 {
                     path:'hot',
@@ -116,11 +135,19 @@ let router = new vueRoter({
         }, {
             name: 'myinf',
             path: '/inf',
-            component: myinf
+            component: myinf,
+            components:{
+                default:myinf,
+                ginf:Ginf
+            }
         }, {
             name: comm,
             path: '/comm',
             component: comm,
+            components:{
+                default:comm,
+                mine:Mine
+            }
         },{
             name:'kefu',
             path:'/kefu',

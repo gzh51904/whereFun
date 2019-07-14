@@ -1,5 +1,6 @@
 <template>
-   <el-form class="regpart" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+   <el-form class="regparts" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+       <span  @click="closereg()" class="close"><h3>X</h3></span>
        <div class="reg">
         <a href="javascript:;"><div class="content">使用QQ账号注册</div></a>
         <div class="separator-layer">
@@ -36,7 +37,7 @@
         <el-form-item class="confirmbtn">
         <el-button class="confirm" @click="submitForm('ruleForm')">注册</el-button>
       </el-form-item>
-        <div class="register">已经是玩哪儿的用户了？<a @click.prevent.stop="goto()">登录</a></div>
+        <div class="register">已经是玩哪儿的用户了？<a @click.prevent.stop="gotolog()">登录</a></div>
         </div>
     </el-form>
 </template>
@@ -101,6 +102,12 @@ export default {
   },
 
     methods:{
+        closereg(){
+        this.$emit('cloron','gotoxlon');
+      },
+      gotolog(){
+            this.$emit('gotoxlon');
+        },
         goto(){
             this.$router.push('/login');
         },
@@ -132,11 +139,12 @@ export default {
 
 <style lang="scss">
 @import url('../../assets/css/base.css');
-.regpart{
-    background-color: #32425b;
+.regparts{
+    background-color: #32425b!important;
     width: 100%;
     height: 100%;
     padding: 5rem 2rem;
+    .close{position: absolute;left: 25.8rem;top: 0.7rem;font-size: 2rem;color: #ffffff;}
     .reginfo{
         .el-form-item__error{
             top:47px;
@@ -174,7 +182,7 @@ export default {
     background: transparent;
     .text{
     width: 98px;
-    background: #ebebf0;
+    background-color: #32425b!important;
     margin: 0 auto;
     color: #999;
     font-size: 1.6rem;

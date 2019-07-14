@@ -2,7 +2,9 @@
   <div id="app">
     <div class="box">
       <main>
-        <router-view :class="{maincontent:isActive}" class="maincon" />
+        <!-- 主页面内容 -->
+        <router-view :class="{maincontent:isActive,maincontent1:closemain}" class="maincon" />
+        <!-- 遮罩 -->
         <div
           :class="{contentcover1:isActive}"
           @click.prevent.stop="checkoutMine()"
@@ -10,10 +12,12 @@
           class="contentcover"
         ></div>
       </main>
+     <!-- 我的界面 -->
+      <router-view v-on:show="checkoutMine"  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine" />
+    <!-- 订单信息 -->
+      <router-view v-on:clofoo="checkoutMine" name="ginf" :class="{sidemenu:gopen,sideopend:gcolse}" />
 
-      <router-view :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine" />
-
-      <footer v-if="show">
+      <footer :class="{foo:fooclo}" v-if="show">
         <el-row>
           <el-col>
             <el-menu
@@ -32,11 +36,6 @@
               >
               <span 
               v-if="item.ok"
-              isActive
-              oks
-              opens
-              closemine
-              closemain
               @click.prevent.stop="checkinMine()"
               >
                 <span style="display:block;">
@@ -62,7 +61,7 @@
       </footer>
 
       <!-- 立即预定 -->
-      <Bmenu v-else></Bmenu>
+      <Bmenu :class="{foo:fooclo,}" v-on:show="sideopen" @click="sideopen()" gopen v-else></Bmenu>
     </div>
   </div>
 </template>
@@ -111,7 +110,10 @@ export default {
       oks:false,
       opens:true,
       closemain:false,
-      closemine:false
+      closemine:false,
+      fooclo:false,
+      gopen:true,
+      gcolse:false
     };
   },
   methods:{
@@ -125,6 +127,7 @@ export default {
           this.oks = true;
           this.closemine=false;
           this.closemain=false;
+          this.fooclo=true;
         }
       },
       checkoutMine(){
@@ -133,7 +136,21 @@ export default {
           this.isActive = false;
           this.oks = false;
           this.closemain=true;
+          this.fooclo=false;
+          this.gopen=true;
+        this.gcolse=false;
           
+        }
+      },
+      sideopen(){
+         this.opens=  true;
+        if(this.opens == true){
+          this.isActive = true;
+          this.oks = true;
+          this.closemain=false;
+          this.fooclo=true;
+          this.gopen=false;
+          this.gcolse=true;
         }
       }
       },
@@ -199,8 +216,6 @@ body,html {
   height: 100%;
   z-index: 50000;
   background-color: rgba(0, 0, 0, 0.4);
-  // transition:all 0.5s;
-  // display: none;
 }
 
 .contentcover1 {
@@ -216,17 +231,14 @@ body,html {
 }
 
 .maincontent {
-  // -webkit-transform: translate3d(-90%, 0, 0);
   transform: translate3d(-90%, 0, 0);
-  position: fixed;
+  position: fixed!important;
   margin-top: 0 !important;
   transition: all 0.5s;
 }
 
 .maincontent1 {
-    // -webkit-transform: translate3d(-90%, 0, 0);
     transform: translate3d(0, 0, 0);
-    position:fixed;
     margin-top: 0 !important;
     transition:all 0.5s;
 }
@@ -248,12 +260,49 @@ body,html {
   display:block;
   left:3rem;
   transition:all 1s;
+  position: fixed!important;
+  z-index: 9999;
+}
+
+.sidemenu {
+    position: absolute;
+    top: 0;
+    left: -15%;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    padding: 0;
+    display: none;
+    opacity: 1;
+}
+
+.sideopend {
+  display:block;
+  left:3rem;
+  transition:all 1s;
+   position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    padding: 0;
+    opacity: 1;
+    position: fixed!important;
 }
 
 main {
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.foo{
+  bottom: -50px!important;
+  box-shadow: none!important;
+  display: none!important;
 }
 footer {
   z-index: 11000;

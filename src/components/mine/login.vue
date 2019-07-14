@@ -64,7 +64,7 @@ export default {
 
     methods:{
         goto(){
-            this.$router.push('/login');
+            this.$router.push('/reg');
         },
      submitForm(index) {
       this.$refs['ruleForm'].validate(valid => {
@@ -101,9 +101,15 @@ export default {
 <style lang="scss">
 @import url('../../assets/css/base.css');
 .logpart{
-    background:#ebebf0;
-    width: 100%;
-    height: 100%;
+   margin-top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 10px #000;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 6rem;
+    background:#ebebf0!important;
     padding: 5rem 2rem;
     .loginfo{
         .el-form-item__error{
@@ -142,7 +148,7 @@ export default {
     background: transparent;
     .text{
     width: 98px;
-    background: #ebebf0;
+    background:#ebebf0!important;
     margin: 0 auto;
     color: #999;
     font-size: 1.6rem;

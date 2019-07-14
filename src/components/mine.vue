@@ -1,13 +1,13 @@
 <template>
 <div class="mine">
-    <!-- <logins v-show="lon"></logins> -->
-    <!-- <regs   v-show="ron"></regs> -->
+    <logins v-on:gotoxron="gotoxron" v-on:clolon="clolon" v-show="lon"></logins>
+    <regs v-on:gotoxlon="gotoxlon"  v-on:cloron="cloron" v-show="ron"></regs>
     <div v-show="mon">
     <div class="side-menu"></div>
         <div class="side-menu-wrapper">
         <h3 class="side-menu-title">
         
-        <span isActive oks opens closemain  @click="checkoutMine()" class="side-menu-close">
+        <span  isActive oks opens closemain  @click="checkoutMines()" class="side-menu-close">
           ×
         </span>      
       </h3>
@@ -18,8 +18,8 @@
     <div class="userinfo">
         <el-avatar shape="square" :size="60" :src="squareUrl"></el-avatar>
         <div v-for="item in infobtns" :key="item.name"  class="infobtn">
-        <el-button  @click.prevent.stop="gotoron()" round><i :class="item.icon" ron></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
-        <el-button  @click.prevent.stop="gotolon()" round><i :class="item.icon2" lon></i> {{item.title2}}</el-button>
+        <el-button  @click.native.prevent.stop="gotoron()" round><i :class="item.icon" ron></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
+        <el-button  @click.native.prevent.stop="gotolon()" round><i :class="item.icon2" lon></i> {{item.title2}}</el-button>
         </div>
     </div>
      <ul class="menu-list">
@@ -185,41 +185,42 @@ export default {
       opens:true,
       closemain:false,
     methods:{
-        // gotoron(){
-        //     this.ron= true;
-        //     this.mon=false;
-        //     // this.log2cl=false;
-        //     // this.$router.push(`/${name}`);
-        //     // let hash = window.href;
-        //     // console.log(hash);
+        gotoron(){
+            this.$router.push('/reg');
+            this.$emit('show');
+            console.log(666)
 
-        // },
-        // gotolon(){
-        //     this.lon= true;
-        //     this.mon=false;
-        //     // this.log2cl=false;
-        //     // this.$router.push(`/${name}`);
-        //     // let hash = window.href;
-        //     // console.log(hash);
+        },
+        gotoxron(){
+            this.ron= true;
+            this.lon=false;
+            this.mon=false;
 
-        // },
-        // gotolons(){
-        //     this.lon= false;
-        //     this.mon=true;
-        //     // this.log2cl=false;
-        //     // this.$router.push(`/${name}`);
-        //     // let hash = window.href;
-        //     // console.log(hash);
+        },
+        gotoxlon(){
+            this.lon= true;
+            this.ron=false;
+            this.mon=false;
 
-        // },
-       checkoutMine(){
-        this.opens=  false;
-        if(this.opens == false){
-          this.isActive = false;
-          this.oks = false;
-          this.closemain=true;
-          
-        }
+        },
+        gotolon(){
+            this.lon= true;
+            this.mon=false;
+            console.log(22)
+
+        },
+        clolon(){
+            this.lon= false;
+            this.mon=true;
+
+        },
+        cloron(){
+            this.ron= false;
+            this.mon=true;
+
+        },
+       checkoutMines(){
+        this.$emit('show');
       }
     },
       created(){
@@ -231,40 +232,11 @@ export default {
 </script>
 <style lang="scss">
 @import url('../assets/css/base.css');
-// body,html {
-//   height: 100%;
-//   width: 100%;
-//   font-size: 10px;
-//   position: relative;
-//   height: 100%;
-//   font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
-//     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-// }
-// .mineclose{
-//  display:none;
-//   left:3rem;
-//   transition:all 0.5s;
-// }
-
-// .mineopen{
-//   display:block;
-//   left:3rem;
-//   transition:all 1s;
-// }
-
-
 
 .mine{
     background-color: #32425b;
     height: 100%;
     padding-right:1.5rem;
-//     .log2{
-//     display: none;
-// }
-// .reg2{
-//     display: none;
-// }
-
 
 .side-menu-header {
     position: fixed;
