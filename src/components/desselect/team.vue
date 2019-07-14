@@ -1,7 +1,7 @@
 <template>
     <div>
-        <col1/>
-        <col3/>
+        <col1 db="舒适小团" index="0"/>
+        <col3 db="舒适小团" index="1"/>
     </div>
 </template>
 <script>

@@ -159,11 +159,6 @@ export default {
         let hash = window.location.hash.slice(1);
         this.active = hash;
       },
-   
-  created() {
-    let hash = window.location.hash.slice(1);
-    this.active = hash;
-  },
   components: {
     Bmenu
   },

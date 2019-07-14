@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import bus from './Bus';
-import mine from '../mine';
+// import bus from './Bus';
+// import mine from '../mine';
 export default {
   props:['clolon','gotoxron'],
    data() {

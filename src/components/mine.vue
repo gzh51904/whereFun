@@ -214,7 +214,6 @@ export default {
         gotoron(){
             this.$router.push('/reg');
             this.$emit('show');
-            console.log(666)
 
         },
         gotoxron(){
@@ -232,7 +231,6 @@ export default {
         gotolon(){
             this.lon= true;
             this.mon=false;
-            console.log(22)
 
         },
         clolon(){

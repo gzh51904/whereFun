@@ -37,23 +37,8 @@
                <el-input-number class="renshu" v-model="num" controls-position="right" @change="handleChange" :min="1"></el-input-number>
                 </div>
                 <div class="priinf"><div class="yuan"></div><span>$758.1人起</span></div>
+                <div class="bbottom"><span>总价<p>$15484.20</p></span><span @click="tianjia()">添加</span></div>
             </div>
-            <div class="footbar orderbar">
-                <!-- <div class="left-bg"></div>
-                <div class="right-bg"></div> -->
-                <button class="leftb">1</button><button class="rightb">2</button>
-                
-            </div>
-            <!-- <div class="footbar orderbar">
-                <div class="left">
-                    <small class="zj">总价</small>
-                    <span id="estimate_price" class="number currency-convert">$1706.20</span>
-                </div>
-                <div class="right purchase-flow">
-                    <button class="pay-now">现在支付</button>
-                </div>
-            </div> -->
-            <!-- <button>1</button><button>2</button> -->
         </div>
     </div>
     </div>
@@ -80,6 +65,9 @@ export default {
         },
         handleChange(value) {
 
+      },
+      tianjia(){
+          console.log(2222);
       }
     }
 }
@@ -202,6 +190,36 @@ export default {
     display: inline-block;
     background-color: #ff3573;
     }
+    }
+    .bbottom{
+        position: absolute;
+        left: 42px;
+        top: 750px;
+        width: 332px;
+        height: 65px;
+        span{
+            width: 50%;
+            height: 100%;
+            float: left;
+            background: #ff3573;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            line-height: 65px;
+            opacity: 0.8;
+            font-weight: bolder;
+        }
+        span:nth-of-type(1){
+            background: skyblue;
+            position: relative;
+            p{
+                font-size: 18px;
+                position: absolute;
+                top:19px;
+                text-align: center;
+                left: 45px;
+                }
+        }
     }
 
 }

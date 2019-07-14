@@ -1,8 +1,8 @@
 <template>
     <div>
-        <col1/>
-        <col2/>
-        <col3/>
+        <col1 db="欧洲" index="0"/>
+        <col2 db="欧洲" index="1"/>
+        <col3 db="欧洲" index="2"/>
     </div>
 </template>
 <script>
