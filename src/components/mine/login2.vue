@@ -28,7 +28,7 @@
 
         <!-- <div @click.prevent.stop="submitinfo('ruleForm')" class="confirm">确认</div> -->
         <el-form-item class="confirmbtn">
-        <el-button class="confirm" @click="submitForm">登录</el-button>
+        <el-button class="confirm"  @click="submitForm">登录</el-button>
       </el-form-item>
         <div class="forget"><a @click.prevent.stop="goto()">忘记密码？</a></div>
         <div class="logister">还没有账号？<a @click.prevent.stop="gotoreg()">注册</a></div>
@@ -92,9 +92,13 @@ export default {
                     console.log('登录失败')
                 }else if(data.code == 1000){
                     //成功登录后跳转到首页
-                this.$router.replace('/home');
-                   let fun =  this.$router.replace('/home');
-                   
+                localStorage.setItem('username',username);
+                let targetPath = this.$route.query.redirectTo;
+                this.$router.replace(targetPath?targetPath:'/home');
+                alert('登录成功，正在跳转到主页！');
+                this.$emit('checkoutMines');
+                this.$emit('clolon');
+                this.$emit('loging');
                 }
             })
         }

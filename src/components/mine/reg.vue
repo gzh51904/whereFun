@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { all } from 'q';
 export default {
     data() {
       
@@ -113,7 +114,7 @@ export default {
                         password
                     }).then(({data})=>{
                         if(data.code == 1000){
-
+                            alert('你看这个碗它又大又圆');
                             this.$router.replace('/login');
                         }
                     })

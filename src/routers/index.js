@@ -51,8 +51,8 @@ let router = new vueRoter({
             components:{
                 default:Cart,
                 mine:Mine
-
-            }
+            },
+            meta: { requiresAuth: true }
         },
         // ,{
         //     name:'Mine',
@@ -167,13 +167,33 @@ let router = new vueRoter({
 router.beforeEach((to, from, next) => {
     if(to.fullPath == "/inf") {
         // console.log(store.state)
+        
         store.state.isShow = false;
         // console.log(store.state.isShow )
         // console.log(router.app.$store)
     }else{
         store.state.isShow = true;
     }
-    next();
+
+    if(to.matched.some(item=>item.meta.requiresAuth)){
+        let username = localStorage.getItem('username');
+        //用户已登录
+        if(username){
+
+            next();
+        }
+        //用户未登录
+        else{
+            next({
+                path:'/login',
+                query:{redirectTo:to.fullPath}
+            });
+            
+        }
+    }else{
+        next();
+    }
+    
   })
 
 export default router

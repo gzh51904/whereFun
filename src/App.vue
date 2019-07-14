@@ -280,7 +280,7 @@ body,html {
 
 .sideopend {
   display:block;
-  left:3rem;
+  left:-15%;
   transition:all 1s;
    position: absolute;
     top: 0;
