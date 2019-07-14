@@ -107,7 +107,6 @@ export default {
     },
     scrollFn() {
       let main = document.querySelector("main");
-      console.log(this);
       if (main.scrollTop - 12 > 336) {
         this.menuTop = true;
       } else {
@@ -129,9 +128,8 @@ export default {
 
 
 <style lang="scss" scoped>
-#des{
-
-margin-top: 0;
+#des {
+  margin-top: 0;
   width: 100%;
   position: absolute;
   z-index: 10000;
@@ -140,189 +138,189 @@ margin-top: 0;
   box-sizing: border-box;
   min-height: 100%;
   padding-bottom: 6rem;
-.icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
-
-#main {
-  margin-top: 3.5rem;
-  .cityBJ {
-    // width: 37.5rem;
-    height: 14.2rem;
-    position: relative;
-    background: url("../assets/img/LosAngeles_b.jpg") no-repeat;
-    background-size: cover;
-    a {
-      position: absolute;
-    }
-    .tabCity {
-      width: 9rem;
-      height: 2rem;
-      right: 1rem;
-      top: 1rem;
-      background: #ff3573;
-      color: #fff;
-      border-radius: 1rem;
-      line-height: 2rem;
-      text-align: center;
-      font-size: 1.1rem;
-    }
-    .titleCity {
-      font-size: 1.8rem;
-      color: #ffe;
-      top: 1.5rem;
-      left: 1.5rem;
-    }
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
   }
-  .menu {
-    width: 100%;
-    padding-top: 1.5rem;
-    ul {
-      height: 6rem;
-      display: flex;
-      padding-bottom: 0.4rem;
-      li {
-        float: left;
-        flex: 1;
-        a {
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          padding: 0;
-          text-decoration: none;
-          color: #555;
-          font-size: 1.4rem;
-          display: flex;
-          flex-flow: column;
-          align-items: center;
-          justify-content: center;
-          img {
-            width: 3.2rem;
-            margin-bottom: 0.5rem;
+
+  #main {
+    margin-top: 3.5rem;
+    .cityBJ {
+      // width: 37.5rem;
+      height: 14.2rem;
+      position: relative;
+      background: url("../assets/img/LosAngeles_b.jpg") no-repeat;
+      background-size: cover;
+      a {
+        position: absolute;
+      }
+      .tabCity {
+        width: 9rem;
+        height: 2rem;
+        right: 1rem;
+        top: 1rem;
+        background: #ff3573;
+        color: #fff;
+        border-radius: 1rem;
+        line-height: 2rem;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+      .titleCity {
+        font-size: 1.8rem;
+        color: #ffe;
+        top: 1.5rem;
+        left: 1.5rem;
+      }
+    }
+    .menu {
+      width: 100%;
+      padding-top: 1.5rem;
+      ul {
+        height: 6rem;
+        display: flex;
+        padding-bottom: 0.4rem;
+        li {
+          float: left;
+          flex: 1;
+          a {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: #555;
+            font-size: 1.4rem;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            img {
+              width: 3.2rem;
+              margin-bottom: 0.5rem;
+            }
           }
         }
       }
     }
-  }
-  .menufixed {
-    padding: 0;
-    top: 3.4rem !important;
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 999998;
-    box-shadow: 0 0 1rem #222;
-    ul {
-      height: 4rem;
+    .menufixed {
       padding: 0;
-      background: #fff;
-      li {
+      top: 3.4rem !important;
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 999998;
+      box-shadow: 0 0 1rem #222;
+      ul {
         height: 4rem;
-        flex: auto;
-        line-height: 4rem;
-        padding: 0 0 0 0.5rem;
+        padding: 0;
+        background: #fff;
+        li {
+          height: 4rem;
+          flex: auto;
+          line-height: 4rem;
+          padding: 0 0 0 0.5rem;
+          a {
+            font-size: 1.2rem;
+            height: 100%;
+            flex-flow: row;
+            img {
+              width: 2.4rem;
+            }
+            span {
+              line-height: 4rem;
+              font-size: 1.2rem;
+              padding: 0 0 0 0.5rem;
+            }
+          }
+        }
+      }
+      .des_rebate {
+        margin: 0;
+        padding: 0 1rem;
+        height: 3.2rem;
+        background-color: #f7f8f7;
+        overflow-y: hidden;
+        overflow-x: auto;
+        flex-flow: row nowrap;
         a {
-          font-size: 1.2rem;
-          height: 100%;
-          flex-flow: row;
-          img {
-            width: 2.4rem;
+          width: auto;
+          flex: 1 0 auto;
+          margin-right: 0.8rem;
+          height: 2rem;
+          background-color: transparent;
+          padding: 0 0.8rem;
+          border-radius: 2rem;
+          h5 {
+            font-size: 1.2rem;
+            color: #334;
+            font-weight: normal;
+            line-height: 2rem;
           }
           span {
-            line-height: 4rem;
-            font-size: 1.2rem;
-            padding: 0 0 0 0.5rem;
+            display: none;
           }
         }
       }
     }
     .des_rebate {
-      margin: 0;
-      padding: 0 1rem;
-      height: 3.2rem;
-      background-color: #f7f8f7;
-      overflow-y: hidden;
-      overflow-x: auto;
-      flex-flow: row nowrap;
-      a {
-        width: auto;
-        flex: 1 0 auto;
-        margin-right: 0.8rem;
-        height: 2rem;
-        background-color: transparent;
-        padding: 0 0.8rem;
-        border-radius: 2rem;
-        h5 {
-          font-size: 1.2rem;
-          color: #334;
-          font-weight: normal;
-          line-height: 2rem;
-        }
-        span {
-          display: none;
-        }
-      }
-    }
-  }
-  .des_rebate {
-    height: 11.6rem;
-    display: flex;
-    padding: 0 0.8rem;
-    overflow: hidden;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: space-between;
-    align-content: space-around;
-    box-sizing: border-box;
-    a {
-      width: 32%;
-      cursor: pointer;
-      height: 5rem;
-      padding: 0 0.2rem;
-      box-sizing: border-box;
-      background-color: #f7f8f7;
-      border-radius: 0.4rem;
+      height: 11.6rem;
       display: flex;
+      padding: 0 0.8rem;
+      overflow: hidden;
+      flex-flow: row wrap;
       align-items: center;
-      flex-flow: column wrap;
-      justify-content: center;
-      h5 {
-        margin: 0;
-        font-size: 1.4rem;
-        color: #556;
-        line-height: 1.8rem;
-      }
-      .des_rebate_text {
-        font-size: 1.2rem;
-        color: #778;
-        width: 100%;
-        text-align: center;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-      .rebateLogo {
-        display: inline-block;
-        margin-left: 0.3rem;
-        border-radius: 50%;
-        font-size: 1.2rem;
-        background-color: #ff3573;
-        color: #fff;
-        width: 1.8rem;
-        height: 1.8rem;
-        font-weight: 300;
-        text-align: center;
-        line-height: 1.8rem;
-        margin-top: -0.1rem;
-        float: right;
+      justify-content: space-between;
+      align-content: space-around;
+      box-sizing: border-box;
+      a {
+        width: 32%;
+        cursor: pointer;
+        height: 5rem;
+        padding: 0 0.2rem;
+        box-sizing: border-box;
+        background-color: #f7f8f7;
+        border-radius: 0.4rem;
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+        justify-content: center;
+        h5 {
+          margin: 0;
+          font-size: 1.4rem;
+          color: #556;
+          line-height: 1.8rem;
+        }
+        .des_rebate_text {
+          font-size: 1.2rem;
+          color: #778;
+          width: 100%;
+          text-align: center;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .rebateLogo {
+          display: inline-block;
+          margin-left: 0.3rem;
+          border-radius: 50%;
+          font-size: 1.2rem;
+          background-color: #ff3573;
+          color: #fff;
+          width: 1.8rem;
+          height: 1.8rem;
+          font-weight: 300;
+          text-align: center;
+          line-height: 1.8rem;
+          margin-top: -0.1rem;
+          float: right;
+        }
       }
     }
   }
-}
 }
 </style>
 

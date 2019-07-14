@@ -1,1 +1,1 @@
-mongoimport -d demo -c yanhu --file C:\Users\Administrator\Desktop\dataBase\yanhu.json --type json
+mongoimport -d demo -c homeHot --file F:\now\level3\week_4_vue\where\whereFun\public\dataBase\homeHot.json --type json

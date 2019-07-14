@@ -6,21 +6,25 @@
     </h3>
     <span class="hot_title">畅销的线路，尖叫的低价</span>
     <ul>
-      <li v-for="item in listmsg" :key="item.place">
-        <div class="img_box">
-          <img :src="item.img" alt />
-        </div>
-        <div class="depart_box">
-          <i :class="item.icon"></i>
-          <span class="depart" v-text="item.place"></span>
-        </div>
-
-        <h5 v-text="item.msg"></h5>
-        <div class="price">
-          <span class="discount" v-text="item.discount"></span>
-          <span class="current currency-convert" v-text="item.price"></span>
-          <small>/人起</small>
-        </div>
+      <li v-for="item in hotlist" :key="item._id">
+        <a href="javascript:;" @click="gotoInf(item._id)">
+          <div class="img_box">
+            <img :src="item.HomeHotTitleImg" alt />
+          </div>
+          <div class="depart_box">
+            <i :class="item.icon"></i>
+            <!-- 拉斯维加斯出发 5日游 -->
+            <span class="depart" v-text="item.HomeHotGps"></span>
+          </div>
+          <!-- 『热门推荐』马蹄湾、羚羊峡谷、布莱斯峡谷、锡安国家公园、鲍威尔湖、西大峡谷 5日游 -->
+          <h5 v-text="item.HomeHotTitle"></h5>
+          <div class="price">
+            <!-- 6.5折 -->
+            <span class="discount" v-text="item.HomeHotSale"></span>
+            <span class="current currency-convert" v-text="item.HomeHotPrice"></span>
+            <small>/人起</small>
+          </div>
+        </a>
       </li>
     </ul>
   </div>
@@ -32,83 +36,17 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(ElementUi);
 export default {
+  props: ["hotlist"],
   data() {
-    return {
-      listmsg: [
-        {
-          img: require("../../assets/img/LA8-507.jpg"),
-          place: "洛杉矶出发 8日游",
-          msg:
-            "『黄石12-15景』东南双峡、羚羊谷、蒙特利、17哩、太浩湖、大提顿 8日游（1晚黄石小木屋）",
-          discount: "6.3折",
-          price: "$340.83",
-          icon: "el-icon-map-location"
-        },
-        {
-          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
-          place: "纽约出发 6日游",
-          msg:
-            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
-          discount: "6.4折",
-          price: "$143.36",
-          icon: "el-icon-map-location"
-        },
-        {
-          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
-          place: "纽约出发 7日游",
-          msg:
-            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
-          discount: "6.4折",
-          price: "$143.36",
-          icon: "el-icon-map-location"
-        },
-        {
-          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
-          place: "纽约出发 9日游",
-          msg:
-            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
-          discount: "6.4折",
-          price: "$143.36",
-          icon: "el-icon-map-location"
-        },
-        {
-          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
-          place: "纽约出发 10日游",
-          msg:
-            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
-          discount: "6.4折",
-          price: "$143.36",
-          icon: "el-icon-map-location"
-        },
-        {
-          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
-          place: "纽约出发 11日游",
-          msg:
-            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
-          discount: "6.4折",
-          price: "$143.36",
-          icon: "el-icon-map-location"
-        },
-        {
-          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
-          place: "纽约出发 12日游",
-          msg:
-            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
-          discount: "6.4折",
-          price: "$143.36",
-          icon: "el-icon-map-location"
-        },
-        {
-          img: require("../../assets/img/36-1544510440102_1016x597.jpg"),
-          place: "纽约出发 13日游",
-          msg:
-            "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
-          discount: "6.4折",
-          price: "$143.36",
-          icon: "el-icon-map-location"
-        }
-      ]
-    };
+    return {};
+  },
+  methods:{
+    gotoInf(id) {
+      this.$router.push({path:'/inf',query:{
+        id:id
+      }})
+      // console.log(id)
+    }
   }
 };
 </script>
@@ -203,29 +141,31 @@ export default {
         border-bottom: 0.1rem solid #ddd;
         height: 2rem;
         line-height: 2rem;
-        .discount{
-          font-size:1.3rem;
-          margin-left:0.5rem;
-          float:left;
-          color:#fff;
-          background-color:#ff3573;
-          border-radius:0.2rem;
+        .discount {
+          font-size: 1.3rem;
+          margin-left: 0.5rem;
+          float: left;
+          color: #fff;
+          background-color: #ff3573;
+          border-radius: 0.2rem;
           padding: 0.2rem 0.4rem;
           line-height: 1.6rem;
           margin-right: 0.6rem;
-        }.current{
-          font-size:1.6rem;
-          float:left;
-          color:#ff3573;
-          margin-right:0.4rem;
+        }
+        .current {
+          font-size: 1.6rem;
+          float: left;
+          color: #ff3573;
+          margin-right: 0.4rem;
           font-weight: 300;
           margin-top: 0;
           line-height: 2rem;
-        }small{
-          font-size:1.4rem;
-          padding-top:0.4rem ;
-          float:left;
-          color:#999;
+        }
+        small {
+          font-size: 1.4rem;
+          padding-top: 0.4rem;
+          float: left;
+          color: #999;
           line-height: 1.6rem;
         }
       }
