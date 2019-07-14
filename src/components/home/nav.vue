@@ -2,31 +2,31 @@
   <div class="section menu">
     <h3>玩哪儿！最有趣的欧美自由行</h3>
     <ul>
-      <a href="###">
+      <a href="javascript:;" @click="Gotolist">
         <li>
           <span class="duoriyou"></span>
           <h5>多日游</h5>
         </li>
       </a>
-      <a href="###">
+      <a href="javascript:;"  @click="Gotolist">
         <li>
           <span class="yiriyou"></span>
           <h5>一日游</h5>
         </li>
       </a>
-      <a href="###">
+      <a href="javascript:;"  @click="Gotolist">
         <li>
           <span class="wanle"></span>
           <h5>玩乐</h5>
         </li>
       </a>
-      <a href="###">
+      <a href="javascript:;"  @click="Gotolist">
         <li>
           <span class="jiudian"></span>
           <h5>酒店</h5>
         </li>
       </a>
-      <a href="###">
+      <a href="javascript:;"  @click="Gotolist">
         <li>
           <span class="baoche"></span>
           <h5>包车</h5>
@@ -36,8 +36,13 @@
   </div>
 </template>
 <script>
-// import Allline from "./line.vue";
-export default {};
+export default {
+  methods:{
+    Gotolist() {
+      this.$router.push({path:'/comm'})
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 .section {

@@ -13,8 +13,10 @@
       <swiper ref="mySwiper" class="clearfix" :options="swiperOption">
         <!-- slides -->
         <swiper-slide v-for="item in banner4Photo" :key="item.name" class="banner4_item">
+          <a href="javascript:;" @click="inf">
           <img :src="item.img" alt />
           <h5 v-text="item.name"></h5>
+          </a>
         </swiper-slide>
 
         <!-- Optional controls -->
@@ -30,7 +32,7 @@ export default {
     return {
       swiperOption: {
         slidesPerView : 2,
-        
+        autopaly:true
       },
       banner4Photo: [
         {
@@ -55,6 +57,12 @@ export default {
   components: {
     swiper,
     swiperSlide
+  },
+  methods:{
+    inf() {
+      this.$router.push({path:'/inf'})
+      // console.log(this)
+    }
   }
 };
 </script>

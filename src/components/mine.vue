@@ -1,12 +1,13 @@
 <template>
-    <div
-    :class="{mineclose:closemine,mineopen:isActive}"
-    class="mine">
+<div class="mine">
+    <logins v-on:gotoxron="gotoxron" v-on:clolon="clolon" v-show="lon"></logins>
+    <regs v-on:gotoxlon="gotoxlon"  v-on:cloron="cloron" v-show="ron"></regs>
+    <div v-show="mon">
     <div class="side-menu"></div>
         <div class="side-menu-wrapper">
         <h3 class="side-menu-title">
         
-        <span closemine isActive oks opens @click.prevent.stop="checkoutMine()" class="side-menu-close">
+        <span  isActive oks opens closemain  @click="checkoutMines()" class="side-menu-close">
           ×
         </span>      
       </h3>
@@ -17,8 +18,8 @@
     <div class="userinfo">
         <el-avatar shape="square" :size="60" :src="squareUrl"></el-avatar>
         <div v-for="item in infobtns" :key="item.name"  class="infobtn">
-        <el-button @click.native.prevent.stop="goto('reg')" round><i :class="item.icon"></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
-        <el-button @click.native.prevent.stop="goto('login')" round><i :class="item.icon2"></i> {{item.title2}}</el-button>
+        <el-button  @click.native.prevent.stop="gotoron()" round><i :class="item.icon" ron></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
+        <el-button  @click.native.prevent.stop="gotolon()" round><i :class="item.icon2" lon></i> {{item.title2}}</el-button>
         </div>
     </div>
      <ul class="menu-list">
@@ -67,12 +68,26 @@
           <span>美国加州合法旅行社 (CST#2119862-40)</span>
       </div>
       </div>
+      </div>
+
+
  
 </template>
 <script>
+import bus from '../assets/js/Bus';
+import logins from './mine/login2';
+import regs from './mine/reg2';
 export default {
+    components:{
+        logins,
+        regs
+
+    },
     data(){
         return{
+             ron:false,
+             lon:false,
+             mon:true,
             squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
             infobtns:[{
                 name:'infos',
@@ -161,28 +176,53 @@ export default {
                coun:'台湾',
                phone:'123456'
            }],
-           isActive:false,
-      oks:false,
-      opens:true,
-            closemine:false
+          
         }
     },
+   
+    isActive:false,
+      oks:false,
+      opens:true,
+      closemain:false,
     methods:{
-        goto(name){
-            this.$router.push(`/${name}`);
-            // let hash = window.href;
-            // console.log(hash);
+        gotoron(){
+            this.$router.push('/reg');
+            this.$emit('show');
 
         },
-        checkoutMine(){
-            // console.log(22222)
-        this.opens=  false;
-        if(this.opens == false){
-          this.isActive = false;
-          this.oks = false;
-          this.closemine = true;
-        }
+        gotoxron(){
+            this.ron= true;
+            this.lon=false;
+            this.mon=false;
+
+        },
+        gotoxlon(){
+            this.lon= true;
+            this.ron=false;
+            this.mon=false;
+
+        },
+        gotolon(){
+            this.lon= true;
+            this.mon=false;
+
+        },
+        clolon(){
+            this.lon= false;
+            this.mon=true;
+
+        },
+        cloron(){
+            this.ron= false;
+            this.mon=true;
+
+        },
+       checkoutMines(){
+        this.$emit('show');
       }
+    },
+      created(){
+         bus.$on('gotolon',this.gotolons);
     }
     
 }
@@ -190,20 +230,7 @@ export default {
 </script>
 <style lang="scss">
 @import url('../assets/css/base.css');
-// body,html {
-//   height: 100%;
-//   width: 100%;
-//   font-size: 10px;
-//   position: relative;
-//   height: 100%;
-//   font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
-//     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-// }
-.mineclose{
- display:none;
-  left:3rem;
-  transition:all 0.5s;
-}
+
 .mine{
     background-color: #32425b;
     height: 100%;
@@ -337,6 +364,7 @@ h3.side-menu-title span {
 }
 
 }
+
 
 
 

@@ -90,11 +90,19 @@ export default {
 
 
 <style lang="scss" scoped>
-#desselect {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  padding: 1rem 1rem 6rem 12rem;
+#desselect{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding:1rem 1rem 6rem 12rem;
+     margin-top: 0;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 10px #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 6rem; 
 }
 .el-menu {
   display: block;

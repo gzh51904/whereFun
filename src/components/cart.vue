@@ -27,6 +27,15 @@ export default {};
 .cart_box {
   width: 100%;
   height: 100%;
+  margin-top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 10px #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 6rem;
   .head {
     width: 100%;
     height: 5.2rem;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="tour_display" v-for="item in ifo" :key="item.id">
+    <div class="tour_display" v-for="item in inf" :key="item.id">
       <!-- 图 -->
       <div class="layer">
         <img :src="item.img" alt />
@@ -39,37 +39,29 @@
           <span class="tour_code" v-text="item.tour_code"></span>
         </div>
 
-         <!-- 出发地点与结束地点 -->
+        <!-- 出发地点与结束地点 -->
         <citys></citys>
-     
+
+        <!-- 图片展示 -->
+        <img src="../../assets/img/10787-1562136326921_669x447.jpg"    alt  class="zhanshi" />
+        <img src="../../assets/img/10787-1562136338281_623x472.jpg"    alt  class="zhanshi" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import citys from './citys.vue'
+import citys from "./citys.vue";
 export default {
+  props:['inf'],
   data() {
     return {
-      ifo: [
-        {
-          img: require("../../assets/img/10787-1541988234403_640x483.jpg"),
-          id: 123,
-          discount: "9.5折",
-          title:
-            "『星球小屋预售』1晚星球小屋、4次极光观测机会、探秘北极圈、征服道顿公路、北方极地博物馆、冰雕博物馆 5日游",
-          servise: "接机参团",
-          discount_getpoints: "返点",
-          discount_usepoints: "兑换",
-          guide: "导游语言: 国语 | 英语",
-          date: "每天发团",
-          tour_code: "编号: FA5-10787"
-        }
-      ]
+     
     };
   },
-  components:{
+  components: {
     citys
+  },
+  created(){
   }
 };
 </script>
@@ -180,15 +172,14 @@ export default {
       line-height: 1;
       float: left;
     }
-  }.tour_code{
-    float:right;
-    font-size:1.4rem;
+  }
+  .tour_code {
+    float: right;
+    font-size: 1.4rem;
     line-height: 1;
-    color:#777;
+    color: #777;
   }
 }
-
-
 
 .service {
   background-color: #a462ff;
@@ -201,6 +192,8 @@ export default {
 }
 
 
-
-
+//图片展示
+.zhanshi{
+  width: 28.1rem;
+}
 </style>

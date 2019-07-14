@@ -1,24 +1,32 @@
 <template>
   <div id="app">
     <div class="box">
-      
       <main>
-    <router-view :class="{maincontent:isActive}" class="maincon"/>
-    <div :class="{contentcover1:isActive}" @click.prevent.stop="checkoutMine()" v-show="oks" class="contentcover"></div> 
+        <!-- 主页面内容 -->
+        <router-view :class="{maincontent:isActive,maincontent1:closemain}" class="maincon" />
+        <!-- 遮罩 -->
+        <div
+          :class="{contentcover1:isActive}"
+          @click.prevent.stop="checkoutMine()"
+          v-show="oks"
+          class="contentcover"
+        ></div>
       </main>
-    <router-view  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine"/>
-      <footer>
+     <!-- 我的界面 -->
+      <router-view v-on:show="checkoutMine"  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine" />
+    <!-- 订单信息 -->
+      <router-view v-on:clofoo="checkoutMine" name="ginf" :class="{sidemenu:gopen,sideopend:gcolse}" />
+
+      <footer :class="{foo:fooclo}" v-if="show">
         <el-row>
           <el-col>
-            <el-menu 
+            <el-menu
               :default-active="active"
-              @select="handleSelect" 
-              class="el-menu-demo" 
-              mode="horizontal" 
-              router>
-
-     
-
+              @select="handleSelect"
+              class="el-menu-demo"
+              mode="horizontal"
+              router
+            >
               <el-menu-item
                 v-for="item in pages"
                 :key="item.name"
@@ -28,31 +36,32 @@
               >
               <span 
               v-if="item.ok"
-              isActive
-              oks
-              opens
-              closemine
               @click.prevent.stop="checkinMine()"
               >
                 <span style="display:block;">
                   <i :class="item.icon"></i>
                 </span>
 
-                <span>{{item.title}}</span>
+                  <span>{{item.title}}</span>
                 </span>
 
-                 <span v-else>
-                <span style="display:block;">
-                  <i :class="item.icon"></i>
-                </span>
+                <span v-else>
+                  <span style="display:block;">
+                    <i :class="item.icon"></i>
+                  </span>
 
-                <span>{{item.title}}</span>
+                  <span>
+                    <span>{{item.title}}</span>
+                  </span>
                 </span>
               </el-menu-item>
             </el-menu>
           </el-col>
         </el-row>
       </footer>
+
+      <!-- 立即预定 -->
+      <Bmenu :class="{foo:fooclo,}" v-on:show="sideopen" @click="sideopen()" gopen v-else></Bmenu>
     </div>
   </div>
 </template>
@@ -62,9 +71,10 @@
 import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+import Bmenu from "./components/bottom_menu.vue";
+import store from './store.js'
 
-
-Vue.use(ElementUi)
+Vue.use(ElementUi);
 
 export default {
   data() {
@@ -93,14 +103,17 @@ export default {
           name: "mine",
           // path: "/mine",
           icon: "el-icon-user-solid",
-          ok:true
-        },
-        
+          ok: true
+        }
       ],
       isActive:false,
       oks:false,
       opens:true,
-      closemine:false
+      closemain:false,
+      closemine:false,
+      fooclo:false,
+      gopen:true,
+      gcolse:false
     };
   },
   methods:{
@@ -112,7 +125,9 @@ export default {
         if(this.opens == true){
           this.isActive = true;
           this.oks = true;
-          this.reoveclass='mineclose';
+          this.closemine=false;
+          this.closemain=false;
+          this.fooclo=true;
         }
       },
       checkoutMine(){
@@ -120,20 +135,43 @@ export default {
         if(this.opens == false){
           this.isActive = false;
           this.oks = false;
+          this.closemain=true;
+          this.fooclo=false;
+          this.gopen=true;
+        this.gcolse=false;
           
+        }
+      },
+      sideopen(){
+         this.opens=  true;
+        if(this.opens == true){
+          this.isActive = true;
+          this.oks = true;
+          this.closemain=false;
+          this.fooclo=true;
+          this.gopen=false;
+          this.gcolse=true;
         }
       }
       },
       created(){
+        //刷新保持按钮高亮
         let hash = window.location.hash.slice(1);
         this.active = hash;
-      }
+      },
+  components: {
+    Bmenu
+  },
+  computed:{
+    show:function(){
+      return  store.state.isShow
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-
-@import url('./assets/css/base.css');
+@import url("./assets/css/base.css");
 
 * {
   margin: 0;
@@ -141,6 +179,7 @@ export default {
 }
 
 body,html {
+  background-color: #32425b;
   height: 100%;
   width: 100%;
   font-size: 10px;
@@ -149,11 +188,7 @@ body,html {
   font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-main{
-    // transform: translate3d(-90%, 0, 0);
-    // position: fixed;
-    // margin-top: 0 !important;
-    }
+
 #app {
   width: 100%;
   height: 100%;
@@ -168,61 +203,101 @@ main{
 }
 
 .contentcover {
-    position: absolute;
-    top: 0;
-    left: 0rem;
-    bottom: 0;
-    width: 100%;
-    height:100%;
-    z-index: 50000;
-    background-color: rgba(0, 0, 0, .4);
-    // transition:all 0.5s;
-    // display: none;
+  position: absolute;
+  top: 0;
+  left: 0rem;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50000;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .contentcover1 {
-    position: absolute;
-    top: 0;
-    left: -27.8rem;
-    bottom: 0;
-    width: 100%;
-    height:100%;
-    z-index: 50000;
-    background-color: rgba(0, 0, 0, .4);
-    transition:all 0.5s;
+  position: absolute;
+  top: 0;
+  left: -27.8rem;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50000;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 0.5s;
 }
 
 .maincontent {
-    // -webkit-transform: translate3d(-90%, 0, 0);
-    transform: translate3d(-90%, 0, 0);
-    position:fixed;
+  transform: translate3d(-90%, 0, 0);
+  position: fixed!important;
+  margin-top: 0 !important;
+  transition: all 0.5s;
+}
+
+.maincontent1 {
+    transform: translate3d(0, 0, 0);
     margin-top: 0 !important;
     transition:all 0.5s;
 }
 
 .mine{
   position: absolute;
+  top: 0;
+  left: -15%;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  transition: all 0.5s;
+  padding: 0;
+  display: none;
+  opacity: 1;
+}
+
+.mineopen{
+  display:block;
+  left:3rem;
+  transition:all 1s;
+  position: fixed!important;
+  z-index: 9999;
+}
+
+.sidemenu {
+    position: absolute;
     top: 0;
     left: -15%;
     width: 100%;
     height: 100%;
     z-index: 999;
+    -webkit-transition: all 0.5s;
     transition: all 0.5s;
     padding: 0;
     display: none;
     opacity: 1;
 }
 
-.mineopen{
+.sideopend {
   display:block;
   left:3rem;
-  transition:all 0.5s;
+  transition:all 1s;
+   position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    padding: 0;
+    opacity: 1;
+    position: fixed!important;
 }
 
 main {
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.foo{
+  bottom: -50px!important;
+  box-shadow: none!important;
+  display: none!important;
 }
 footer {
   z-index: 11000;
@@ -237,7 +312,6 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
-
 }
 footer ul {
   height: 0;
@@ -269,7 +343,7 @@ li i {
 .el-menu-item span {
   line-height: 2rem;
 }
-.el-menu--horizontal>.el-menu-item {
-  height:5rem !important;
+.el-menu--horizontal > .el-menu-item {
+  height: 5rem !important;
 }
 </style>

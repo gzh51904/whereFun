@@ -1,6 +1,6 @@
 <template>
     <header>
-      <div class="header_top">
+      <div class="header_top" @click="backHome">
         <a href="javascript:;"></a>
         <div class="header_search">
           <form>
@@ -11,6 +11,16 @@
       </div>
     </header>
 </template>
+<script>
+export default {
+  methods:{
+    backHome() {
+      this.$router.push({path:'/home'})
+      // console.log(store.state.isShow)
+    }
+  }
+}
+</script>
 
 
 <style lang="scss" scoped>
@@ -25,6 +35,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
+  
   .header_top {
       overflow: hidden;
       display: flex;

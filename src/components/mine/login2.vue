@@ -1,5 +1,6 @@
 <template>
-   <el-form class="logpart" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+   <el-form v-show="close" class="logparts" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+     <span  @click="closelog()" class="close"><h3>X</h3></span>
        <div class="login">
         <a href="javascript:;"><div class="content">使用QQ账号登录</div></a>
         <div class="separator-layer">
@@ -30,13 +31,16 @@
         <el-button class="confirm" @click="submitForm">登录</el-button>
       </el-form-item>
         <div class="forget"><a @click.prevent.stop="goto()">忘记密码？</a></div>
-        <div class="logister">还没有账号？<a @click.prevent.stop="goto()">注册</a></div>
+        <div class="logister">还没有账号？<a @click.prevent.stop="gotoreg()">注册</a></div>
         </div>
     </el-form>
 </template>
 
 <script>
+// import bus from './Bus';
+// import mine from '../mine';
 export default {
+  props:['clolon','gotoxron'],
    data() {
     //   自定义校验规则
     let validatePass = (rule, value, callback) => {
@@ -51,6 +55,8 @@ export default {
       }
     };
     return {
+      // mon:false,
+      close:true,
       ruleForm: {
         username: "",
         password: ""
@@ -63,8 +69,11 @@ export default {
   },
 
     methods:{
-        goto(){
-            this.$router.push('/reg');
+      closelog(){
+        this.$emit('clolon');
+      },
+        gotoreg(){
+            this.$emit('gotoxron');
         },
      submitForm(index) {
       this.$refs['ruleForm'].validate(valid => {
@@ -80,7 +89,7 @@ export default {
                 // console.log(res);
                 if(data.code == 250){
                     alert('用户名或密码错误！')
-                    // console.log('登录失败')
+                    console.log('登录失败')
                 }else if(data.code == 1000){
                     //成功登录后跳转到首页
                 this.$router.replace('/home');
@@ -100,17 +109,13 @@ export default {
 
 <style lang="scss">
 @import url('../../assets/css/base.css');
-.logpart{
-   margin-top: 0;
-  width: 100%;
-  position: absolute;
-  z-index: 10000;
-  box-shadow: 0 0 10px #000;
-  box-sizing: border-box;
-  min-height: 100%;
-  padding-bottom: 6rem;
-    background:#ebebf0!important;
+.logparts{
+    background-color: #32425b!important;
+    width: 100%;
+    height: 100%;
     padding: 5rem 2rem;
+    position: relative;
+    .close{position: absolute;left: 25.8rem;top: 0.7rem;font-size: 2rem;color: #ffffff;}
     .loginfo{
         .el-form-item__error{
             top:47px;
@@ -148,7 +153,7 @@ export default {
     background: transparent;
     .text{
     width: 98px;
-    background:#ebebf0!important;
+    background: #32425b!important;
     margin: 0 auto;
     color: #999;
     font-size: 1.6rem;
@@ -197,6 +202,7 @@ export default {
         text-align: center;
         font-size: 1.9rem;
         margin-left: 0;
+        border:none;
     }
     }
     .logister{

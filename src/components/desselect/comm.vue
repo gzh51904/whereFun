@@ -30,7 +30,7 @@
 import search from "../search";
 import desnav from "../des/desnav";
 import deslist from "../des/deslist";
-import axios from "axios";
+// import axios from "axios";
 export default {
     data(){
         return {
@@ -47,6 +47,14 @@ export default {
 
 <style lang="scss" scoped>
 #comm {
+  margin-top: 0;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 10px #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 6rem;
   padding-top: 3.4rem;
   width: 100%;
   height: auto;

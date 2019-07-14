@@ -1,14 +1,15 @@
 <template>
-   <el-form class="logpart" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
-       <div class="login">
-        <a href="javascript:;"><div class="content">使用QQ账号登录</div></a>
+   <el-form class="regparts" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+       <span  @click="closereg()" class="close"><h3>X</h3></span>
+       <div class="reg">
+        <a href="javascript:;"><div class="content">使用QQ账号注册</div></a>
         <div class="separator-layer">
             <div class="container">
-                <div class="text">或</div>
+                <div class="text">注册</div>
             </div>
         </div>
 
-        <div class="loginfo">
+        <div class="reginfo">
             <div class="cbox">
              <el-form-item  prop="username">
         <el-input type="text" placeholder="用户名" v-model="ruleForm.username" autocomplete="on"></el-input>
@@ -16,7 +17,7 @@
             </div>
         </div>
 
-          <div class="loginfo">
+          <div class="reginfo">
             <div class="cbox">
              <el-form-item label="" prop="password">
         <el-input type="password" placeholder="密码" v-model="ruleForm.password"></el-input>
@@ -24,73 +25,111 @@
             </div>
         </div>
 
+          <div class="reginfo">
+            <div class="cbox">
+            <el-form-item label="" prop="checkPass">
+        <el-input type="password" placeholder="确认密码" v-model="ruleForm.checkPass"></el-input>
+      </el-form-item>
+            </div>
+        </div>
 
         <!-- <div @click.prevent.stop="submitinfo('ruleForm')" class="confirm">确认</div> -->
         <el-form-item class="confirmbtn">
-        <el-button class="confirm" @click="submitForm">登录</el-button>
+        <el-button class="confirm" @click="submitForm('ruleForm')">注册</el-button>
       </el-form-item>
-        <div class="forget"><a @click.prevent.stop="goto()">忘记密码？</a></div>
-        <div class="logister">还没有账号？<a @click.prevent.stop="goto()">注册</a></div>
+        <div class="register">已经是玩哪儿的用户了？<a @click.prevent.stop="gotolog()">登录</a></div>
         </div>
     </el-form>
 </template>
 
 <script>
 export default {
-   data() {
+    data() {
+      
     //   自定义校验规则
     let validatePass = (rule, value, callback) => {
-      callback();
+        if(value.trim() == ''){
+            callback('输入不能为空')
+        }else{
+
+            callback();
+        }
+    };
+    let checkPass = (rule, value, callback) => {
+        if(value.trim() == ''){
+            callback('输入不能为空')
+        }else{
+
+            if(value != this.ruleForm.password){
+                callback(new Error('两次输入密码不一致'))
+            }else{
+                callback();
+            }
+        }
     };
     let validateUsername = (rule, value, callback) => {
-    //   console.log("rule:", rule);
-      if (value.length < 3) {
-        callback(new Error("用户名不能少于3位"));
-      }else{
-          callback();
-      }
+
+        if(value.trim() == ''){
+            callback('输入不能为空')
+        }else{
+
+            this.$axios.get('/reg/check',{
+                params:{
+                    username:value
+                }
+            }).then(({data})=>{
+                if(data.code == 250){
+                    callback(new Error('用户名已存在'));
+                }else{
+                    callback()
+                }
+            })
+        }
+      
     };
     return {
       ruleForm: {
         username: "",
-        password: ""
+        password: "",
+        checkPass: ""
       },
       rules: {
         password: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: checkPass, trigger: "blur" }],
         username: [{ validator: validateUsername, trigger: "blur" }]
       }
     };
   },
 
     methods:{
-        goto(){
-            this.$router.push('/reg');
+        closereg(){
+        this.$emit('cloron','gotoxlon');
+      },
+      gotolog(){
+            this.$emit('gotoxlon');
         },
-     submitForm(index) {
-      this.$refs['ruleForm'].validate(valid => {
-        if (valid) {
-            let {username,password} = this.ruleForm;
-            this.$axios.get('/login',{
-                params:{
-                    username,
-                    password
+        goto(){
+            this.$router.push('/login');
+        },
+        submitForm(formName){
+            this.$refs[formName].validate(valid => {
+                if(valid){
+                    let {username,password} = this.ruleForm;
+                    this.$axios.post('/reg',{
+                        username,
+                        password
+                    }).then(({data})=>{
+                        if(data.code == 1000){
+
+                            this.$router.replace('/login');
+                        }
+                    })
+                }else{
+                    // alert('请完善信息！');
+                    return false;
                 }
-            }).then((res)=>{
-                let {data,headers} = res
-                // console.log(res);
-                if(data.code == 250){
-                    alert('用户名或密码错误！')
-                    // console.log('登录失败')
-                }else if(data.code == 1000){
-                    //成功登录后跳转到首页
-                this.$router.replace('/home');
-                   let fun =  this.$router.replace('/home');
-                   
-                }
-            })
+            });
         }
-      });
-    }
 
         }
     }
@@ -100,18 +139,13 @@ export default {
 
 <style lang="scss">
 @import url('../../assets/css/base.css');
-.logpart{
-   margin-top: 0;
-  width: 100%;
-  position: absolute;
-  z-index: 10000;
-  box-shadow: 0 0 10px #000;
-  box-sizing: border-box;
-  min-height: 100%;
-  padding-bottom: 6rem;
-    background:#ebebf0!important;
+.regparts{
+    background-color: #32425b!important;
+    width: 100%;
+    height: 100%;
     padding: 5rem 2rem;
-    .loginfo{
+    .close{position: absolute;left: 25.8rem;top: 0.7rem;font-size: 2rem;color: #ffffff;}
+    .reginfo{
         .el-form-item__error{
             top:47px;
             .el-input__suffix{
@@ -148,14 +182,14 @@ export default {
     background: transparent;
     .text{
     width: 98px;
-    background:#ebebf0!important;
+    background-color: #32425b!important;
     margin: 0 auto;
     color: #999;
     font-size: 1.6rem;
     }
     }
     }
-    .loginfo{
+    .reginfo{
     border-radius: 2px;
     background: white;
     margin: 20px 0 18px 0;
@@ -199,26 +233,13 @@ export default {
         margin-left: 0;
     }
     }
-    .logister{
+    .register{
         margin-top: 10px;
         font-size: 1.6rem;
         color: #90909E;
         a{color: #ff3573;}
 
     }
-    .forget{
-    margin-top: 18px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #d3d3dd;
-    overflow: auto;
-    padding-bottom: 12px;
-    text-align: right;
-    margin-top: 10px;
-    font-size: 1.6rem;
-    color: #90909E;
-    a{color: #ff3573;}
-
-}
 }
 </style>
 

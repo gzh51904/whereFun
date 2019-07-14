@@ -31,7 +31,7 @@
       <allline></allline>
 
       <!-- 爆款热销 -->
-      <hot></hot>
+      <hot :hotlist="hotlist"></hot>
     </div>
   </div>
 </template>
@@ -46,10 +46,42 @@ import Allline from "./home/line.vue";
 import zhuTi from "./home/zhutiwanfa.vue";
 import biwan from "./home/biwan.vue";
 import hot from "./home/hot.vue";
-
+import axios from "axios";
 export default {
   data() {
-    return {};
+    return {
+      hotlist: [
+        // {
+        //   HomeHotGps: "拉斯维加斯出发 5日游",
+        //   HomeHotPrice: "¥1132.0",
+        //   HomeHotSale: "6.5折",
+        //   HomeHotTitle:
+        //     "『热门推荐』马蹄湾、羚羊峡谷、布莱斯峡谷、锡安国家公园、鲍威尔湖、西大峡谷 5日游",
+        //   HomeHotTitleImg:
+        //     "https://us-website.wannar.com/scenics_images/503/503-4_640x480.jpg?x-oss-process=image/resize,w_188",
+        //   id: 3
+        // },
+        // {
+        //   img: require("../assets/img/36-1544510440102_1016x597.jpg"),
+        //   place: "纽约出发 6日游",
+        //   msg:
+        //     "『1美元体验曼哈顿早游』美东4大名城：纽约+费城+华盛顿+波士顿、2大名校：哈佛+麻省、七彩大瀑布 6日游（可升级酒店）",
+        //   discount: "6.4折",
+        //   price: "$143.36",
+        //   icon: "el-icon-map-location"
+        // },
+        // {
+        //   HomeHotGps: "拉斯维加斯出发 5日游",
+        //   HomeHotPrice: "¥1132.0",
+        //   HomeHotSale: "6.5折",
+        //   HomeHotTitle:
+        //     "『热门推荐』马蹄湾、羚羊峡谷、布莱斯峡谷、锡安国家公园、鲍威尔湖、西大峡谷 5日游",
+        //   HomeHotTitleImg:
+        //     "https://us-website.wannar.com/scenics_images/503/503-4_640x480.jpg?x-oss-process=image/resize,w_188",
+        //   id: 3
+        // }
+      ]
+    };
   },
   components: {
     Search,
@@ -60,6 +92,26 @@ export default {
     zhuTi,
     biwan,
     hot
+  },
+  // mounted(){
+  //   axios.post('http://localhost:3000/home', [{colName : 'homeHot'}])
+  // .then(function (response) {
+  //   console.log(this)
+  // })
+  // }
+
+  async mounted() {
+    let { data } = await axios.post("http://localhost:3000/home", [
+      { colName: "homeHot" }
+    ]);
+    //用map映射的方法在每一项加上icon:"el-icon-map-location"图标
+    let newdata = data.map(item=>{
+     return {
+       ...item,
+       icon:"el-icon-map-location"
+     }
+    });
+    this.hotlist = newdata;
   }
 };
 </script>
@@ -107,8 +159,8 @@ export default {
           line-height: 2.4rem;
           font-size: 1.3rem;
           color: #777;
-          margin: 0 1.5rem 0  0;
-          text-align:left;
+          margin: 0 1.5rem 0 0;
+          text-align: left;
           font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei",
             "微软雅黑", "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei",
             SimSun, sans-serif;
