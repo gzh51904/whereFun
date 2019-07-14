@@ -4,12 +4,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state : {
-        name : 'yoga'
+        name : 'yoga',
+        deslistDATA : '',//存放deslist数据
+        commState : '',//comm渲染数据
+        desState : ''//des渲染数据
     },
     mutations: {
-
+        updatedeslist(val){//修改deslistDATA的方法
+            this.state.deslistDATA = val;
+        }
     },
     actions: {
-  
+        
     },
 });

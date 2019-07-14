@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import vueRoter from 'vue-router'
+import store from '../store'
 import Home from '../components/home.vue'
 import Des from '../components/des.vue'
 import Cart from '../components/cart.vue'
@@ -37,8 +38,14 @@ let router = new vueRoter({
             components: {
                 default: Des,
                 mine: Mine
-
-            }
+            },
+            beforeEnter: (to, from, next) => {//路由独享，用来控制跳转目的地des时是否第一次进入，第一次进入需要选则目的地。
+                if(store.state.desState){
+                    next();
+                }else{
+                    next({path : '/desselect/hot'})
+                }
+              }  
         }, {
             name: 'Cart',
             path: '/cart',
@@ -66,9 +73,9 @@ let router = new vueRoter({
         {
             name: 'desselect',
             path: '/desselect',
-            // redirect: to => {
-            //     return '/desselect/hot'
-            // }, //重定向
+            redirect: {
+                path: '/desselect/hot'
+            }, //重定向
             component: desselect,
             children: [{
                     path: 'hot',
@@ -116,9 +123,9 @@ let router = new vueRoter({
             path: '/inf',
             component: myinf
         }, {
-            name: comm,
+            name: 'comm',
             path: '/comm',
-            component: comm,
+            component: comm
         },
         //重定向
         {
@@ -127,7 +134,7 @@ let router = new vueRoter({
                 name: "Home"
             }
         },
-   ]
+    ]
 })
 
 export default router

@@ -21,15 +21,22 @@
         </li>
       </ul>
     </div>
-    <desnav/>
-    <deslist/>
+    <desnav :name="commData"/>
+    <deslist :db="commData"/>
+    
   </div>
 </template>
 <script>
 import search from "../search";
 import desnav from "../des/desnav";
 import deslist from "../des/deslist";
+import axios from "axios";
 export default {
+    data(){
+        return {
+            commData : this.$store.state.commState
+        }
+    },
   components: {
     search,
     deslist,

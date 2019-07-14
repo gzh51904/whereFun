@@ -1,9 +1,8 @@
 <template>
   <div id="desselect">
-    <el-menu default-active="2" class="el-menu-vertical-demo" router>
+    <el-menu default-active="2" class="el-menu-vertical-demo">
       <el-menu-item
         v-for="(a,idx) in title"
-        :route="a.path"
         :class="titleActive == idx ? 'is-active' : ''"
         @click="tabList(idx)"
         :key="a.name"
@@ -12,11 +11,33 @@
         <span slot="title" v-text="a.name">导航二</span>
       </el-menu-item>
     </el-menu>
-    <router-view></router-view>
+    <hot v-show="'0'==titleActive? true : false" />
+    <city v-show="'1'==titleActive? true : false" />
+    <usawest v-show="'2'==titleActive? true : false" />
+    <usaeast v-show="'3'==titleActive? true : false" />
+    <canada v-show="'4'==titleActive? true : false" />
+    <europe v-show="'5'==titleActive? true : false" />
+    <csa v-show="'6'==titleActive? true : false" />
+    <custom v-show="'7'==titleActive? true : false" />
+    <team v-show="'8'==titleActive? true : false" />
+    <mail v-show="'9'==titleActive? true : false" />
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { Loading } from "element-ui";
+import hot from "./desselect/hot";
+import city from "./desselect/city";
+import usawest from "./desselect/usawest";
+import usaeast from "./desselect/usaeast";
+import canada from "./desselect/canada";
+import europe from "./desselect/europe";
+import csa from "./desselect/csa";
+import custom from "./desselect/custom";
+import team from "./desselect/team";
+import mail from "./desselect/mail";
+
 export default {
   data() {
     return {
@@ -39,6 +60,30 @@ export default {
     tabList(idx) {
       this.titleActive = idx; //点击高亮
     }
+  },
+  created() {
+    let loadingInstance = Loading.service({ body: true });
+    axios
+      .post("http://localhost:3000/find", [{ DataBaseName: "desList" }, {}])
+      .then(res => {
+        this.$store.state.deslistDATA = res.data;
+        this.$nextTick(() => {
+          // 以服务的方式调用的 Loading 需要异步关闭
+          loadingInstance.close();
+        });
+      });
+  },
+  components: {
+    hot,
+    city,
+    usawest,
+    usaeast,
+    canada,
+    europe,
+    csa,
+    custom,
+    team,
+    mail
   }
 };
 </script>

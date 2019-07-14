@@ -1,9 +1,9 @@
 <template>
 <div>
-    <col1/>
-    <col2/>
-    <col1/>
-    <col3/>
+    <col1 db="美国东海岸" index="0"/>
+    <col2 db="美国东海岸" index="1"/>
+    <col1 db="美国东海岸" index="2"/>
+    <col3 db="美国东海岸" index="3"/>
 </div>
 </template>
 <script>
