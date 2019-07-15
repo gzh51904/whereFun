@@ -21,8 +21,8 @@ import usawest from '../components/desselect/usawest.vue';
 import myinf from '../components/myinf.vue';
 import kefu from '../components/home/kefu.vue';
 import comm from '../components/desselect/comm.vue';
-import Ginf from '../components/goodsinf.vue'
-import goodsinf from '../components/goodsinf.vue'
+import Ginf from '../components/goodsinf.vue';
+import nothing from '../components/home/nothing.vue';
 
 Vue.use(vueRoter);
 let router = new vueRoter({
@@ -162,14 +162,18 @@ let router = new vueRoter({
             name:'kefu',
             path:'/kefu',
             component:kefu,
+        },{
+            name:'nothing',
+            path:'/nothing',
+            component:nothing,
         },
-        {
-            name:'goodsinf',
-            path:'/goodsinf',
-            component:goodsinf
+        // {
+        //     name:'goodsinf',
+        //     path:'/goodsinf',
+        //     component:goodsinf
 
-        }
-        ,
+        // }
+        
         //重定向
         {
             path: "/",

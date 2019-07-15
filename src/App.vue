@@ -16,7 +16,6 @@
       <router-view v-on:show="checkoutMine"  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine" />
     <!-- 订单信息 -->
       <router-view v-on:clofoo="checkoutMine" name="ginf" :class="{sidemenu:gopen,sideopend:gcolse}" />
-
       <footer :class="{foo:fooclo}" v-if="show">
         <el-row>
           <el-col>
@@ -39,6 +38,17 @@
               @click.prevent.stop="checkinMine()"
               >
                 <span style="display:block;">
+                  <i :class="item.icon"></i>
+                </span>
+
+                  <span>{{item.title}}</span>
+                </span>
+
+                <span 
+              v-if="item.cart"
+              >
+                <span style="display:block;">
+                  <span class="count-shopcart">2</span>
                   <i :class="item.icon"></i>
                 </span>
 
@@ -112,7 +122,7 @@ export default {
           name: "cart",
           path: "/cart",
           icon: "el-icon-shopping-cart-full",
-          pshow:true
+          cart:true
         },
         {
           title: "我的",
@@ -199,12 +209,11 @@ export default {
 }
 
 body,html {
-  background-color: #32425b;
+//   background-color: #32425b;
   height: 100%;
   width: 100%;
   font-size: 10px;
   position: relative;
-  height: 100%;
   font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
@@ -354,6 +363,25 @@ footer li {
   justify-content: center;
   text-align: center;
   /* align-content: center;  */
+.count-shopcart{
+  display: inline;
+  top: 7px;
+      font-size: 10px;
+    padding: 1px 6px;
+    background-color: rgba(255, 53, 114, 0.95);
+    border-radius: 8px;
+    position: absolute;
+    color: #fff;
+    margin: 0 0 0 1px;
+    top: 0;
+    left: 50%;
+    box-shadow: 1px 1px 3px #777;
+    display: block;
+    width: 18px;
+    height: 16px;
+    line-height: 16px;
+    font-weight: 300;
+}
 }
 li i {
   text-align: center;

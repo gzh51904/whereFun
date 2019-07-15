@@ -60,7 +60,7 @@ export default {
   methods: {
     inf() {
       // console.log(this)
-      this.$router.push({ path: "/inf" });
+      this.$router.push({ path: "/nothing" });
     }
   }
 };

@@ -1,6 +1,7 @@
 <template>
-  <div v-if="ShowDeslist" id="deslist">
-    <a v-for="(a,index) in database" :key="index" class="content_a" href="javascript:;">
+  <div id="deslist">
+    <el-table v-loading="loading" :data="database" style="width: 100%"></el-table>
+    <a @click="gotoinf(a.tour_id)" v-for="(a,index) in database" :key="index" class="content_a" href="javascript:;">
       <div class="content_list">
         <figure>
           <div class="content_list_imgBox">
@@ -39,17 +40,15 @@
       </div>
     </a>
   </div>
-  <Loding v-else />
 </template>
 <script>
-import Loding from "../Loging";
-import axios from 'axios';
+import axios from "axios";
 export default {
   props: ["db"],
   data() {
     return {
-      database: "",
-      ShowDeslist: false
+      database: [],
+      loading: true
     };
   },
   created() {
@@ -61,18 +60,25 @@ export default {
         { title: this.db }
       ])
       .then(res => {
-          this.ShowDeslist = true;
+        this.ShowDeslist = true;
         this.database = res.data[0].total;
       });
   },
-  components : {
-    Loding
+  methods : {
+      gotoinf(id){//拿到商品id通过路由传参给inf组件
+          this.$router.push({
+              name : 'myinf',
+              params : {id}
+          })
+      }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 #deslist {
+  overflow: hidden;
+  background: #fff;
   padding: 1.5rem 0 5rem 0.8rem;
 }
 .content_a {

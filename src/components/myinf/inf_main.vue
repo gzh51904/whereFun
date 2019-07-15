@@ -1,62 +1,64 @@
 <template>
-  <div>
-    <div class="tour_display" v-for="item in inf" :key="item.id">
+  <div class="Bbox" v-loading="loading" element-loading-text="拼命加载中">
+    <div class="tour_display" v-for="item in inf" :key="item.tour_id" >
       <!-- 图 -->
       <div class="layer">
-        <img :src="item.HomeHotTitleImg" alt />
+        <img :src="require(`../../assets/img/${item.tour_main_picture}`)" alt />
         <div class="hot_sale"></div>
       </div>
 
       <!-- 详情 -->
       <div class="basic_info">
-        <span class="dicount_num" v-text="item.HomeHotSale"></span>
-        <h1 class="title" v-text="item.HomeHotTitle"></h1>
+        <!-- 打折 -->
+        <span class="dicount_num" v-text="item.tour_discount_percent+'折'"></span>
+        <!-- 标题 -->
+        <h1 class="title" v-text="item.tour_title"></h1>
         <div class="clearfix"></div>
         <div class="clearfix"></div>
         <ul class="tags">
           <!-- 服务类型 -->
           <li class="service">
-            <span class="service_airport" v-text="item.servise"></span>
+            <span class="service_airport">接机参团</span>
           </li>
           <!-- 是否返点 -->
           <li class="discount">
-            <span class="discount_getpoints" v-text="item.discount_getpoints"></span>
+            <span class="discount_getpoints">返点</span>
           </li>
           <!-- 是否兑换 -->
           <li class="discount">
-            <span class="discount_usepoints" v-text="item.discount_usepoints"></span>
+            <span class="discount_usepoints">兑换</span>
           </li>
           <!-- 导游语言 -->
           <li class="guide">
-            <span v-text="item.guide"></span>
+            <span>导游语言: 国语 | 英语</span>
           </li>
         </ul>
         <div class="depart_date_wrapper clearfix">
           <span class="date">
             <i class="el-icon-date"></i>
-            <span class="date" v-text="item.date"></span>
+            <span class="date">每天发团</span>
           </span>
-          <span class="tour_code" v-text="item.tour_code"></span>
+          <span class="tour_code">编号: FA5-10787</span>
         </div>
 
         <!-- 出发地点与结束地点 -->
         <!-- <citys></citys> -->
-        <div class="display_price_wrapper" v-for="item in inf" :key="item.id">
+        <div class="display_price_wrapper">
           <div class="citys">
             <h5>
               <span>出发:</span>
-              <span v-text="(item.HomeHotGps).slice(0,-6)"></span>
+              <span v-text="((item.tour_departure).split('|'))[0]"></span>
             </h5>
             <h5>
               <span>结束：</span>
-              <span v-text="(item.HomeHotGps).slice(0,-6)"></span>
+              <span  v-text="((item.tour_departure).split('|'))[0]"></span>
             </h5>
           </div>
           <div class="prices has_discount">
             <div id="original_price">
-              <span class="currency_convert" v-text="price"></span>
+              <span class="currency_convert"></span>
             </div>
-            <span id="display_price" class="currency_convert" v-text="item.HomeHotPrice"></span>
+            <span id="display_price" class="currency_convert" v-text="item.tour_display_price"></span>
             <small id="price_unit">/人起</small>
           </div>
         </div>
@@ -69,24 +71,49 @@
 </template>
 <script>
 import citys from "./citys.vue";
+import axios from 'axios';
 export default {
-  props: ["inf"],
+  props:['id'],
   data() {
-    return {};
+    return {
+      inf: [],
+      database: "",
+      loading: true
+    };
   },
+  watch: {
+    inf() {
+      // console.log(this.inf);
+      // let a = {}
+      // for(let key in this.inf){
+      //     a.Img = item.,
+      //     a.price =
+      // }
+      // this.database = this.inf;
+    }
+  },
+
   components: {
     citys
   },
-  mounted() {
-    // console.log(this.inf);
-  },
-  computed:{
-    price() {
-      return '￥'+((this.inf[0].HomeHotPrice.slice(1))*1.8).toFixed(2)
+  async created() {
+    let { id , router} = this.$route.params;
+    let { data } = await axios.post(`http://localhost:3000/${router}`, [
+      { colName: "homeHot" },
+      { 'tour_id': id}
+    ]);
+    this.inf = data;
+
+
+   
+    if(this.inf) {
+      this.loading = false
     }
-  },
   
-  
+
+    // let newid = 'ObjectId(' + '"'+id+'"' + ')';
+    // console.log(newid)
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -104,8 +131,13 @@ export default {
 .clearfix {
   *zoom: 1; /*IE/7/6*/
 }
+.Bbox{
+   display: block;
+  min-height: 15rem;  
+}
 .tour_display {
   display: block;
+    min-height: 8rem;
   .layer {
     background-position: center center;
     background-size: cover;
@@ -115,8 +147,9 @@ export default {
     border-bottom: 0.2rem solid #ff3573;
     position: relative;
     overflow: hidden;
-    img{
-      width: 31.5rem;
+    img {
+      // width: 31.5rem;
+      height: 16rem;
     }
     .hot_sale {
       width: 4.5rem;
@@ -223,7 +256,6 @@ export default {
   width: 28.1rem;
 }
 
-
 .display_price_wrapper {
   margin: 1.2rem 0;
   padding: 0;
@@ -267,11 +299,12 @@ export default {
       font-size: 2.4rem;
       font-weight: bold;
       color: #ff3573;
-    }small{
-        font-size:1.4rem;
-        color:#777;
-        padding-left: 0.3rem;
-        vertical-align: baseline;
+    }
+    small {
+      font-size: 1.4rem;
+      color: #777;
+      padding-left: 0.3rem;
+      vertical-align: baseline;
     }
   }
 }
