@@ -7,7 +7,7 @@
     <span class="hot_title">畅销的线路，尖叫的低价</span>
     <ul>
       <li v-for="item in hotlist" :key="item._id">
-        <a href="javascript:;" @click="gotoInf(item._id)">
+        <a href="javascript:;" @click="gotoInf(item._id,item.HomeHotTitleImg,item.icon,item.HomeHotGps,item.HomeHotTitle,item.HomeHotSale,item.HomeHotPrice)">
           <div class="img_box">
             <img :src="item.HomeHotTitleImg" alt />
           </div>
@@ -41,11 +41,18 @@ export default {
     return {};
   },
   methods:{
-    gotoInf(id) {
-      this.$router.push({path:'/inf',query:{
-        id:id
-      }})
-      // console.log(id)
+    gotoInf(id,HomeHotTitleImg,icon,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice) {
+      this.$router.push({name:'myinf',params:{
+        id:id,
+        HomeHotTitleImg:HomeHotTitleImg,
+        icon:icon,
+        HomeHotGps:HomeHotGps,
+        HomeHotTitle:HomeHotTitle,
+        HomeHotSale: HomeHotSale,
+        HomeHotPrice:HomeHotPrice
+      }});
+      // console.log(this.$router.history.current.params)
+      
     }
   }
 };

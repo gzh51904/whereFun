@@ -12,22 +12,21 @@
     <div id="banners2">
       <swiper ref="mySwiper" class="clearfix" :options="swiperOption">
         <!-- slides -->
-        
-        <swiper-slide v-for="item in banner2Photo" :key="item.name" class="produce" >
+        <swiper-slide v-for="item in weekSell" :key="item.id" class="produce">
           <a href="javascript:;" @click="inf">
-          <img :src="item.img" alt />
-          <h5 v-text="item.msg"></h5>
-          <div class="box">
-            <p>
-              <big v-text="item.dazhe"></big>
-              <small v-text="item.chufa"></small>
-              <span v-text="item.jiezhi"></span>
-            </p>
-            <span class="price">
-              <span v-text="item.price" class="price_num"></span>
-              <small>/人起</small>
-            </span>
-          </div>
+            <img :src="item.img" alt />
+            <h5 v-text="item.msg"></h5>
+            <div class="box">
+              <p>
+                <big v-text="item.dazhe"></big>
+                <small v-text="item.chufa"></small>
+                <span v-text="item.jiezhi"></span>
+              </p>
+              <span class="price">
+                <span v-text="item.price" class="price_num"></span>
+                <small>/人起</small>
+              </span>
+            </div>
           </a>
         </swiper-slide>
 
@@ -41,57 +40,25 @@
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default {
+  props:['weekSell'],
   name: "carrousel",
   data() {
     return {
-      swiperOption:{
-      slidesPerView : 1.5,
-
-      },
-      banner2Photo: [
-        {
-          img: require("../../assets/img/banner2_1.jpg"),
-          name: 3,
-          dazhe: "8.6折",
-          chufa: "盐湖城出发",
-          jiezhi: "截止至：2019-07-12",
-          price: "$786.2",
-          msg:
-            "『房车出行.限时特惠』黄石国家公园内入住+国家公园内露营+黄石公园深度游+火锅/烧烤/鹿肉/野牛肉当地特色餐+大盐湖奇观 5日游"
-        },
-        {
-          img: require("../../assets/img/banner2_2.jpg"),
-          name: 4,
-          dazhe: "7.5折",
-          chufa: "芝加哥出发",
-          jiezhi: "截止至：2019-07-12",
-          price: "$382.5",
-          msg:
-            "『口碑担当.畅销精品』芝加哥东南部：底特律+匹兹堡+克利夫兰+纽约+费城+华盛顿 、尼亚加拉大瀑布、沃特金斯峡谷 6日游"
-        },
-        {
-          img: require("../../assets/img/banner2_2.jpg"),
-          name: 6,
-          dazhe: "7.5折",
-          chufa: "芝加哥出发",
-          jiezhi: "截止至：2019-07-12",
-          price: "$382.5",
-          msg:
-            "『口碑担当.畅销精品』芝加哥东南部：底特律+匹兹堡+克利夫兰+纽约+费城+华盛顿 、尼亚加拉大瀑布、沃特金斯峡谷 6日游"
-        }
-      ]
+      swiperOption: {
+        slidesPerView: 1.5
+      }
     };
   },
   components: {
     swiper,
     swiperSlide
   },
-  methods:{
+  methods: {
     inf() {
       // console.log(this)
-      this.$router.push({path:"/inf"})
+      this.$router.push({ path: "/inf" });
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -102,8 +69,8 @@ export default {
 
 .section {
   margin: 0;
-    // padding: 1.5rem 0;
-    
+  // padding: 1.5rem 0;
+
   #banners2 {
     padding: 0 1rem 1rem;
     margin-top: 1rem;

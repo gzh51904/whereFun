@@ -1,9 +1,9 @@
 <template>
-    <div class="myinf">
-        <!-- 搜索框 -->
-      <search></search>
-      <div id="nnav">
-        <!-- 面包屑 -->
+  <div class="myinf">
+    <!-- 搜索框 -->
+    <search></search>
+    <div id="nnav">
+      <!-- 面包屑 -->
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>目的地</el-breadcrumb-item>
@@ -18,13 +18,13 @@
 <script>
 import search from "./search.vue";
 import infMain from "./myinf/inf_main.vue";
-// import Axios from 'axios';
+
 export default {
   data() {
     return {
       inf: [
         {
-          img: require("../assets/img/10787-1541988234403_640x483.jpg"),
+          HomeHotTitleImg: require("../assets/img/10787-1541988234403_640x483.jpg"),
           id: 123,
           discount: "9.5折",
           title:
@@ -43,16 +43,30 @@ export default {
     search,
     infMain
   },
-  created() {
-    // console.log(this.$router.app._route.query.id)
-    let {id} = this.$router.app._route.query
+  async created() {
+    let {id,HomeHotTitleImg,icon,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice} = this.$route.params;
+    // console.log(id,HomeHotTitleImg,HomeHotTitleImg,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice,)
+    let servise = '接机参团'
+    let discount_getpoints = '返点'
+    let discount_usepoints = '兑换'
+    let guide = '导游语言: 国语 | 英语'
+    let date = '每天发团'
+    let tour_code = '编号: FA5-10787'
     
+    let obj = {id,HomeHotTitleImg,icon,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice,servise,discount_getpoints,discount_usepoints,guide,date,tour_code};
+    let arr = [];
+    arr.push(obj);
+    this.inf = arr;
+    console.log(this.inf)
+
+    // let newid = 'ObjectId(' + '"'+id+'"' + ')';
+    // console.log(newid)
   }
 };
 </script>
 <style lang="scss" >
-.myinf{
- margin-top: 0;
+.myinf {
+  margin-top: 0;
   width: 100%;
   position: absolute;
   z-index: 10000;
@@ -61,15 +75,15 @@ export default {
   box-sizing: border-box;
   min-height: 100%;
   padding-bottom: 6rem;
-#nnav {
-  margin-top: 3.5rem;
-  .el-breadcrumb {
-    padding-left: 1.5rem;
-    height: 3rem;
-    line-height: 3rem;
-    font-size: 1.2rem;
-    color: #ccc;
+  #nnav {
+    margin-top: 3.5rem;
+    .el-breadcrumb {
+      padding-left: 1.5rem;
+      height: 3rem;
+      line-height: 3rem;
+      font-size: 1.2rem;
+      color: #ccc;
+    }
   }
-}
 }
 </style>

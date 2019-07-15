@@ -43,12 +43,12 @@ export default {
           name: "一日游"
         },
         {
-          img: require("../../assets/img/short-tour.jpg"),
-          name: "多日游"
+          img: require("../../assets/img/ticket.jpg"),
+          name: "景点门票"
         },
         {
-          img: require("../../assets/img/short-tour.jpg"),
-          name: "终身游"
+          img: require("../../assets/img/private.jpg"),
+          name: "包车自由行"
         }
       ]
     };

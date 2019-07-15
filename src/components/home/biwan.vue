@@ -44,12 +44,12 @@ export default {
           img: require("../../assets/img/theme-antelope-canyon.jpg")
         },
         {
-          name: "发现者",
-          img: require("../../assets/img/theme-antelope-canyon.jpg")
+          name: "大峡谷",
+          img: require("../../assets/img/theme-grand-canyon.jpg")
         },
         {
-          name: "水上乐园",
-          img: require("../../assets/img/theme-antelope-canyon.jpg")
+          name: "黄石公园",
+          img: require("../../assets/img/theme-yellowstone.jpg")
         }
       ]
     };
