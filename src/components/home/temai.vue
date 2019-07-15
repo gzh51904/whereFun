@@ -12,18 +12,18 @@
     <div id="banners2">
       <swiper ref="mySwiper" class="clearfix" :options="swiperOption">
         <!-- slides -->
-        <swiper-slide v-for="item in weekSell" :key="item.id" class="produce">
+        <swiper-slide v-for="item in weekSell" :key="item.tour_id" class="produce">
           <a href="javascript:;" @click="inf">
-            <img :src="item.img" alt />
-            <h5 v-text="item.msg"></h5>
+            <img :src="item.tour_main_picture" alt />
+            <h5 v-text="item.tour_title"></h5>
             <div class="box">
               <p>
-                <big v-text="item.dazhe"></big>
-                <small v-text="item.chufa"></small>
+                <big v-text="item.tour_discount_percent"></big>
+                <small v-text="item.tour_departure"></small>
                 <span v-text="item.jiezhi"></span>
               </p>
               <span class="price">
-                <span v-text="item.price" class="price_num"></span>
+                <span v-text="item.tour_display_price" class="price_num"></span>
                 <small>/人起</small>
               </span>
             </div>
@@ -56,7 +56,7 @@ export default {
   methods: {
     inf() {
       // console.log(this)
-      this.$router.push({ path: "/inf" });
+      this.$router.push({ path: "/nothing" });
     }
   },
 };

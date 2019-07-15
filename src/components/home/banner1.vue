@@ -31,11 +31,11 @@ export default {
           name: 2
         },
         {
-          img: require("../../assets/img/banner_1.jpg"),
+          img: require("../../assets/img/banner-private-20190711-m.jpg"),
           name: 3
         },
         {
-          img: require("../../assets/img/banner_2.jpg"),
+          img: require("../../assets/img/banner-rocky-20190522-m.jpg"),
           name: 4
         }
       ]
