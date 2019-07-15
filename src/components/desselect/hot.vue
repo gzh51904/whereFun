@@ -4,7 +4,7 @@
     <col2 db="热门" index="1"/>
     <col2 db="热门" index="2"/>
     <col2 db="热门" index="3"/>
-    <col3 db="热门"/>
+    <col3/>
   </div>
 </template>
 

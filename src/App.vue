@@ -179,12 +179,11 @@ export default {
 }
 
 body,html {
-  background-color: #32425b;
+//   background-color: #32425b;
   height: 100%;
   width: 100%;
   font-size: 10px;
   position: relative;
-  height: 100%;
   font-family: "Helvetica Neue", "Open Sans", "Microsoft YaHei", "微软雅黑",
     "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
