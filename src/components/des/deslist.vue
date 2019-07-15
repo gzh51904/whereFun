@@ -1,7 +1,7 @@
 <template>
   <div id="deslist">
     <el-table v-loading="loading" :data="database" style="width: 100%"></el-table>
-    <a v-for="(a,index) in database" :key="index" class="content_a" href="javascript:;">
+    <a @click="gotoinf(a.tour_id)" v-for="(a,index) in database" :key="index" class="content_a" href="javascript:;">
       <div class="content_list">
         <figure>
           <div class="content_list_imgBox">
@@ -64,6 +64,14 @@ export default {
         this.database = res.data[0].total;
       });
   },
+  methods : {
+      gotoinf(id){//拿到商品id通过路由传参给inf组件
+          this.$router.push({
+              name : 'myinf',
+              params : {id}
+          })
+      }
+  }
 };
 </script>
 
