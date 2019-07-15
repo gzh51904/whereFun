@@ -1,5 +1,6 @@
 <template>
   <div id="desselect">
+    <el-table v-loading="loading" :data="database" style="width: 100%"></el-table>
     <el-menu default-active="2" class="el-menu-vertical-demo">
       <el-menu-item
         v-for="(a,idx) in title"
@@ -11,6 +12,7 @@
         <span slot="title" v-text="a.name">导航二</span>
       </el-menu-item>
     </el-menu>
+    <!-- 选项卡 -->
     <hot v-show="'0'==titleActive? true : false" />
     <city v-show="'1'==titleActive? true : false" />
     <usawest v-show="'2'==titleActive? true : false" />
@@ -53,7 +55,9 @@ export default {
         { name: "舒适小团", path: "/desselect/team" },
         { name: "全球邮轮", path: "/desselect/mail" }
       ],
-      titleActive: 0 //默认高亮
+      titleActive: 0, //默认高亮
+      database: [],
+      loading: true
     };
   },
   methods: {
@@ -62,15 +66,11 @@ export default {
     }
   },
   created() {
-    let loadingInstance = Loading.service({ body: true });
     axios
       .post("http://localhost:3000/find", [{ DataBaseName: "desList" }, {}])
       .then(res => {
+          this.database = res.data;
         this.$store.state.deslistDATA = res.data;
-        this.$nextTick(() => {
-          // 以服务的方式调用的 Loading 需要异步关闭
-          loadingInstance.close();
-        });
       });
   },
   components: {
@@ -90,19 +90,19 @@ export default {
 
 
 <style lang="scss" scoped>
-#desselect{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding:1rem 1rem 6rem 12rem;
-     margin-top: 0;
+#desselect {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 1rem 1rem 6rem 12rem;
+  margin-top: 0;
   position: absolute;
   z-index: 10000;
   box-shadow: 0 0 10px #000;
   background-color: #fff;
   box-sizing: border-box;
   min-height: 100%;
-  padding-bottom: 6rem; 
+  padding-bottom: 6rem;
 }
 .el-menu {
   display: block;

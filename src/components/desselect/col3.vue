@@ -1,5 +1,5 @@
 <template>
-  <div id="col3">
+  <div v-show="Loading" id="col3">
     <h5>本周特卖</h5>
     <ul class="col3_list">
       <li v-for="(a,index) in database" :key="index">
@@ -50,7 +50,18 @@ export default {
                 title : '『14人轻奢小团』天文台、弗拉门戈海滩、库莱布拉岛、百加得酒厂、生物荧光海 6日游（1晚沙滩四星酒店）',
                 price : '$472.65',
                 img : require('../../assets/img/homeNA00000_43.jpg')
-            }]
+            }],
+            Loading : false
+        }
+    },
+    watch : {
+        databases(){
+            this.Loading = true;
+        }
+    },
+    computed : {
+        databases(){
+            return this.$store.state.deslistDATA
         }
     }
 }

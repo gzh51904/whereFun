@@ -85,7 +85,7 @@
       </div>
       <div id="content">
         <h1>{{local}}旅游</h1>
-        <deslist :db="local"/>
+        <deslist :db="local" />
       </div>
     </div>
   </div>
@@ -98,7 +98,7 @@ export default {
   data() {
     return {
       menuTop: false,
-      local: this.$store.state.desState,//拿vuex的值，传递给nav和查询数据
+      local: this.$store.state.desState, //拿vuex的值，传递给nav和查询数据
     };
   },
   mounted() {
@@ -106,10 +106,12 @@ export default {
     main.addEventListener("scroll", this.scrollFn, true);
   },
   methods: {
-    gotodesSelect() {//点击select路由跳转
+    gotodesSelect() {
+      //点击select路由跳转
       this.$router.push({ name: "desselect" });
     },
-    scrollFn() {//鼠标滚动出现吸顶菜单
+    scrollFn() {
+      //鼠标滚动出现吸顶菜单
       let main = document.querySelector("main");
       if (main.scrollTop - 12 > 336) {
         this.menuTop = true;
@@ -119,7 +121,7 @@ export default {
     }
   },
   destroyed() {
-    let main = document.querySelector("main");//销毁鼠标滚动事件
+    let main = document.querySelector("main"); //销毁鼠标滚动事件
     main.removeEventListener("scroll", this.scrollFn, true);
   },
   components: {
@@ -133,6 +135,7 @@ export default {
 
 <style lang="scss" scoped>
 #content {
+  background: #fff;
   h1 {
     color: #556;
     line-height: 3rem;
@@ -142,6 +145,7 @@ export default {
 }
 #main {
   margin-top: 3.5rem;
+  background: #fff;
   .cityBJ {
     // width: 37.5rem;
     height: 14.2rem;
@@ -169,148 +173,149 @@ export default {
       top: 1.5rem;
       left: 1.5rem;
     }
-    .menu {
-      width: 100%;
-      padding-top: 1.5rem;
-      ul {
-        height: 6rem;
-        display: flex;
-        padding-bottom: 0.4rem;
-        li {
-          float: left;
-          flex: 1;
-          a {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-            color: #555;
-            font-size: 1.4rem;
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            justify-content: center;
-            img {
-              width: 3.2rem;
-              margin-bottom: 0.5rem;
-            }
+  }
+  .menu {
+    width: 100%;
+    padding-top: 1.5rem;
+    ul {
+      height: 6rem;
+      display: flex;
+      padding-bottom: 0.4rem;
+      li {
+        float: left;
+        flex: 1;
+        a {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          text-decoration: none;
+          color: #555;
+          font-size: 1.4rem;
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 3.2rem;
+            margin-bottom: 0.5rem;
           }
         }
       }
     }
-    .menufixed {
+  }
+  .menufixed {
+    //吸顶
+    padding: 0;
+    top: 3.4rem !important;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999998;
+    box-shadow: 0 0 1rem #222;
+    ul {
+      height: 4rem;
       padding: 0;
-      top: 3.4rem !important;
-      position: fixed;
-      left: 0;
-      right: 0;
-      z-index: 999998;
-      box-shadow: 0 0 1rem #222;
-      ul {
+      background: #fff;
+      li {
         height: 4rem;
-        padding: 0;
-        background: #fff;
-        li {
-          height: 4rem;
-          flex: auto;
-          line-height: 4rem;
-          padding: 0 0 0 0.5rem;
-          a {
-            font-size: 1.2rem;
-            height: 100%;
-            flex-flow: row;
-            img {
-              width: 2.4rem;
-            }
-            span {
-              line-height: 4rem;
-              font-size: 1.2rem;
-              padding: 0 0 0 0.5rem;
-            }
-          }
-        }
-      }
-      .des_rebate {
-        margin: 0;
-        padding: 0 1rem;
-        height: 3.2rem;
-        background-color: #f7f8f7;
-        overflow-y: hidden;
-        overflow-x: auto;
-        flex-flow: row nowrap;
+        flex: auto;
+        line-height: 4rem;
+        padding: 0 0 0 0.5rem;
         a {
-          width: auto;
-          flex: 1 0 auto;
-          margin-right: 0.8rem;
-          height: 2rem;
-          background-color: transparent;
-          padding: 0 0.8rem;
-          border-radius: 2rem;
-          h5 {
-            font-size: 1.2rem;
-            color: #334;
-            font-weight: normal;
-            line-height: 2rem;
+          font-size: 1.2rem;
+          height: 100%;
+          flex-flow: row;
+          img {
+            width: 2.4rem;
           }
           span {
-            display: none;
+            line-height: 4rem;
+            font-size: 1.2rem;
+            padding: 0 0 0 0.5rem;
           }
         }
       }
     }
     .des_rebate {
-      height: 11.6rem;
-      display: flex;
-      padding: 0 0.8rem;
-      overflow: hidden;
-      flex-flow: row wrap;
-      align-items: center;
-      justify-content: space-between;
-      align-content: space-around;
-      box-sizing: border-box;
+      margin: 0;
+      padding: 0 1rem;
+      height: 3.2rem;
+      background-color: #f7f8f7;
+      overflow-y: hidden;
+      overflow-x: auto;
+      flex-flow: row nowrap;
       a {
-        width: 32%;
-        cursor: pointer;
-        height: 5rem;
-        padding: 0 0.2rem;
-        box-sizing: border-box;
-        background-color: #f7f8f7;
-        border-radius: 0.4rem;
-        display: flex;
-        align-items: center;
-        flex-flow: column wrap;
-        justify-content: center;
+        width: auto;
+        flex: 1 0 auto;
+        margin-right: 0.8rem;
+        height: 2rem;
+        background-color: transparent;
+        padding: 0 0.8rem;
+        border-radius: 2rem;
         h5 {
-          margin: 0;
-          font-size: 1.4rem;
-          color: #556;
-          line-height: 1.8rem;
-        }
-        .des_rebate_text {
           font-size: 1.2rem;
-          color: #778;
-          width: 100%;
-          text-align: center;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
+          color: #334;
+          font-weight: normal;
+          line-height: 2rem;
         }
-        .rebateLogo {
-          display: inline-block;
-          margin-left: 0.3rem;
-          border-radius: 50%;
-          font-size: 1.2rem;
-          background-color: #ff3573;
-          color: #fff;
-          width: 1.8rem;
-          height: 1.8rem;
-          font-weight: 300;
-          text-align: center;
-          line-height: 1.8rem;
-          margin-top: -0.1rem;
-          float: right;
+        span {
+          display: none;
         }
+      }
+    }
+  }
+  .des_rebate {
+    height: 11.6rem;
+    display: flex;
+    padding: 0 0.8rem;
+    overflow: hidden;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    align-content: space-around;
+    box-sizing: border-box;
+    a {
+      width: 32%;
+      cursor: pointer;
+      height: 5rem;
+      padding: 0 0.2rem;
+      box-sizing: border-box;
+      background-color: #f7f8f7;
+      border-radius: 0.4rem;
+      display: flex;
+      align-items: center;
+      flex-flow: column wrap;
+      justify-content: center;
+      h5 {
+        margin: 0;
+        font-size: 1.4rem;
+        color: #556;
+        line-height: 1.8rem;
+      }
+      .des_rebate_text {
+        font-size: 1.2rem;
+        color: #778;
+        width: 100%;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .rebateLogo {
+        display: inline-block;
+        margin-left: 0.3rem;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        background-color: #ff3573;
+        color: #fff;
+        width: 1.8rem;
+        height: 1.8rem;
+        font-weight: 300;
+        text-align: center;
+        line-height: 1.8rem;
+        margin-top: -0.1rem;
+        float: right;
       }
     }
   }

@@ -1,5 +1,6 @@
 <template>
-  <div v-if="ShowDeslist" id="deslist">
+  <div id="deslist">
+    <el-table v-loading="loading" :data="database" style="width: 100%"></el-table>
     <a v-for="(a,index) in database" :key="index" class="content_a" href="javascript:;">
       <div class="content_list">
         <figure>
@@ -39,17 +40,15 @@
       </div>
     </a>
   </div>
-  <Loding v-else />
 </template>
 <script>
-import Loding from "../Loging";
-import axios from 'axios';
+import axios from "axios";
 export default {
   props: ["db"],
   data() {
     return {
-      database: "",
-      ShowDeslist: false
+      database: [],
+      loading: true
     };
   },
   created() {
@@ -61,18 +60,17 @@ export default {
         { title: this.db }
       ])
       .then(res => {
-          this.ShowDeslist = true;
+        this.ShowDeslist = true;
         this.database = res.data[0].total;
       });
   },
-  components : {
-    Loding
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 #deslist {
+  overflow: hidden;
+  background: #fff;
   padding: 1.5rem 0 5rem 0.8rem;
 }
 .content_a {

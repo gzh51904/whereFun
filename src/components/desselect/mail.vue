@@ -2,7 +2,7 @@
     <div>
         <col1 db="全球邮轮" index="0"/>
         <col1 db="全球邮轮" index="1"/>
-        <col3 db="全球邮轮" index="3"/>
+        <col3/>
     </div>
 </template>
 <script>
