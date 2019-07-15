@@ -22,6 +22,7 @@ import myinf from '../components/myinf.vue';
 import kefu from '../components/home/kefu.vue';
 import comm from '../components/desselect/comm.vue';
 import Ginf from '../components/goodsinf.vue'
+import goodsinf from '../components/goodsinf.vue'
 
 Vue.use(vueRoter);
 let router = new vueRoter({
@@ -162,6 +163,13 @@ let router = new vueRoter({
             path:'/kefu',
             component:kefu,
         },
+        {
+            name:'goodsinf',
+            path:'/goodsinf',
+            component:goodsinf
+
+        }
+        ,
         //重定向
         {
             path: "/",

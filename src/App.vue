@@ -45,6 +45,17 @@
                   <span>{{item.title}}</span>
                 </span>
 
+              <!-- <span 
+              v-if="item.pshow"
+              @click.prevent.stop="clomaibar()"
+              >
+                <span style="display:block;">
+                  <i :class="item.icon"></i>
+                </span>
+
+                  <span>{{item.title}}</span>
+                </span> -->
+
                 <span v-else>
                   <span style="display:block;">
                     <i :class="item.icon"></i>
@@ -62,6 +73,8 @@
 
       <!-- 立即预定 -->
       <Bmenu :class="{foo:fooclo,}" v-on:show="sideopen" @click="sideopen()" gopen v-else></Bmenu>
+      <!-- 支付 -->
+      <pbutton></pbutton>
     </div>
   </div>
 </template>
@@ -72,7 +85,9 @@ import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import Bmenu from "./components/bottom_menu.vue";
+import pbutton from "./components/cart/zhifu.vue";
 import store from './store.js'
+
 
 Vue.use(ElementUi);
 
@@ -96,7 +111,8 @@ export default {
           title: "购物车",
           name: "cart",
           path: "/cart",
-          icon: "el-icon-shopping-cart-full"
+          icon: "el-icon-shopping-cart-full",
+          pshow:true
         },
         {
           title: "我的",
@@ -113,7 +129,7 @@ export default {
       closemine:false,
       fooclo:false,
       gopen:true,
-      gcolse:false
+      gcolse:false,
     };
   },
   methods:{
@@ -160,11 +176,15 @@ export default {
         this.active = hash;
       },
   components: {
-    Bmenu
+    Bmenu,
+    pbutton
   },
   computed:{
     show:function(){
       return  store.state.isShow
+    },
+    pshow:function(){
+      return store.state.ispshow
     }
   }
 };
@@ -287,6 +307,10 @@ body,html {
     padding: 0;
     opacity: 1;
     position: fixed!important;
+}
+
+.clomb{
+  display: none;
 }
 
 main {

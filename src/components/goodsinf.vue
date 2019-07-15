@@ -25,12 +25,13 @@
                 </div>
                 <div class="form-section">
                     <label><i class="el-icon-date"></i>选择出发日期</label>
-                    <el-date-picker
+                    <input class="calendar" type="date" v-model="value1">
+                    <!-- <el-date-picker
                     class="calendar"
                     v-model="value1"
                     type="date"
                     placeholder="选择日期">
-                    </el-date-picker>
+                    </el-date-picker> -->
                 </div>
                     <div class="form-section">
                     <label><i class="el-icon-user"></i>选择出行人数</label>
@@ -45,13 +46,19 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    created(){
-        let {id} = this.$route.params;
-        console.log(this.$route.params);
+  async  created(){
+        //传入id
+        
+        
+        
+        // this.info = data;
+        // console.log(this.info)
     },
     data(){
               return {
+                  info:{},
         num:1,
         pickerOptions: {
           disabledDate(time) {
@@ -71,7 +78,24 @@ export default {
 
       },
       tianjia(){
-          console.log(2222);
+        let hid = this.$route.params.id;
+        let hpic = this.$route.params.HomeHotTitleImg;
+        let htit = this.$route.params.HomeHotTitle;
+        let hpri = this.$route.params.HomeHotPrice;
+        let riqi = this.value1;
+        let peoples = this.num;
+        let data = [hid,hpic,htit,hpri,riqi,peoples];
+        let{commit,state} = this.$store;
+        let{goodlist}=state;
+        let current = goodlist;
+        // console.log(data);
+        if(current){
+            commit('add',{...data});
+        }
+        
+
+          
+          
       }
     }
 }
@@ -174,7 +198,7 @@ export default {
     font-weight: bold;
     i{margin-right: 3px;}
     }
-    .calendar{width: 318px; margin-left: 49px!important;}
+    .calendar{width: 318px; margin-left: 49px!important;height: 40px;}
     .renshu{
         width: 318px;
         background: #fff;
@@ -210,7 +234,6 @@ export default {
             font-size: 18px;
             text-align: center;
             line-height: 65px;
-            opacity: 0.8;
             font-weight: bolder;
         }
         span:nth-of-type(1){

@@ -78,7 +78,7 @@ export default {
     citys
   },
   mounted() {
-    console.log(this.inf);
+    // console.log(this.inf);
   },
   computed:{
     price() {

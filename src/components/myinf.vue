@@ -20,6 +20,9 @@ import search from "./search.vue";
 import infMain from "./myinf/inf_main.vue";
 
 export default {
+  created(){
+      // console.log(this.$route.params);
+  },
   data() {
     return {
       inf: [
@@ -57,7 +60,7 @@ export default {
     let arr = [];
     arr.push(obj);
     this.inf = arr;
-    console.log(this.inf)
+    // console.log(this.inf)
 
     // let newid = 'ObjectId(' + '"'+id+'"' + ')';
     // console.log(newid)
