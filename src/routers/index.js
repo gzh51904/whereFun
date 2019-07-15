@@ -54,6 +54,7 @@ let router = new vueRoter({
             name: 'Cart',
             path: '/cart',
             component: Cart,
+            meta: { requiresAuth: true },
             components: {
                 default: Cart,
                 mine: Mine

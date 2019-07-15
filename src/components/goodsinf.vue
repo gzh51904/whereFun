@@ -46,6 +46,10 @@
 
 <script>
 export default {
+    created(){
+        let {id} = this.$route.params;
+        console.log(this.$route.params);
+    },
     data(){
               return {
         num:1,

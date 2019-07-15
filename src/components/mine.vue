@@ -85,9 +85,9 @@ import regs from './mine/reg2';
 export default {
     created(){
       let username = localStorage.getItem('username');
-      if(username){
+   
           this.logined = username ? true : false;
-      }
+ 
     },
     components:{
         logins,
@@ -193,7 +193,7 @@ export default {
                coun:'台湾',
                phone:'123456'
            }],
-          logined:true,
+          logined:false,
         //   logouted:false
         }
     },
