@@ -138,7 +138,7 @@ export default {
   async mounted() {
     //热销数据
     let { data } = await axios.post("http://localhost:3000/home", [
-      { colName: "homeHot" }
+      { DataBaseName: "homeHot" }
     ]);
     // console.log(data);
     //用map映射的方法在每一项加上icon:"el-icon-map-location"图标

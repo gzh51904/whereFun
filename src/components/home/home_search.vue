@@ -1,15 +1,29 @@
 <template>
   <div class="index_search_bar">
-    <input type="search" />
-    <button>
+    <input type="search" ref="input" />
+    <button @click="input">
       <span>
         <i class="el-icon-search"></i>
       </span>
     </button>
+    <el-alert title="此功能暂未开放" type="error" show-icon v-if="show"></el-alert>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      show:false
+    }
+  },
+  methods: {
+    input() {
+      this.$refs.input.focus();
+      // alert('此功能暂未开放');
+      this.show = true
+    },
+  }
+};
 </script>
 <style lang="scss" scoped>
 .index_search_bar {
