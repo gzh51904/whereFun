@@ -19,7 +19,7 @@ import usaeast from '../components/desselect/usaeast.vue';
 import usawest from '../components/desselect/usawest.vue';
 import myinf from '../components/myinf.vue';
 import store from '../store.js';
-import kefu from '../kefu.vue'
+import kefu from '../components/home/kefu.vue'
 import comm from '../components/desselect/comm.vue';
 import Ginf from '../components/goodsinf.vue'
 

@@ -13,7 +13,7 @@
       <allline></allline>
 
       <!-- 本周特卖 -->
-      <temai></temai>
+      <temai :weekSell="weekSell"></temai>
 
       <!-- line -->
       <allline></allline>
@@ -80,6 +80,38 @@ export default {
         //     "https://us-website.wannar.com/scenics_images/503/503-4_640x480.jpg?x-oss-process=image/resize,w_188",
         //   id: 3
         // }
+      ],
+         weekSell: [
+        {
+          img: require("../assets/img/banner2_1.jpg"),
+          id: 3,
+          dazhe: "8.6折",
+          chufa: "盐湖城出发",
+          jiezhi: "截止至：2019-07-12",
+          price: "$786.2",
+          msg:
+            "『房车出行.限时特惠』黄石国家公园内入住+国家公园内露营+黄石公园深度游+火锅/烧烤/鹿肉/野牛肉当地特色餐+大盐湖奇观 5日游"
+        },
+        {
+          img: require("../assets/img/banner2_2.jpg"),
+          id: 4,
+          dazhe: "7.5折",
+          chufa: "芝加哥出发",
+          jiezhi: "截止至：2019-07-12",
+          price: "$382.5",
+          msg:
+            "『口碑担当.畅销精品』芝加哥东南部：底特律+匹兹堡+克利夫兰+纽约+费城+华盛顿 、尼亚加拉大瀑布、沃特金斯峡谷 6日游"
+        },
+        {
+          img: require("../assets/img/banner2_2.jpg"),
+          id: 6,
+          dazhe: "7.5折",
+          chufa: "芝加哥出发",
+          jiezhi: "截止至：2019-07-12",
+          price: "$382.5",
+          msg:
+            "『口碑担当.畅销精品』芝加哥东南部：底特律+匹兹堡+克利夫兰+纽约+费城+华盛顿 、尼亚加拉大瀑布、沃特金斯峡谷 6日游"
+        }
       ]
     };
   },
@@ -101,6 +133,7 @@ export default {
   // }
 
   async mounted() {
+    //热销数据
     let { data } = await axios.post("http://localhost:3000/home", [
       { colName: "homeHot" }
     ]);
@@ -112,6 +145,11 @@ export default {
      }
     });
     this.hotlist = newdata;
+
+
+    //本周特卖数据   weekSell
+
+    
   }
 };
 </script>
