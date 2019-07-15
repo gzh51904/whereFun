@@ -70,7 +70,7 @@
   </div>
 </template>
 <script>
-import citys from "./citys.vue";
+// import citys from "./citys.vue";
 import axios from 'axios';
 export default {
   props:['id'],
@@ -94,12 +94,12 @@ export default {
   },
 
   components: {
-    citys
+    // citys
   },
   async created() {
-    let { id , router} = this.$route.params;
+    let { id , router,DataBaseName} = this.$route.params;
     let { data } = await axios.post(`http://localhost:3000/${router}`, [
-      { colName: "homeHot" },
+      { DataBaseName : DataBaseName },
       { 'tour_id': id}
     ]);
     this.inf = data;
@@ -148,7 +148,7 @@ export default {
     position: relative;
     overflow: hidden;
     img {
-      // width: 31.5rem;
+      width: 100%;
       height: 16rem;
     }
     .hot_sale {

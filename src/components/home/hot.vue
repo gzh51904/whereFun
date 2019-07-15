@@ -49,7 +49,7 @@ export default {
     gotoInf(id) {
       this.$router.push({
         name: "myinf",
-        params: {id: id,router:'home'}
+        params: {id: id,router:'home',DataBaseName : 'homeHot'}
       });
       // console.log(this.$router.history.current.params)
     }
