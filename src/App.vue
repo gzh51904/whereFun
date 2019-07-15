@@ -16,7 +16,6 @@
       <router-view v-on:show="checkoutMine"  :class="{mineopen:isActive,mineclose:closemine}" class="mine" name="mine" />
     <!-- 订单信息 -->
       <router-view v-on:clofoo="checkoutMine" name="ginf" :class="{sidemenu:gopen,sideopend:gcolse}" />
-
       <footer :class="{foo:fooclo}" v-if="show">
         <el-row>
           <el-col>

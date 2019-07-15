@@ -12,7 +12,7 @@
     </div>
 
     <!-- main区域 -->
-    <infMain :inf="inf"></infMain>
+    <infMain :id="id"></infMain>
   </div>
 </template>
 <script>
@@ -22,44 +22,16 @@ import infMain from "./myinf/inf_main.vue";
 export default {
   data() {
     return {
-      inf: [
-        {
-          HomeHotTitleImg: require("../assets/img/10787-1541988234403_640x483.jpg"),
-          id: 123,
-          discount: "9.5折",
-          title:
-            "『星球小屋预售』1晚星球小屋、4次极光观测机会、探秘北极圈、征服道顿公路、北方极地博物馆、冰雕博物馆 5日游",
-          servise: "接机参团",
-          discount_getpoints: "返点",
-          discount_usepoints: "兑换",
-          guide: "导游语言: 国语 | 英语",
-          date: "每天发团",
-          tour_code: "编号: FA5-10787"
-        }
-      ]
+        id:[]
     };
   },
   components: {
     search,
     infMain
   },
-  async created() {
-    let id = this.$route.params;
-    let servise = '接机参团'
-    let discount_getpoints = '返点'
-    let discount_usepoints = '兑换'
-    let guide = '导游语言: 国语 | 英语'
-    let date = '每天发团'
-    let tour_code = '编号: FA5-10787'
-    
-    let obj = {id,HomeHotTitleImg,icon,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice,servise,discount_getpoints,discount_usepoints,guide,date,tour_code};
-    let arr = [];
-    arr.push(obj);
-    this.inf = arr;
-    console.log(this.inf)
-
-    // let newid = 'ObjectId(' + '"'+id+'"' + ')';
-    // console.log(newid)
+   created() {
+    let { id } = this.$route.params;
+    this.id = id;
   }
 };
 </script>
