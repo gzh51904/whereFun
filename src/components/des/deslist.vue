@@ -68,7 +68,8 @@ export default {
       gotoinf(id){//拿到商品id通过路由传参给inf组件
           this.$router.push({
               name : 'myinf',
-              params : {id}
+              //id为商品id ，router为接口路径，colName为查询数据库表名
+              params : {id : id,router :'find',DataBaseName : 'desSelectList'}
           })
       }
   }
