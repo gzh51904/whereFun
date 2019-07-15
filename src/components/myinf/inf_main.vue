@@ -103,6 +103,7 @@ export default {
       { 'tour_id': id}
     ]);
     this.inf = data;
+    // console.log(data);
 
 
    

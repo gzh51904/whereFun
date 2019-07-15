@@ -13,22 +13,22 @@
         </a>
       </h3>
     </div>
-    <div :data="cartlist" class="order-list">
+    <div class="order-list">
       <label class="order-itemidx-0" for="">
-        <div class="order-item">
+        <div v-for="item in inf" :key="item._id" class="order-item">
           <div class="order-code">编号：1563178844_105260</div>
           <div class="cbox iradio_square-red2 order-checkbox">
             <input style="padding-top:0px;" type="checkbox" class="order-checkbox">
             <ins class="iCheck-helper"></ins>
           </div>
-          <div class="order-item-picture"></div>
+          <img class="order-item-picture" :src="require(`../assets/img/${item.gpic}`)" alt="">
           <div class="order-item-desc">
-            <h3>『黄石12-15景』东南双峡、羚羊谷、蒙特利、17哩、太浩湖、大提顿 8日游（1晚黄石小木屋）</h3>
+            <h3>{{item.gtit}}</h3>
             <span class="item-desc">产品代码  LA8-507</span>
-            <span class="item-desc">出发时间  2019-07-15</span>
-            <span class="item-desc">参加人数  成人x2  儿童x0</span>
-            <span class="order-item-price currency-convert">$1152.80</span>
-            <span class="order-item-del">
+            <span class="item-desc">出发时间  {{item.riqi}}</span>
+            <span class="item-desc">参加人数  {{item.peoples}}</span>
+            <span class="order-item-price currency-convert">${{item.gpri}}</span>
+            <span @click="delgood()" class="order-item-del">
               <i class="fa fa-trash-o"></i> 删除
             </span>
           </div>
@@ -52,18 +52,40 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-  computed:{
-    cartlist(){
-      return this.$store.state.goodlist.map((item)=>{
-        return{
-          ...item
-        }
-      })
+  data(){
+    return{
+      inf:[],
+      database: "",
     }
+
+  },
+async created(){
+  // let { id , router,DataBaseName} = this.$route.params;
+  console.log("data:", this.$route.params);
+  let guser = localStorage.getItem('username');
+  let {data} = await axios.post('http://localhost:3000/home',[
+    {DataBaseName:"Cart"},
+    {'guser':guser}
+  ]);
+ 
+  this.inf=data;
+   
+},
+methods:{
+  async delgood(){
+    let sid = this.inf[0].gid;
+    await axios.post('http://localhost:1910/reg/delcart',[
+    {'gid':sid}
+  ]);
+alert('删除商品成功！');
+
+  }
+}
   }
 
-};
+
 </script>
 <style lang="scss">
 .cart{

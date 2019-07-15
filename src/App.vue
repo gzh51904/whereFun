@@ -44,16 +44,6 @@
                   <span>{{item.title}}</span>
                 </span>
 
-                <span 
-              v-if="item.cart"
-              >
-                <span style="display:block;">
-                  <span class="count-shopcart">2</span>
-                  <i :class="item.icon"></i>
-                </span>
-
-                  <span>{{item.title}}</span>
-                </span>
 
               <!-- <span 
               v-if="item.pshow"
@@ -68,6 +58,7 @@
 
                 <span v-else>
                   <span style="display:block;">
+                    <span class="count-shopcart" v-if="item.cart">2</span>
                     <i :class="item.icon"></i>
                   </span>
 

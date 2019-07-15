@@ -48,13 +48,16 @@
 <script>
 import axios from "axios";
 export default {
-  async  created(){
-        //传入id
-        
-        
-        
-        // this.info = data;
-        // console.log(this.info)
+   created(){
+    //   let { id , router,DataBaseName} = this.$route.params;
+    // let {data} = await axios.post(`http://localhost:3000/${router}`,[
+    //     {DataBaseName:DataBaseName},
+    //     {'tour_id':id}
+    // ]);
+    // // console.log(data)
+    // let gid = data[0].tour_id;
+    // let gtit = data[0].tour_title;
+    // let gpri = data[0].tour_display_price;
     },
     data(){
               return {
@@ -77,25 +80,35 @@ export default {
         handleChange(value) {
 
       },
-      tianjia(){
-        let hid = this.$route.params.id;
-        let hpic = this.$route.params.HomeHotTitleImg;
-        let htit = this.$route.params.HomeHotTitle;
-        let hpri = this.$route.params.HomeHotPrice;
-        let riqi = this.value1;
-        let peoples = this.num;
-        let data = [hid,hpic,htit,hpri,riqi,peoples];
-        let{commit,state} = this.$store;
-        let{goodlist}=state;
-        let current = goodlist;
-        // console.log(data);
-        if(current){
-            commit('add',{...data});
-        }
-        
+     async tianjia(){
+      let peoples = this.num;
+      let riqi = this.value1;
 
-          
-          
+    let { id , router,DataBaseName} = this.$route.params;
+    let {data} = await axios.post(`http://localhost:3000/${router}`,[
+        {DataBaseName:DataBaseName},
+        {'tour_id':id}
+    ]);
+    // console.log(data)
+    let gid = data[0].tour_id;
+    let gtit = data[0].tour_title;
+    let gpri = data[0].tour_display_price;
+    let gpic = data[0].tour_main_picture;
+    let guser = localStorage.getItem('username');
+
+    this.$axios.post('http://localhost:1910/reg/cart',{
+        gid,
+        gpic,
+        gtit,
+        riqi,
+        peoples,
+        gpri,
+        guser
+    }).then(({data})=>{
+        if(data.code == 1000){
+            alert('添加商品成功');
+        }
+    })
       }
     }
 }
