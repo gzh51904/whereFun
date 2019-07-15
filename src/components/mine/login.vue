@@ -80,12 +80,13 @@ export default {
                 // console.log(res);
                 if(data.code == 250){
                     alert('用户名或密码错误！')
-                    console.log('登录失败')
+                    // console.log('登录失败')
                 }else if(data.code == 1000){
                     //成功登录后跳转到首页
-                this.$router.replace('/home');
-                   let fun =  this.$router.replace('/home');
-                   
+                localStorage.setItem('username',username);
+                let targetPath = this.$route.query.redirectTo;
+                this.$router.replace(targetPath?targetPath:'/home');
+                                    
                 }
             })
         }

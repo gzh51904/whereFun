@@ -1,8 +1,8 @@
 <template>
     <div>
-        <col1/>
-        <col2/>
-        <col3/>
+        <col1 db="中南美" index="0"/>
+        <col2 db="中南美" index="1"/>
+        <col3 db="中南美" index="2"/>
     </div>
 </template>
 <script>

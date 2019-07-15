@@ -18,7 +18,7 @@
 <script>
 import search from "./search.vue";
 import infMain from "./myinf/inf_main.vue";
-import axios from 'axios';
+
 export default {
   data() {
     return {

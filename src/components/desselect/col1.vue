@@ -1,46 +1,11 @@
 <template>
   <div id="clo1">
-    <h5>当季热销</h5>
+    <h5 v-text="database.name">当季热销</h5>
     <ul class="col1">
-      <li @click="gotocomm()" class="col1_item">
-        <a href="javascript:;">
-          <div class="itemBox">
-            <h6>黄石国家公园</h6>
-          </div>
-        </a>
-      </li>
-      <li class="col1_item">
-        <a href="javascript:;">
-          <div class="itemBox">
-            <h6>黄石国家公园</h6>
-          </div>
-        </a>
-      </li>
-      <li class="col1_item">
-        <a href="javascript:;">
-          <div class="itemBox">
-            <h6>黄石国家公园</h6>
-          </div>
-        </a>
-      </li>
-      <li class="col1_item">
-        <a href="javascript:;">
-          <div class="itemBox">
-            <h6>黄石国家公园</h6>
-          </div>
-        </a>
-      </li>
-      <li class="col1_item">
-        <a href="javascript:;">
-          <div class="itemBox">
-            <h6>黄石国家公园</h6>
-          </div>
-        </a>
-      </li>
-      <li class="col1_item">
-        <a href="javascript:;">
-          <div class="itemBox">
-            <h6>黄石国家公园</h6>
+      <li v-for="(a,index) in database.item" :key="index" @click="gotocomm(a)" class="col1_item">
+        <a href="http://localhost:8080/#/comm">
+          <div class="itemBox" :style="`backgroundImage:url(${database.img[index]});`">
+            <h6 v-text="a">黄石国家公园</h6>
           </div>
         </a>
       </li>
@@ -50,12 +15,34 @@
 
 <script>
 export default {
-    methods : {
-        gotocomm(){
-            this.$router.push({path : '/comm'});
-        }
-    } 
-}
+  props: ["db","index"],
+  data() {
+    return {
+      database: '',
+    };
+  },
+  watch: {
+    deslistDATA() {
+        //监听到拿到了数据执行挂载
+        this.$store.state.deslistDATA.map((item)=>{
+            if(item.title == this.db){
+                //遍历筛选需要渲染的数据
+                this.database = item.total[this.index]
+            }
+        });
+    }
+  },
+  computed: {
+    deslistDATA: function() {
+      return this.$store.state.deslistDATA;
+    }
+  },
+  methods : {
+      gotocomm(a){
+          this.$store.state.commState = a//修改vuex的值，跨组件通讯，comm直接读取vuex的值进行数据渲染
+      }
+  }
+};
 </script>
 
 
@@ -74,7 +61,7 @@ export default {
     padding: 0;
     list-style: none;
     display: flex;
-    justify-content: start;
+    // justify-content: start;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;

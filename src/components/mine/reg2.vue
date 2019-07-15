@@ -111,6 +111,10 @@ export default {
         goto(){
             this.$router.push('/login');
         },
+        checkout(){
+            this.$emit('checkoutMines');
+            return Promise.resolve();
+        },
         submitForm(formName){
             this.$refs[formName].validate(valid => {
                 if(valid){
@@ -121,7 +125,10 @@ export default {
                     }).then(({data})=>{
                         if(data.code == 1000){
 
-                            this.$router.replace('/login');
+                          alert('注册成功，正在跳转到登录页！');
+                          this.$router.replace('/login');
+                          this.$emit('checkoutMines');
+                          this.$emit('cloron','gotoxlon');
                         }
                     })
                 }else{
@@ -129,6 +136,12 @@ export default {
                     return false;
                 }
             });
+            return Promise.resolve();
+        },
+        zhuce(){
+            this.submitForm(forName).then(val => {
+                this.checkout();
+            })
         }
 
         }

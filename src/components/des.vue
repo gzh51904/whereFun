@@ -2,11 +2,11 @@
   <div id="des">
     <search />
     <div id="main">
-      <desnav />
+      <desnav :name="local" />
       <!-- 滚动条下拉出现模块 -->
       <div class="cityBJ">
         <a href="javascript:;" class="titleCity">
-          <p>洛杉矶</p>
+          <p v-text="local">洛杉矶</p>
           <p>Los Angeles</p>
         </a>
         <a @click="gotodesSelect()" href="javascript:;" class="tabCity">
@@ -83,7 +83,10 @@
           </a>
         </div>
       </div>
-      <deslist />
+      <div id="content">
+        <h1>{{local}}旅游</h1>
+        <deslist :db="local"/>
+      </div>
     </div>
   </div>
 </template>
@@ -94,7 +97,8 @@ import desnav from "./des/desnav";
 export default {
   data() {
     return {
-      menuTop: false
+      menuTop: false,
+      local: this.$store.state.desState,//拿vuex的值，传递给nav和查询数据
     };
   },
   mounted() {
@@ -102,10 +106,10 @@ export default {
     main.addEventListener("scroll", this.scrollFn, true);
   },
   methods: {
-    gotodesSelect() {
+    gotodesSelect() {//点击select路由跳转
       this.$router.push({ name: "desselect" });
     },
-    scrollFn() {
+    scrollFn() {//鼠标滚动出现吸顶菜单
       let main = document.querySelector("main");
       if (main.scrollTop - 12 > 336) {
         this.menuTop = true;
@@ -115,7 +119,7 @@ export default {
     }
   },
   destroyed() {
-    let main = document.querySelector("main");
+    let main = document.querySelector("main");//销毁鼠标滚动事件
     main.removeEventListener("scroll", this.scrollFn, true);
   },
   components: {
@@ -128,53 +132,42 @@ export default {
 
 
 <style lang="scss" scoped>
-#des {
-  margin-top: 0;
-  width: 100%;
-  position: absolute;
-  z-index: 10000;
-  box-shadow: 0 0 10px #000;
-  background-color: #fff;
-  box-sizing: border-box;
-  min-height: 100%;
-  padding-bottom: 6rem;
-  .icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
+#content {
+  h1 {
+    color: #556;
+    line-height: 3rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
   }
-
-  #main {
-    margin-top: 3.5rem;
-    .cityBJ {
-      // width: 37.5rem;
-      height: 14.2rem;
-      position: relative;
-      background: url("../assets/img/LosAngeles_b.jpg") no-repeat;
-      background-size: cover;
-      a {
-        position: absolute;
-      }
-      .tabCity {
-        width: 9rem;
-        height: 2rem;
-        right: 1rem;
-        top: 1rem;
-        background: #ff3573;
-        color: #fff;
-        border-radius: 1rem;
-        line-height: 2rem;
-        text-align: center;
-        font-size: 1.1rem;
-      }
-      .titleCity {
-        font-size: 1.8rem;
-        color: #ffe;
-        top: 1.5rem;
-        left: 1.5rem;
-      }
+}
+#main {
+  margin-top: 3.5rem;
+  .cityBJ {
+    // width: 37.5rem;
+    height: 14.2rem;
+    position: relative;
+    background: url("../assets/img/LosAngeles_b.jpg") no-repeat;
+    background-size: cover;
+    a {
+      position: absolute;
+    }
+    .tabCity {
+      width: 9rem;
+      height: 2rem;
+      right: 1rem;
+      top: 1rem;
+      background: #ff3573;
+      color: #fff;
+      border-radius: 1rem;
+      line-height: 2rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .titleCity {
+      font-size: 1.8rem;
+      color: #ffe;
+      top: 1.5rem;
+      left: 1.5rem;
     }
     .menu {
       width: 100%;

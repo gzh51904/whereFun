@@ -12,7 +12,6 @@
     </header>
 </template>
 <script>
-import store from '../store.js'
 export default {
   methods:{
     backHome() {

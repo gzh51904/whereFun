@@ -1,1 +1,1 @@
-mongoimport -d demo -c homeHot --file F:\now\level3\week_4_vue\where\whereFun\public\dataBase\homeHot.json --type json
+mongoimport -d demo -c homeHot --file C:\Users\Administrator\Desktop\dataBase\homeHot.json --type json

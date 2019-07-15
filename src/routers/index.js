@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import vueRoter from 'vue-router'
+import store from '../store'
 import Home from '../components/home.vue'
 import Des from '../components/des.vue'
 import Cart from '../components/cart.vue'
@@ -18,8 +19,7 @@ import team from '../components/desselect/team.vue';
 import usaeast from '../components/desselect/usaeast.vue';
 import usawest from '../components/desselect/usawest.vue';
 import myinf from '../components/myinf.vue';
-import store from '../store.js';
-import kefu from '../components/home/kefu.vue'
+import kefu from '../components/home/kefu.vue';
 import comm from '../components/desselect/comm.vue';
 import Ginf from '../components/goodsinf.vue'
 
@@ -35,22 +35,28 @@ let router = new vueRoter({
                 mine:Mine
 
             }
-        },{
-            name:'Des',
-            path:'/des',
-            component:Des,
-            components:{
-                default:Des,
-                mine:Mine
-
-            }
-        },{
-            name:'Cart',
-            path:'/cart',
-            component:Cart,
-            components:{
-                default:Cart,
-                mine:Mine
+        }, {
+            name: 'Des',
+            path: '/des',
+            component: Des,
+            components: {
+                default: Des,
+                mine: Mine
+            },
+            beforeEnter: (to, from, next) => {//路由独享，用来控制跳转目的地des时是否第一次进入，第一次进入需要选则目的地。
+                if(store.state.desState){
+                    next();
+                }else{
+                    next({path : '/desselect/hot'})
+                }
+              }  
+        }, {
+            name: 'Cart',
+            path: '/cart',
+            component: Cart,
+            components: {
+                default: Cart,
+                mine: Mine
 
             }
         },
@@ -82,18 +88,20 @@ let router = new vueRoter({
             }
         },
         {
-            name:'desselect',
-            path:'/desselect',
-            component:desselect,
+            name: 'desselect',
+            path: '/desselect',
+            redirect: {
+                path: '/desselect/hot'
+            }, //重定向
+            component: desselect,
             components:{
                 default:desselect,
                 mine:Mine
 
             },
-            children : [
-                {
-                    path:'hot',
-                    component:hot,
+            children: [{
+                    path: 'hot',
+                    component: hot,
                 },
                 {
                     path:'canada',
@@ -141,7 +149,7 @@ let router = new vueRoter({
                 ginf:Ginf
             }
         }, {
-            name: comm,
+            name: 'comm',
             path: '/comm',
             component: comm,
             components:{
@@ -167,13 +175,33 @@ let router = new vueRoter({
 router.beforeEach((to, from, next) => {
     if(to.fullPath == "/inf") {
         // console.log(store.state)
+        
         store.state.isShow = false;
         // console.log(store.state.isShow )
         // console.log(router.app.$store)
     }else{
         store.state.isShow = true;
     }
-    next();
+
+    if(to.matched.some(item=>item.meta.requiresAuth)){
+        let username = localStorage.getItem('username');
+        //用户已登录
+        if(username){
+
+            next();
+        }
+        //用户未登录
+        else{
+            next({
+                path:'/login',
+                query:{redirectTo:to.fullPath}
+            });
+            
+        }
+    }else{
+        next();
+    }
+    
   })
 
 export default router

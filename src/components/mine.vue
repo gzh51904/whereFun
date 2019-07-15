@@ -1,7 +1,7 @@
 <template>
 <div class="mine">
-    <logins v-on:gotoxron="gotoxron" v-on:clolon="clolon" v-show="lon"></logins>
-    <regs v-on:gotoxlon="gotoxlon"  v-on:cloron="cloron" v-show="ron"></regs>
+    <logins v-on:loging="loging" v-on:checkoutMines="checkoutMines" v-on:gotoxron="gotoxron" v-on:clolon="clolon" v-show="lon"></logins>
+    <regs v-on:checkoutMines="checkoutMines" v-on:gotoxlon="gotoxlon"  v-on:cloron="cloron" v-show="ron"></regs>
     <div v-show="mon">
     <div class="side-menu"></div>
         <div class="side-menu-wrapper">
@@ -18,8 +18,13 @@
     <div class="userinfo">
         <el-avatar shape="square" :size="60" :src="squareUrl"></el-avatar>
         <div v-for="item in infobtns" :key="item.name"  class="infobtn">
-        <el-button  @click.native.prevent.stop="gotoron()" round><i :class="item.icon" ron></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
-        <el-button  @click.native.prevent.stop="gotolon()" round><i :class="item.icon2" lon></i> {{item.title2}}</el-button>
+        <el-button v-if="!logined"   @click.native.prevent.stop="gotoron()" round><i :class="item.icon" ron></i> {{item.title}}</el-button>&nbsp;&nbsp;&nbsp;
+        <el-button v-if="!logined"   @click.native.prevent.stop="gotolon()" round><i :class="item.icon2" lon></i> {{item.title2}}</el-button>
+        </div>
+
+        <div class="infobtn">
+        <el-button v-if="logined"  @click.native.prevent.stop="logout()" round>退出</el-button>&nbsp;&nbsp;&nbsp;
+        <el-button v-if="logined" round>用户中心</el-button>
         </div>
     </div>
      <ul class="menu-list">
@@ -78,6 +83,12 @@ import bus from '../assets/js/Bus';
 import logins from './mine/login2';
 import regs from './mine/reg2';
 export default {
+    created(){
+      let username = localStorage.getItem('username');
+      if(username){
+          this.logined = username ? true : false;
+      }
+    },
     components:{
         logins,
         regs
@@ -94,7 +105,9 @@ export default {
                 title:'注册',
                 icon:'el-icon-user-solid',
                 title2:'登录',
-                icon2:'el-icon-s-home'
+                icon2:'el-icon-s-home',
+                title3:'退出',
+                title4:'用户中心',
             }],
             menulist:[{
                 icon:'el-icon-s-home',
@@ -115,6 +128,10 @@ export default {
                 icon:'el-icon-sunny',
                 title:'会员中心'
             },{
+                icon:'el-icon-shopping-cart-2',
+                title:'购物车'
+            },
+            {
                 icon:'el-icon-service',
                 title:'在线服务',
                 oks:true
@@ -176,7 +193,8 @@ export default {
                coun:'台湾',
                phone:'123456'
            }],
-          
+          logined:true,
+        //   logouted:false
         }
     },
    
@@ -184,11 +202,18 @@ export default {
       oks:false,
       opens:true,
       closemain:false,
+      
     methods:{
+        loging(){
+            this.logined=true
+        },
+        logout(){
+            localStorage.removeItem('username');
+            this.logined=false
+        },
         gotoron(){
             this.$router.push('/reg');
             this.$emit('show');
-            console.log(666)
 
         },
         gotoxron(){
@@ -206,7 +231,6 @@ export default {
         gotolon(){
             this.lon= true;
             this.mon=false;
-            console.log(22)
 
         },
         clolon(){
@@ -232,7 +256,9 @@ export default {
 </script>
 <style lang="scss">
 @import url('../assets/css/base.css');
-
+.el-select-dropdown{
+    z-index: 99999!important;
+}
 .mine{
     background-color: #32425b;
     height: 100%;
