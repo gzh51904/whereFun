@@ -44,8 +44,7 @@ export default {
     infMain
   },
   async created() {
-    let {id,HomeHotTitleImg,icon,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice} = this.$route.params;
-    // console.log(id,HomeHotTitleImg,HomeHotTitleImg,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice,)
+    let id = this.$route.params;
     let servise = '接机参团'
     let discount_getpoints = '返点'
     let discount_usepoints = '兑换'

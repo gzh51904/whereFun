@@ -1,62 +1,62 @@
 <template>
   <div>
-    <div class="tour_display" v-for="item in inf" :key="item.id">
+    <div class="tour_display">
       <!-- 图 -->
       <div class="layer">
-        <img :src="item.HomeHotTitleImg" alt />
+        <img src="" alt />
         <div class="hot_sale"></div>
       </div>
 
       <!-- 详情 -->
       <div class="basic_info">
-        <span class="dicount_num" v-text="item.HomeHotSale"></span>
-        <h1 class="title" v-text="item.HomeHotTitle"></h1>
+        <span class="dicount_num"></span>
+        <h1 class="title"></h1>
         <div class="clearfix"></div>
         <div class="clearfix"></div>
         <ul class="tags">
           <!-- 服务类型 -->
           <li class="service">
-            <span class="service_airport" v-text="item.servise"></span>
+            <span class="service_airport"></span>
           </li>
           <!-- 是否返点 -->
           <li class="discount">
-            <span class="discount_getpoints" v-text="item.discount_getpoints"></span>
+            <span class="discount_getpoints"></span>
           </li>
           <!-- 是否兑换 -->
           <li class="discount">
-            <span class="discount_usepoints" v-text="item.discount_usepoints"></span>
+            <span class="discount_usepoints"></span>
           </li>
           <!-- 导游语言 -->
           <li class="guide">
-            <span v-text="item.guide"></span>
+            <span></span>
           </li>
         </ul>
         <div class="depart_date_wrapper clearfix">
           <span class="date">
             <i class="el-icon-date"></i>
-            <span class="date" v-text="item.date"></span>
+            <span class="date"></span>
           </span>
-          <span class="tour_code" v-text="item.tour_code"></span>
+          <span class="tour_code"></span>
         </div>
 
         <!-- 出发地点与结束地点 -->
         <!-- <citys></citys> -->
-        <div class="display_price_wrapper" v-for="item in inf" :key="item.id">
+        <div class="display_price_wrapper">
           <div class="citys">
             <h5>
               <span>出发:</span>
-              <span v-text="(item.HomeHotGps).slice(0,-6)"></span>
+              <span></span>
             </h5>
             <h5>
               <span>结束：</span>
-              <span v-text="(item.HomeHotGps).slice(0,-6)"></span>
+              <span></span>
             </h5>
           </div>
           <div class="prices has_discount">
             <div id="original_price">
-              <span class="currency_convert" v-text="price"></span>
+              <span class="currency_convert"></span>
             </div>
-            <span id="display_price" class="currency_convert" v-text="item.HomeHotPrice"></span>
+            <span id="display_price" class="currency_convert"></span>
             <small id="price_unit">/人起</small>
           </div>
         </div>
@@ -78,12 +78,7 @@ export default {
     citys
   },
   mounted() {
-    console.log(this.inf);
-  },
-  computed:{
-    price() {
-      return '￥'+((this.inf[0].HomeHotPrice.slice(1))*1.8).toFixed(2)
-    }
+    // console.log(this.inf);
   },
   
   
