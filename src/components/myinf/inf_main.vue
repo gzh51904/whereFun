@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="tour_display" v-for="item in inf" :key="item.tour_id">
+  <div class="Bbox" v-loading="loading" element-loading-text="拼命加载中">
+    <div class="tour_display" v-for="item in inf" :key="item.tour_id" >
       <!-- 图 -->
       <div class="layer">
         <img :src="require(`../../assets/img/${item.tour_main_picture}`)" alt />
@@ -47,11 +47,11 @@
           <div class="citys">
             <h5>
               <span>出发:</span>
-              <span></span>
+              <span v-text="((item.tour_departure).split('|'))[0]"></span>
             </h5>
             <h5>
               <span>结束：</span>
-              <span></span>
+              <span  v-text="((item.tour_departure).split('|'))[0]"></span>
             </h5>
           </div>
           <div class="prices has_discount">
@@ -76,10 +76,9 @@ export default {
   props:['id'],
   data() {
     return {
-      inf: [
-        
-      ],
-      database: ""
+      inf: [],
+      database: "",
+      loading: true
     };
   },
   watch: {
@@ -105,6 +104,13 @@ export default {
     ]);
     this.inf = data;
 
+
+   
+    if(this.inf) {
+      this.loading = false
+    }
+  
+
     // let newid = 'ObjectId(' + '"'+id+'"' + ')';
     // console.log(newid)
   }
@@ -125,8 +131,13 @@ export default {
 .clearfix {
   *zoom: 1; /*IE/7/6*/
 }
+.Bbox{
+   display: block;
+  min-height: 15rem;  
+}
 .tour_display {
   display: block;
+    min-height: 8rem;
   .layer {
     background-position: center center;
     background-size: cover;
