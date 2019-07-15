@@ -31,6 +31,7 @@
       <allline></allline>
 
       <!-- 爆款热销 -->
+
       <hot :hotlist="hotlist"></hot>
     </div>
   </div>
@@ -81,7 +82,7 @@ export default {
         //   id: 3
         // }
       ],
-         weekSell: [
+      weekSell: [
         {
           img: require("../assets/img/banner2_1.jpg"),
           id: 3,
@@ -137,19 +138,15 @@ export default {
     let { data } = await axios.post("http://localhost:3000/home", [
       { colName: "homeHot" }
     ]);
+    // console.log(data);
     //用map映射的方法在每一项加上icon:"el-icon-map-location"图标
-    let newdata = data.map(item=>{
-     return {
-       ...item,
-       icon:"el-icon-map-location"
-     }
+    let newdata = data.map(item => {
+      return {
+        ...item,
+        icon: "el-icon-map-location"
+      };
     });
     this.hotlist = newdata;
-
-
-    //本周特卖数据   weekSell
-
-    
   }
 };
 </script>

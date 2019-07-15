@@ -5,23 +5,26 @@
       爆款热销
     </h3>
     <span class="hot_title">畅销的线路，尖叫的低价</span>
-    <ul>
+    <ul v-loading="loading" element-loading-text="拼命加载中">
       <li v-for="item in hotlist" :key="item._id">
-        <a href="javascript:;" @click="gotoInf(item._id,item.HomeHotTitleImg,item.icon,item.HomeHotGps,item.HomeHotTitle,item.HomeHotSale,item.HomeHotPrice)">
+        <a
+          href="javascript:;"
+          @click="gotoInf(item.tour_id)"
+        >
           <div class="img_box">
-            <img :src="item.HomeHotTitleImg" alt />
+            <img :src="require(`../../assets/img/${item.tour_main_picture}`)" alt />
           </div>
           <div class="depart_box">
             <i :class="item.icon"></i>
             <!-- 拉斯维加斯出发 5日游 -->
-            <span class="depart" v-text="item.HomeHotGps"></span>
+            <span class="depart" v-text="item.tour_departure"></span>
           </div>
           <!-- 『热门推荐』马蹄湾、羚羊峡谷、布莱斯峡谷、锡安国家公园、鲍威尔湖、西大峡谷 5日游 -->
-          <h5 v-text="item.HomeHotTitle"></h5>
+          <h5 v-text="item.tour_title"></h5>
           <div class="price">
             <!-- 6.5折 -->
-            <span class="discount" v-text="item.HomeHotSale"></span>
-            <span class="current currency-convert" v-text="item.HomeHotPrice"></span>
+            <span class="discount" v-text="item.tour_discount_percent+'折'"></span>
+            <span class="current currency-convert" v-text="item.tour_display_price"></span>
             <small>/人起</small>
           </div>
         </a>
@@ -38,21 +41,24 @@ Vue.use(ElementUi);
 export default {
   props: ["hotlist"],
   data() {
-    return {};
+    return {
+      loading: true
+    };
   },
-  methods:{
-    gotoInf(id,HomeHotTitleImg,icon,HomeHotGps,HomeHotTitle,HomeHotSale,HomeHotPrice) {
-      this.$router.push({name:'myinf',params:{
-        id:id,
-        HomeHotTitleImg:HomeHotTitleImg,
-        icon:icon,
-        HomeHotGps:HomeHotGps,
-        HomeHotTitle:HomeHotTitle,
-        HomeHotSale: HomeHotSale,
-        HomeHotPrice:HomeHotPrice
-      }});
+  methods: {
+    gotoInf(id) {
+      this.$router.push({
+        name: "myinf",
+        params: {id: id,router:'home'}
+      });
       // console.log(this.$router.history.current.params)
-      
+    }
+  },
+  created() {
+    if (this.hotlist) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 1500);
     }
   }
 };
@@ -92,6 +98,7 @@ export default {
     padding: 0;
     list-style: none;
     overflow: hidden;
+    min-height: 15rem;
     li {
       height: 23rem;
       display: block;
