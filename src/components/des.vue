@@ -94,11 +94,12 @@
 import search from "./search";
 import deslist from "./des/deslist";
 import desnav from "./des/desnav";
+import axios from "axios";
 export default {
   data() {
     return {
       menuTop: false,
-      local: this.$store.state.desState, //拿vuex的值，传递给nav和查询数据
+      local: this.$store.state.desState //拿vuex的值，传递给nav和查询数据
     };
   },
   mounted() {
@@ -118,7 +119,11 @@ export default {
       } else {
         this.menuTop = false;
       }
-    }
+    },
+    // gotodescomm() {
+    //   //点击特价跳转
+    //   this.$router.push({ name: "comm" ,params:{databaseName : 'tejia',data : ''}});
+    // }
   },
   destroyed() {
     let main = document.querySelector("main"); //销毁鼠标滚动事件
