@@ -12,7 +12,7 @@ export default new Vuex.Store({
         isShow:true,
         goodlist:[
             
-        ]
+        ],
     },
     mutations: {
         updatedeslist(val){//修改deslistDATA的方法
