@@ -1,7 +1,13 @@
 <template>
   <div id="deslist">
     <el-table v-loading="loading" :data="database" style="width: 100%"></el-table>
-    <a @click="gotoinf(a.tour_id)" v-for="(a,index) in database" :key="index" class="content_a" href="javascript:;">
+    <a
+      @click="gotoinf(a.tour_id)"
+      v-for="(a,index) in database"
+      :key="index"
+      class="content_a"
+      href="javascript:;"
+    >
       <div class="content_list">
         <figure>
           <div class="content_list_imgBox">
@@ -61,17 +67,34 @@ export default {
       ])
       .then(res => {
         this.ShowDeslist = true;
+        this.$store.state.deslistDATA = res.data[0].total;//存放到数据库用于筛选数据
         this.database = res.data[0].total;
       });
   },
-  methods : {
-      gotoinf(id){//拿到商品id通过路由传参给inf组件
-          this.$router.push({
-              name : 'myinf',
-              //id为商品id ，router为接口路径，colName为查询数据库表名
-              params : {id : id,router :'find',DataBaseName : 'desSelectList'}
-          })
+  methods: {
+    gotoinf(id) {
+      //拿到商品id通过路由传参给inf组件
+      this.$router.push({
+        name: "myinf",
+        //id为商品id ，router为接口路径，colName为查询数据库表名
+        params: { id: id, router: "find", DataBaseName: "desSelectList" }
+      });
+    }
+  },
+  watch: {
+    db() {
+      //监听db属性，comm筛选过后会触发这个函数
+      //便利database
+      let a = [];
+      this.$store.state.deslistDATA.map(item => {
+        if (item.tour_departure == this.db) {
+          a.push(item);
+        }
+      });
+      if(a.length){
+          this.database = a;
       }
+    }
   }
 };
 </script>
