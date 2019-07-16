@@ -91,6 +91,7 @@ export default {
     },
     data(){
         return{
+            logined:false,
              ron:false,
              lon:false,
              mon:true,
@@ -191,17 +192,27 @@ export default {
           logined:false,
         //   logouted:false
         }
+        
     },
         created(){
       let username = localStorage.getItem('username');
    
           if(username){
-              this.logined=false;
-          }else{
               this.logined=true;
+          }else{
+              this.logined=false;
 
           }
  
+    },
+    beforeCreate(){
+        let username = localStorage.getItem('username');
+    if(username){
+              this.logined=true;
+          }else{
+              this.logined=false;
+
+          }
     },
    
     isActive:false,
@@ -215,6 +226,7 @@ export default {
         },
         logout(){
             localStorage.removeItem('username');
+            localStorage.removeItem('goodnum');
             this.logined=false
         },
         gotoron(){

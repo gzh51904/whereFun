@@ -38,7 +38,7 @@
                <el-input-number class="renshu" v-model="num" controls-position="right" @change="handleChange" :min="1"></el-input-number>
                 </div>
                 <div class="priinf"><div class="yuan"></div><span>$758.1人起</span></div>
-                <div class="bbottom"><span>总价<p>$15484.20</p></span><span @click="tianjia()">添加</span></div>
+                <div class="bbottom"><span>总价<p>${{zj}}</p></span><span @click="tianjia()">添加</span></div>
             </div>
         </div>
     </div>
@@ -47,31 +47,37 @@
 
 <script>
 import axios from "axios";
+import { all } from 'q';
 export default {
-   created(){
-    //   let { id , router,DataBaseName} = this.$route.params;
-    // let {data} = await axios.post(`http://localhost:3000/${router}`,[
-    //     {DataBaseName:DataBaseName},
-    //     {'tour_id':id}
-    // ]);
-    // // console.log(data)
-    // let gid = data[0].tour_id;
-    // let gtit = data[0].tour_title;
-    // let gpri = data[0].tour_display_price;
-    },
     data(){
               return {
                   info:{},
-        num:1,
-        pickerOptions: {
-          disabledDate(time) {
-            return time.getTime() > Date.now();
+                   num:1,
+                   gpris:'',
+                   zj:'',
+                pickerOptions: {
+                    disabledDate(time) {
+                    return time.getTime() > Date.now();
           },
 
         },
         value1: '',
         value2: '',
       };
+    },
+     async  updated(){
+let { id , router,DataBaseName} = this.$route.params;
+
+    let {data} = await axios.post(`http://localhost:3000/${router}`,[
+        {DataBaseName:DataBaseName},
+        {'tour_id':id}
+    ]);
+    let gpri = data[0].tour_display_price;
+    this.gpris = gpri;
+let dj = this.gpris;
+let sm = this.num;
+this.zj = dj*sm;
+// console.log(zj)
     },
     methods:{
         checkoutMines(){
@@ -81,10 +87,14 @@ export default {
 
       },
      async tianjia(){
-      let peoples = this.num;
+      let user = localStorage.getItem('username');
+      if(user){
+             let peoples = this.num;
       let riqi = this.value1;
-
-    let { id , router,DataBaseName} = this.$route.params;
+    if(riqi===''){
+        alert('请选择出现日期')
+    }else{
+        let { id , router,DataBaseName} = this.$route.params;
     let {data} = await axios.post(`http://localhost:3000/${router}`,[
         {DataBaseName:DataBaseName},
         {'tour_id':id}
@@ -96,7 +106,7 @@ export default {
     let gpic = data[0].tour_main_picture;
     let guser = localStorage.getItem('username');
 
-    this.$axios.post('http://localhost:1910/reg/cart',{
+    this.$axios.post('http://localhost:3000/reg/cart',{
         gid,
         gpic,
         gtit,
@@ -107,8 +117,15 @@ export default {
     }).then(({data})=>{
         if(data.code == 1000){
             alert('添加商品成功');
+           
         }
     })
+    }
+      }else{
+          alert('嘻嘻，请先登录')
+      }
+   
+
       }
     }
 }

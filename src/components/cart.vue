@@ -15,10 +15,10 @@
     </div>
     <div class="order-list">
       <label class="order-itemidx-0" for="">
-        <div v-for="item in inf" :key="item._id" class="order-item">
+        <div v-for="item in inf" :key="item.id" class="order-item">
           <div class="order-code">编号：1563178844_105260</div>
           <div class="cbox iradio_square-red2 order-checkbox">
-            <input style="padding-top:0px;" type="checkbox" class="order-checkbox">
+            <input :checked="cox" style="padding-top:0px;" type="checkbox" class="order-checkbox">
             <ins class="iCheck-helper"></ins>
           </div>
           <img class="order-item-picture" :src="require(`../assets/img/${item.gpic}`)" alt="">
@@ -28,7 +28,7 @@
             <span class="item-desc">出发时间  {{item.riqi}}</span>
             <span class="item-desc">参加人数  {{item.peoples}}</span>
             <span class="order-item-price currency-convert">${{item.gpri}}</span>
-            <span @click="delgood()" class="order-item-del">
+            <span @click.stop="delgood()" class="order-item-del">
               <i class="fa fa-trash-o"></i> 删除
             </span>
           </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="layer pay-bar">
       <div class="price-total">
-        合计: <span class="order-total-price currency-convert"></span>
+        合计: <span class="order-total-price currency-convert">${{jisuan}}</span>
       </div>
       <button class="btn-go-pay">支付</button>
     </div>
@@ -53,35 +53,101 @@
 </template>
 <script>
 import axios from 'axios'
+import { Submenu } from 'element-ui';
+import { constants } from 'crypto';
+import { isNumber } from 'util';
 export default {
+  // oks:true,
+  
   data(){
+    
     return{
       inf:[],
       database: "",
+      goodnum:'',
+      totalPrice :[],
+      total :'',//总价,
+      zjs:'',
+      cox:true,
     }
 
   },
-async created(){
-  // let { id , router,DataBaseName} = this.$route.params;
-  console.log("data:", this.$route.params);
+  // created(){
+  //   inf.map(item=>{
+  //     item
+  //   })
+  // },
+
+async beforeCreate(){
+  //请求购物车数据，渲染页面
   let guser = localStorage.getItem('username');
   let {data} = await axios.post('http://localhost:3000/home',[
     {DataBaseName:"Cart"},
     {'guser':guser}
   ]);
- 
+
+  
+
   this.inf=data;
+  let goodnum=this.inf.length;
+  let index = goodnum
+  localStorage.setItem('goodnum',goodnum);
    
 },
+updated(){
+  let data = this.inf;
+  for(let i = 0; i < data.length; i++){
+   if(this.cox==true){
+this.totalPrice -= Math.abs(data[i].gpri);
+   }
+
+
+  
+
+  }
+},
+// created(){
+//     计算总价
+// let goods = this.inf;
+// goods.map(item=>{
+//   for(let i = 0; i < item.length; i++){
+
+//     let dj = item[i].gpri;
+//   this.zjs = dj;
+//   console.log('item',item.length)
+//   }
+// })
+// console.log('dj',this.zjs)
+// },
+
+computed:{
+  jisuan(){
+
+let ggs = (this.totalPrice)*-1;
+return ggs;
+Math.abs(ggs)
+
+    console.log('zj',ggs)
+  }
+},
+
+
+created(){
+//  console.log('zj')
+
+  
+},
+
 methods:{
-  async delgood(){
-    let sid = this.inf[0].gid;
-    await axios.post('http://localhost:1910/reg/delcart',[
-    {'gid':sid}
+ async delgood(index){
+let gid = this.inf[0].gid;
+ await axios.post('http://localhost:3000/reg/delcart',[
+    {DataBaseName:"Cart"},
+    {'gid':gid}
   ]);
 alert('删除商品成功！');
 
-  }
+  },
 }
   }
 
@@ -335,9 +401,9 @@ i{display: inline-block;
     height: 54px;
     background-color: #fff;
     position: fixed;
-    bottom: 0;
+    top: 697px;
     left: 0;
-    z-index: 9;
+    z-index: 99999!important;
     right: 0;
     box-shadow: 0 0 10px #999;
     .price-total{

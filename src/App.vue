@@ -58,7 +58,7 @@
 
                 <span v-else>
                   <span style="display:block;">
-                    <span class="count-shopcart" v-if="item.cart">2</span>
+                    <span class="count-shopcart" v-show="gonum" v-if="item.cart">{{gnums}}</span>
                     <i :class="item.icon"></i>
                   </span>
 
@@ -91,7 +91,6 @@ import store from './store.js'
 
 
 Vue.use(ElementUi);
-
 export default {
   data() {
     return {
@@ -113,7 +112,10 @@ export default {
           name: "cart",
           path: "/cart",
           icon: "el-icon-shopping-cart-full",
-          cart:true
+          cart:true,
+          // props:{
+          //   goodnum
+          // }
         },
         {
           title: "我的",
@@ -131,6 +133,8 @@ export default {
       fooclo:false,
       gopen:true,
       gcolse:false,
+      gonum:false,
+      gnums:''
     };
   },
   methods:{
@@ -171,10 +175,22 @@ export default {
         }
       }
       },
-      created(){
+       created(){
         //刷新保持按钮高亮
         let hash = window.location.hash.slice(1);
         this.active = hash;
+
+    
+      },
+      updated(){
+    let gnum = localStorage.getItem('goodnum');
+        if(gnum>0){
+          this.gnums=gnum
+          this.gonum=true;
+        }else{
+          // this.gnums=gnum
+          this.gonum=false;
+        }
       },
   components: {
     Bmenu,

@@ -59,8 +59,8 @@ let router = new vueRoter({
             components: {
                 default: Cart,
                 mine: Mine
-
-            }
+            },
+            
         },
         // ,{
         //     name:'Mine',
