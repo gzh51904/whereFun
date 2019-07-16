@@ -55,6 +55,7 @@ let router = new vueRoter({
             name: 'Cart',
             path: '/cart',
             component: Cart,
+            meta: { requiresAuth: true },
             components: {
                 default: Cart,
                 mine: Mine
@@ -166,6 +167,13 @@ let router = new vueRoter({
             path:'/nothing',
             component:nothing,
         },
+        // {
+        //     name:'goodsinf',
+        //     path:'/goodsinf',
+        //     component:goodsinf
+
+        // }
+        
         //重定向
         {
             path: "/",

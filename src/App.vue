@@ -44,8 +44,21 @@
                   <span>{{item.title}}</span>
                 </span>
 
+
+              <!-- <span 
+              v-if="item.pshow"
+              @click.prevent.stop="clomaibar()"
+              >
+                <span style="display:block;">
+                  <i :class="item.icon"></i>
+                </span>
+
+                  <span>{{item.title}}</span>
+                </span> -->
+
                 <span v-else>
                   <span style="display:block;">
+                    <span class="count-shopcart" v-if="item.cart">2</span>
                     <i :class="item.icon"></i>
                   </span>
 
@@ -61,6 +74,8 @@
 
       <!-- 立即预定 -->
       <Bmenu :class="{foo:fooclo,}" v-on:show="sideopen" @click="sideopen()" gopen v-else></Bmenu>
+      <!-- 支付 -->
+      <pbutton></pbutton>
     </div>
   </div>
 </template>
@@ -71,7 +86,9 @@ import Vue from "vue";
 import ElementUi from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import Bmenu from "./components/bottom_menu.vue";
+import pbutton from "./components/cart/zhifu.vue";
 import store from './store.js'
+
 
 Vue.use(ElementUi);
 
@@ -95,7 +112,8 @@ export default {
           title: "购物车",
           name: "cart",
           path: "/cart",
-          icon: "el-icon-shopping-cart-full"
+          icon: "el-icon-shopping-cart-full",
+          cart:true
         },
         {
           title: "我的",
@@ -112,7 +130,7 @@ export default {
       closemine:false,
       fooclo:false,
       gopen:true,
-      gcolse:false
+      gcolse:false,
     };
   },
   methods:{
@@ -159,11 +177,15 @@ export default {
         this.active = hash;
       },
   components: {
-    Bmenu
+    Bmenu,
+    pbutton
   },
   computed:{
     show:function(){
       return  store.state.isShow
+    },
+    pshow:function(){
+      return store.state.ispshow
     }
   }
 };
@@ -287,6 +309,10 @@ body,html {
     position: fixed!important;
 }
 
+.clomb{
+  display: none;
+}
+
 main {
   flex: 1;
   overflow-x: hidden;
@@ -328,6 +354,25 @@ footer li {
   justify-content: center;
   text-align: center;
   /* align-content: center;  */
+.count-shopcart{
+  display: inline;
+  top: 7px;
+      font-size: 10px;
+    padding: 1px 6px;
+    background-color: rgba(255, 53, 114, 0.95);
+    border-radius: 8px;
+    position: absolute;
+    color: #fff;
+    margin: 0 0 0 1px;
+    top: 0;
+    left: 50%;
+    box-shadow: 1px 1px 3px #777;
+    display: block;
+    width: 18px;
+    height: 16px;
+    line-height: 16px;
+    font-weight: 300;
+}
 }
 li i {
   text-align: center;

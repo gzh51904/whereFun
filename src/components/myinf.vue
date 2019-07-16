@@ -20,6 +20,9 @@ import search from "./search.vue";
 import infMain from "./myinf/inf_main.vue";
 
 export default {
+  created(){
+      // console.log(this.$route.params);
+  },
   data() {
     return {
         id:[]

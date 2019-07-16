@@ -25,12 +25,13 @@
                 </div>
                 <div class="form-section">
                     <label><i class="el-icon-date"></i>选择出发日期</label>
-                    <el-date-picker
+                    <input class="calendar" type="date" v-model="value1">
+                    <!-- <el-date-picker
                     class="calendar"
                     v-model="value1"
                     type="date"
                     placeholder="选择日期">
-                    </el-date-picker>
+                    </el-date-picker> -->
                 </div>
                     <div class="form-section">
                     <label><i class="el-icon-user"></i>选择出行人数</label>
@@ -45,9 +46,22 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+   created(){
+    //   let { id , router,DataBaseName} = this.$route.params;
+    // let {data} = await axios.post(`http://localhost:3000/${router}`,[
+    //     {DataBaseName:DataBaseName},
+    //     {'tour_id':id}
+    // ]);
+    // // console.log(data)
+    // let gid = data[0].tour_id;
+    // let gtit = data[0].tour_title;
+    // let gpri = data[0].tour_display_price;
+    },
     data(){
               return {
+                  info:{},
         num:1,
         pickerOptions: {
           disabledDate(time) {
@@ -66,8 +80,35 @@ export default {
         handleChange(value) {
 
       },
-      tianjia(){
-          console.log(2222);
+     async tianjia(){
+      let peoples = this.num;
+      let riqi = this.value1;
+
+    let { id , router,DataBaseName} = this.$route.params;
+    let {data} = await axios.post(`http://localhost:3000/${router}`,[
+        {DataBaseName:DataBaseName},
+        {'tour_id':id}
+    ]);
+    // console.log(data)
+    let gid = data[0].tour_id;
+    let gtit = data[0].tour_title;
+    let gpri = data[0].tour_display_price;
+    let gpic = data[0].tour_main_picture;
+    let guser = localStorage.getItem('username');
+
+    this.$axios.post('http://localhost:1910/reg/cart',{
+        gid,
+        gpic,
+        gtit,
+        riqi,
+        peoples,
+        gpri,
+        guser
+    }).then(({data})=>{
+        if(data.code == 1000){
+            alert('添加商品成功');
+        }
+    })
       }
     }
 }
@@ -170,7 +211,7 @@ export default {
     font-weight: bold;
     i{margin-right: 3px;}
     }
-    .calendar{width: 318px; margin-left: 49px!important;}
+    .calendar{width: 318px; margin-left: 49px!important;height: 40px;}
     .renshu{
         width: 318px;
         background: #fff;
@@ -206,7 +247,6 @@ export default {
             font-size: 18px;
             text-align: center;
             line-height: 65px;
-            opacity: 0.8;
             font-weight: bolder;
         }
         span:nth-of-type(1){

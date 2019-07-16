@@ -83,12 +83,7 @@ import bus from '../assets/js/Bus';
 import logins from './mine/login2';
 import regs from './mine/reg2';
 export default {
-    created(){
-      let username = localStorage.getItem('username');
-      if(username){
-          this.logined = username ? true : false;
-      }
-    },
+
     components:{
         logins,
         regs
@@ -193,9 +188,20 @@ export default {
                coun:'台湾',
                phone:'123456'
            }],
-          logined:true,
+          logined:false,
         //   logouted:false
         }
+    },
+        created(){
+      let username = localStorage.getItem('username');
+   
+          if(username){
+              this.logined=false;
+          }else{
+              this.logined=true;
+
+          }
+ 
     },
    
     isActive:false,
