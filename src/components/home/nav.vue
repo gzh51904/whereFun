@@ -39,7 +39,7 @@
 export default {
   methods:{
     Gotolist() {
-      this.$router.push({path:'/comm'})
+      this.$router.push({path:'/nothing'})
     }
   }
 };
