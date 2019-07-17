@@ -92,16 +92,12 @@ export default {
   },
   methods: {
     handleClick(scope) {
-        let arr = [];
-      this.$alert(
-        `<div>12</div.`,
-        "修改数据",
-        {
-          dangerouslyUseHTMLString: true
-        }
-      );
       //表格编辑
-      console.log(scope.row);
+      //点击跳转路由complie
+      this.$router.push({
+        name: "Complie",
+        params: { database: scope.row }
+      });
     },
     onSubmit() {
       //筛选点击跳这里,能够拿到this.formInline.region

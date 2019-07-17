@@ -6,6 +6,7 @@ import Adv from './src/views/Adv';
 import GoodsInster from './src/views/GoodsInster';
 import GoodsRemove from './src/views/GoodsRemove';
 import GoodsUpdata from './src/views/GoodsUpdata';
+import Complie from './src/views/Complie';
 Vue.use(VueRouter);
 const router = new VueRouter({
     routes: [{
@@ -20,19 +21,24 @@ const router = new VueRouter({
         {
             path: '/goodsinster',
             component: GoodsInster,
-            name : 'GoodsInster'
+            name: 'GoodsInster',
         }, {
             path: '/goodsremove',
             component: GoodsRemove,
-            name : 'GoodsRemove'
+            name: 'GoodsRemove'
         }, {
             path: '/goodsupdata',
             component: GoodsUpdata,
-            name : 'GoodsUpdata'
+            name: 'GoodsUpdata'
         }, {
             name: 'Adv',
             path: '/adv',
             component: Adv,
+        },
+        {
+            name : 'Complie',
+            path: '/complie',
+            component: Complie
         }
     ]
 })
