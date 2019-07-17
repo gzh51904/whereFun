@@ -68,7 +68,7 @@ export default {
      async  updated(){
 let { id , router,DataBaseName} = this.$route.params;
 
-    let {data} = await axios.post(`http://localhost:3000/${router}`,[
+    let {data} = await axios.post(`/${router}`,[
         {DataBaseName:DataBaseName},
         {'tour_id':id}
     ]);
@@ -95,7 +95,7 @@ this.zj = dj*sm;
         alert('请选择出现日期')
     }else{
         let { id , router,DataBaseName} = this.$route.params;
-    let {data} = await axios.post(`http://localhost:3000/${router}`,[
+    let {data} = await axios.post(`/${router}`,[
         {DataBaseName:DataBaseName},
         {'tour_id':id}
     ]);
@@ -106,7 +106,7 @@ this.zj = dj*sm;
     let gpic = data[0].tour_main_picture;
     let guser = localStorage.getItem('username');
 
-    this.$axios.post('http://localhost:3000/reg/cart',{
+    this.$axios.post('/reg/cart',{
         gid,
         gpic,
         gtit,

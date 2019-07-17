@@ -67,7 +67,7 @@ export default {
   },
   created() {
     axios
-      .post("http://localhost:3000/find", [{ DataBaseName: "desList" }, {}])
+      .post("/find", [{ DataBaseName: "desList" }, {}])
       .then(res => {
           this.database = res.data;
         this.$store.state.deslistDATA = res.data;

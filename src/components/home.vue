@@ -128,16 +128,11 @@ export default {
     biwan,
     hot
   },
-  // mounted(){
-  //   axios.post('http://localhost:3000/home', [{colName : 'homeHot'}])
-  // .then(function (response) {
-  //   console.log(this)
-  // })
-  // }
+ 
 
   async mounted() {
     //热销数据
-    let { data } = await axios.post("http://localhost:3000/home", [
+    let { data } = await axios.post("/home", [
       { DataBaseName: "homeHot" }
     ]);
     // console.log(data);

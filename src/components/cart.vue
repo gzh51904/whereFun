@@ -81,7 +81,7 @@ export default {
 async beforeCreate(){
   //请求购物车数据，渲染页面
   let guser = localStorage.getItem('username');
-  let {data} = await axios.post('http://localhost:3000/home',[
+  let {data} = await axios.post('/home',[
     {DataBaseName:"Cart"},
     {'guser':guser}
   ]);
@@ -112,7 +112,7 @@ return ggs;
 methods:{
  async delgood(index){
 let gid = this.inf[0].gid;
- await axios.post('http://localhost:3000/reg/delcart',[
+ await axios.post('/reg/delcart',[
     {DataBaseName:"Cart"},
     {'gid':gid}
   ]);

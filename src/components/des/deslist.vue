@@ -55,7 +55,7 @@ export default {
     //创建后拿vuex数据渲染
     this.ShowDeslist = false;
     axios
-      .post("http://localhost:3000/find", [
+      .post("/find", [
         { DataBaseName: "desSelect" },
         { title: this.db }
       ])

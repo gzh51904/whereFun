@@ -98,7 +98,7 @@ export default {
   },
   async created() {
     let { id , router,DataBaseName} = this.$route.params;
-    let { data } = await axios.post(`http://localhost:3000/${router}`, [
+    let { data } = await axios.post(`/${router}`, [
       { DataBaseName : DataBaseName },
       { 'tour_id': id}
     ]);
