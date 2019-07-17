@@ -229,9 +229,14 @@ export default {
             localStorage.removeItem('goodnum');
             this.logined=false
         },
+        // gotoron(){
+        //     this.$router.push('/reg');
+        //     this.$emit('show');
+
+        // },
         gotoron(){
-            this.$router.push('/reg');
-            this.$emit('show');
+            this.ron=true;
+            this.mon=false;
 
         },
         gotoxron(){
@@ -274,6 +279,7 @@ export default {
 </script>
 <style lang="scss">
 @import url('../assets/css/base.css');
+main{background-color: #32425b;}
 .el-select-dropdown{
     z-index: 99999!important;
 }

@@ -18,7 +18,7 @@
         <div v-for="item in inf" :key="item.id" class="order-item">
           <div class="order-code">编号：1563178844_105260</div>
           <div class="cbox iradio_square-red2 order-checkbox">
-            <input :checked="cox" style="padding-top:0px;" type="checkbox" class="order-checkbox">
+            <input checked style="padding-top:0px;" type="checkbox" class="order-checkbox">
             <ins class="iCheck-helper"></ins>
           </div>
           <img class="order-item-picture" :src="require(`../assets/img/${item.gpic}`)" alt="">
@@ -27,7 +27,7 @@
             <span class="item-desc">产品代码  LA8-507</span>
             <span class="item-desc">出发时间  {{item.riqi}}</span>
             <span class="item-desc">参加人数  {{item.peoples}}</span>
-            <span class="order-item-price currency-convert">${{item.gpri}}</span>
+            <span class="order-item-price currency-convert">{{item.gpri}}</span>
             <span @click.stop="delgood()" class="order-item-del">
               <i class="fa fa-trash-o"></i> 删除
             </span>
@@ -38,7 +38,7 @@
     <div class="status"></div>
     <div class="layer footer">
       <div class="iradio_square-red2 order-check-all">
-        <input type="checkbox" class="order-check-all">
+        <input checked type="checkbox" class="order-check-all">
         <ins class="iCheck-helper"></ins>
       </div>
       <label for="order-check-all">全选</label>
@@ -62,7 +62,7 @@ export default {
   data(){
     
     return{
-      inf:[],
+      inf:'',
       database: "",
       goodnum:'',
       totalPrice :[],
@@ -92,51 +92,22 @@ async beforeCreate(){
   let goodnum=this.inf.length;
   let index = goodnum
   localStorage.setItem('goodnum',goodnum);
-   
-},
-updated(){
-  let data = this.inf;
-  for(let i = 0; i < data.length; i++){
-   if(this.cox==true){
-this.totalPrice -= Math.abs(data[i].gpri);
+  //  console.log('sdfs',this.inf)
+   for(let i = 0; i < data.length; i++){
+    
+this.totalPrice -= this.inf[i].gpri;
    }
-
-
-  
-
-  }
 },
-// created(){
-//     计算总价
-// let goods = this.inf;
-// goods.map(item=>{
-//   for(let i = 0; i < item.length; i++){
-
-//     let dj = item[i].gpri;
-//   this.zjs = dj;
-//   console.log('item',item.length)
-//   }
-// })
-// console.log('dj',this.zjs)
-// },
 
 computed:{
   jisuan(){
-
-let ggs = (this.totalPrice)*-1;
+let ggs = (this.totalPrice)*(-1);
 return ggs;
-Math.abs(ggs)
-
-    console.log('zj',ggs)
   }
 },
 
 
-created(){
-//  console.log('zj')
 
-  
-},
 
 methods:{
  async delgood(index){
@@ -401,7 +372,7 @@ i{display: inline-block;
     height: 54px;
     background-color: #fff;
     position: fixed;
-    top: 697px;
+    top: 45rem;
     left: 0;
     z-index: 99999!important;
     right: 0;

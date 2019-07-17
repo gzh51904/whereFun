@@ -144,13 +144,14 @@ this.zj = dj*sm;
     left: 15%;
     right: 0;
     .side-menu-header {
+    height: 45px!important;
     position: fixed;
     top: 0;
     left: 15%;
     right: 0;
-    height: 44px;
+    height: 44rem;
     z-index: 9999;
-    background-color: #32425b;
+    // background-color: #32425b;
     h3{
         margin: 0 0 10px;
     padding: 0;
@@ -252,9 +253,11 @@ this.zj = dj*sm;
     .bbottom{
         position: absolute;
         left: 42px;
-        top: 750px;
+        top: 50rem;
         width: 332px;
         height: 65px;
+        display: flex;
+  justify-content: space-around;
         span{
             width: 50%;
             height: 100%;
